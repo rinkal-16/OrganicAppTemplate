@@ -1,0 +1,26 @@
+.contact-container {
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     justify-items: center;
+     align-content: center;
+     align-items: center;
+     background-size: cover;
+     padding-bottom: 50px;
+     margin-top: 50px;
+     .right-img {
+          width: 400px;
+          height: 550px;
+          opacity: 1;
+          z-index: 1;
+          float: right;
+          margin-top: -50px;
+          margin-bottom: -100px;
+          //margin-left: -300px;
+          margin-right: -50px;
+          object-fit: cover;
+          object-position: -150% 0%;
+          
+     }
+}
