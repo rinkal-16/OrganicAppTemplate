@@ -18,19 +18,19 @@
           </div>
      </div>
      <div class="group-2">
-          <!-- Default form register -->
+          <!-- Default form register
           <form class="text-center border border-light p-5" action="#!">
                <div class="form-row mb-4">
                     <div class="col">
-                         <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+                         <input type="text" id="defaultRegisterFormFirstName" aria-describedby="defaultRegisterFormFirstNameHelpBlock" class="form-control" placeholder="First name">
                     </div>
                     <div class="col">
-                         <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+                         <input type="text" id="defaultRegisterFormLastName" aria-describedby="defaultRegisterFormLastNameHelpBlock" class="form-control" placeholder="Last name">
                     </div>
                </div>         
                <div class="form-row mb-4">
                     <div class="col">                    
-                         <input type="email" id="defaultRegisterFormEmail" class="form-control" placeholder="E-mail">
+                         <input type="email" id="defaultRegisterFormEmail" aria-describedby="defaultRegisterFormEmailHelpBlock" class="form-control" placeholder="E-mail">
                     </div>
                     <div class="col">                    
                          <input type="text" id="defaultRegisterFormPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
@@ -39,7 +39,58 @@
                <div class="form-group">
                     <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
                </div>
-               <button class="btn my-4 btn-block" type="submit">Submit</button>
+               <button class="btn my-4 btn-block float-right" type="submit">Submit</button>
+          </form> -->
+
+          <form id="contact-form" method="post" action="contact.php" role="form">  
+               <div class="controls">
+                    <div class="row">
+                         <div class="col-md-6">
+                              <div class="form-group">
+                                   
+                                   <input id="form_name" type="text" name="name" class="form-control" placeholder="Firstname *" required="required" data-error="Firstname is required.">
+                                   <div class="help-block with-errors"></div>
+                              </div>
+                         </div>
+                         <div class="col-md-6">
+                              <div class="form-group">
+                                   
+                                   <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Lastname *" required="required" data-error="Lastname is required.">
+                                   <div class="help-block with-errors"></div>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-md-6">
+                              <div class="form-group">
+                                   
+                                   <input id="form_email" type="email" name="email" class="form-control" placeholder="Email *" required="required" data-error="Valid email is required.">
+                                   <div class="help-block with-errors"></div>
+                              </div>
+                         </div>
+                         <div class="col-md-6">
+                              <div class="form-group">
+                                   
+                                   <input id="form_phone" type="number" name="phonenumber" class="form-control" placeholder="Phone number *" required="required">
+                                   <div class="help-block with-errors"></div>
+                              </div>
+                         </div>
+                         
+                    </div>
+                    <div class="row">
+                         <div class="col-md-12">
+                              <div class="form-group">
+                                   
+                                   <textarea id="form_message" name="message" class="form-control" placeholder="Message *" rows="3" required="required" data-error="Please, leave us a message."></textarea>
+                                   <div class="help-block with-errors"></div>
+                              </div>
+                         </div>
+                         <div class="col-md-12">
+                              <button type="submit" class="btn btn-block my-4 float-right" width="150px;">Submit</button>
+                         </div>
+                    </div>
+               </div>
+
           </form>
      </div>
 </div>

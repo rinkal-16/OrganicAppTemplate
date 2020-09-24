@@ -1,34 +1,23 @@
 $laptop: 992px;
 $tablet: 768px;
 $mobile: 480px;
-// * {
-//      font: 'Roboto' !important;
-//      margin: 0;
-//      padding: 0;
-//      box-sizing: border-box;
-//      opacity: 1;
-// }
+* {
+     margin: 0;
+     padding: 0;    
+     opacity: 1;
+}
 .main-container {
-     display: flex;   
+     display: flex;
      flex-direction: column;
-     background: #FFFFFF;
-     //background-size: cover; 
-     .flex-item {
-          position: relative;
-          justify-content: center;
-     }   
+     background: #FFFFFF 0% 0% no-repeat padding-box;  
 }
-@media screen and (max-width: $mobile) {
-     .main-container {
-          width: 100%;
-     }
-}
+
 .header-container {
      background: url("../assets/Rectangle1/Rectangle1@2x.png") 0% 0% no-repeat;
      display: flex;
      flex-wrap: wrap;
      width: 100%;
-     margin: auto;
+     margin: 0;
      opacity: 1;
      background-size: cover;
      background-position: center top;
@@ -88,74 +77,72 @@ $mobile: 480px;
                     opacity: 1;
                }
           }          
-          input#menu {
-               display: none;
+     }
+          //Collapsibel-menu css
+          
+          .collapse-icon {
+               margin-left: 10px;
+               margin-top: 10px;
           }
           label {
-               margin-top: 20px;
                vertical-align: center;
                align-items: center;
-               //font-family: 'Sedgwick Ave Display', cursive;
-               //font-size: 10px;
+               font-family: 'Sedgwick Ave Display', cursive;
+               font-size: 10px;
                cursor: pointer;
-               img {
-                    margin-top: 5px;
-                    margin-left: 7px;
-                    width: 25px;
-                    height: 25px;
-               }     
-          }
-          .collaspe-icon {
-               width: 25px;
-               height: 25px;
           }
           .menu-content {
-               background-color: white;
                max-height: 0;
                overflow: hidden;
-               z-index: 2;
-               font: normal normal 500 20px/30px Roboto;
-               ul {
-                    vertical-align: center;
-                    text-align: center;
-                    margin-left: 20px;
-                    margin-right: 20px;
-               }
-               li, a {
-                    color: #aba;
-                    font: normal normal normal 14px/22px Libre Baskerville;
-                    opacity: 1;
-                    margin-left: 20px;
-                    margin-right: 20px;
-                    margin-top: 10px;
-               }
-               button {
-                    border-radius: 16px;
-                    padding: 6px;
-                    font: normal normal normal 14px/22px Libre Baskerville;
-               }
-          }
-          input:checked ~ .menu-content {
-               max-height: 40%;
-               // position: absolute; /
-          }
-          input:checked ~ .middle-img-class {
-               display: none;
-          }
-          .menu-content a:hover, .menu-content a.focus {
+               font-family: 'Oswald', sans-serif; 
+               padding: 0 0 0 50px;
+               position: relative;
+           }
+           .menu-content ul {
+               list-style-type: none;
+               padding: 0;
+               vertical-align: middle;
+               text-align: center;
+           }
+           .menu-content a {
+               display:block;
+               padding: 10px;
+               text-decoration: none;
+           }
+           .menu-content button {
+               border-radius: 16px;
+               padding: 6px;
+               font: normal normal normal 14px/22px Libre Baskerville;
+           }
+           .menu-content a:hover, .menu-content a.focus {
                opacity: 0.6;
-          }          
-     }  
-     .route {
-          width: 100%;
-     } 
+          }
+           .collapsible-menu label {
+               font-family: 'Sedgwick Ave Display', cursive;
+               font-size: 36px;
+               display: block;
+               cursor: pointer;
+               padding: 10px 0 10px 10px;
+           }
+           input#menu {
+               display: none;
+           }
+           input:checked ~ .middle-img-class {
+               display: none;
+           }
+           input:checked ~ .menu-content {
+               max-height: 100%;
+           }  
 }
 
 @media screen and (max-width: $mobile) {
+     .header-container {
+          width: 100%;
+     }
      header {
           display: none;
           visibility: hidden;
-     }     
+     }    
 }
 @media screen and (min-width: $mobile) and (max-width: 550px) {
      header {
@@ -250,8 +237,8 @@ $mobile: 480px;
 
 
 .footer-container {
-     // display: flex;
-     // flex-wrap: wrap;
+     display: flex;
+     flex-wrap: wrap;
      width: 100%;
      .footer {
           background: url("../../src/assets/Group229/Group229@2x.png");
@@ -265,11 +252,11 @@ $mobile: 480px;
           padding-bottom: 0px;
           display: flex;
           flex-wrap: wrap;
-          flex-direction: column;
+          //flex-direction: column;
           position: relative;
           color: #FFFFFF;
           .col-sm {
-               //padding-bottom: 10px;
+               padding-bottom: 10px;
                margin-left: 25px;
                margin-right: 25px;
                width: 25%;
@@ -281,7 +268,8 @@ $mobile: 480px;
                     background-color:#00DBD0;
                     height:1px;
                     width:50%;
-                    
+                    margin-top: 10px;
+                    margin-bottom: 10px;
                   }
                .social-icons a {
                     width:20px;
@@ -401,6 +389,8 @@ $mobile: 480px;
                padding-right: 0px;
                padding-top: 120px;
                padding-bottom: 50px;
+               display: flex;
+               flex-direction: column;
                .col-sm {
                     width: 80%;
                     hr {
@@ -425,4 +415,3 @@ $mobile: 480px;
           }
      }
 }
-    

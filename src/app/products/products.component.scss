@@ -9,7 +9,7 @@ $mobile: 480px;
      justify-items: center;
      align-content: center;
      align-items: center;
-     background-size: cover;
+     //background-size: cover;
 }
 .group-1 {
      display: flex;
@@ -45,16 +45,11 @@ $mobile: 480px;
                                        
 }
 .group-2 {
-     display: flex;
-     flex-wrap: wrap;
-     flex-direction: column;;
      width: 100%;
      padding-bottom: 50px;  
      margin-top: 0px;
      .row {
-          display:flex;
-          flex-wrap: wrap;
-          background-position: center; 
+          background-position: center;
           margin: auto;
           justify-content: center;
           justify-items: center;
@@ -67,45 +62,43 @@ $mobile: 480px;
                .col-sm {
                     width: 300px;
                     height: fit-content;
+                    padding-left: 0;
+                    padding-right: 0;
                     .card-content {
+                         width: 300px;
                          .card-body {  
                               width: 300px;                            
                               border: none;
                               border-radius: 0px;
-                              //border-color: #ffffff;
+                              align-content: center;
+                              text-align: center;
+                              margin: 0 0;
                               img {
                                    padding-bottom: 20px;
                                    width: fit-content;
                                    height: fit-content;
                               }  
                               h4 {
-                                   align-content: center;
-                                   text-align: center;
                                    line-height: 2px;
                                    color: #00DBD0;                                       
                               }                                
                               p {
-                                   align-content: center;
-                                   text-align: center;
-                                   margin: 0 0;
                                    line-height: normal;
                                    font-size: 14px;
                                    font: normal normal normal Roboto;
                               }
-                              hr {
-                                   border:none;
-                                   color: #00DBD0;
-                                   background-color:#00DBD0;
-                                   height: 1px;
-                                   width: 20%;
-                                   margin-top: 5px;
-                                   margin-bottom: 5px;
+                              button, .btn {
+                                   border-radius: 10px;
+                                   border-color: #00DBD0;
+                                   font: normal normal normal 16px/20px Libre Baskerville;
+                                   letter-spacing: 0px;
+                                   color: #374B5C;
+                                   opacity: 1;
                               }
                          }
-                    }                
-               
-          }
-     }        
+                    }                              
+               }
+          }        
 }     
 @media screen and (max-width: $mobile) {
      .group-1 {
@@ -127,6 +120,9 @@ $mobile: 480px;
           }
           
      }
+     .group-2 {
+          width: 100%;
+     }
 }
 @media screen and (min-width: 570px) and (max-width: $tablet) {
      .group-1 {
@@ -139,7 +135,12 @@ $mobile: 480px;
           
      }
      .group-2 {
+          width: 100%;
           .row {
+               width: 80%;
+               display: flex;
+               flex-wrap: wrap;
+               flex-direction: column;
                .col-sm {
                     width: 300px;
                     height: fit-content;
@@ -166,6 +167,7 @@ $mobile: 480px;
      }
      .group-2 {
           .row {
+               width: 80%;
                .col-sm {
                     width: 300px;
                     height: fit-content;
@@ -193,13 +195,13 @@ $mobile: 480px;
      .group-2 {
           .row {
                .col-sm {
-                    width: 280px;
+                    width: 300px;
                     height: fit-content;
                     justify-content: center;
                     align-content: center;
                     .card-content {
                          .card-body {
-                              width: 280px;
+                              width: 300px;
                          }
                     }
                }          
@@ -224,6 +226,7 @@ $mobile: 480px;
                     justify-content: center;
                     align-content: center;
                     .card-content {
+                         width: 280px;
                          .card-body {
                               width: 280px;
                          }

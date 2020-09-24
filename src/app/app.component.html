@@ -7,7 +7,7 @@
 
 
 <div class="main-container">
-  <div class="flex-item">
+  
 
       <!--Header-->
       <div class="header-container">
@@ -15,7 +15,8 @@
           <div class="collapsible-menu">
             <input type="checkbox" id="menu">
             <label for="menu">
-              <img class="" src="" alt="Group 86"></label>
+              <img class="collapse-icon" src="../../assets/collapse.jpeg" alt="" width="20px" height="20px">
+            </label>
             <div class="menu-content">
               <ul class="list-unstyled">
                 <li><a class="nav-link" routerLink="/home">Home</a></li>
@@ -25,7 +26,8 @@
                 <button routerLink="/contact" routerLinkActive="" class="btn btn-outline-info">Contact</button>
               </ul>
             </div>
-          </div>  
+          </div>
+
           <header>
             <nav>
               <div class="nav-area">
@@ -40,8 +42,9 @@
               <button routerLink="/contact" routerLinkActive="" class="btn btn-outline-info">Contact</button>
             </ul>
           </header>
+
           <!--Sub-Components-->
-          <div class="route">
+          <div class="route" style="width: 100%;">
           <router-outlet></router-outlet> 
           </div>
           
@@ -87,7 +90,7 @@
       </div>
       
 
-  </div>
+  
 </div>
 
 
