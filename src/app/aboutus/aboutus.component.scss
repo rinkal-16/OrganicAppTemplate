@@ -79,8 +79,7 @@ $mobile: 480px;
                     width: 40px;
                     height: 40px;
                }
-          }
-          
+          }         
      } 
  }
  @media screen and (min-width: $mobile) and (max-width: 570px) { 
@@ -104,8 +103,7 @@ $mobile: 480px;
                      width: 40px;
                      height: 40px;
                 }
-           }
-           
+           }          
       } 
  }
  @media screen and (min-width: 570px) and (max-width: $tablet) {
@@ -129,8 +127,7 @@ $mobile: 480px;
                      width: 50px;
                      height: 50px;
                 }
-           }
-           
+           }          
       }  
  }
  @media screen and (min-width: $tablet) and (max-width: 870px) {
@@ -140,8 +137,7 @@ $mobile: 480px;
            .heading-about {
                 padding-left: 60px;
                 padding-right: 60px;
-           }
-           
+           }          
       }  
  }
  @media screen and (min-width: 870px) and (max-width: 1000px) {
@@ -151,8 +147,7 @@ $mobile: 480px;
            .heading-about{
                 padding-left: 80px;
                 padding-right: 80px;
-           }
-           
+           }          
       }    
  }
  @media screen and (min-width: 1000px) and (max-width: 1280px) {
@@ -210,8 +205,7 @@ $mobile: 480px;
                          img {
                               width: 50px;
                               height: 50px;
-                         }
-                         
+                         }                        
                     }         
                }
                .item-1 {                   
@@ -271,7 +265,7 @@ $mobile: 480px;
           }
      } 
  }
- @media screen and (min-width: $mobile) and (max-width: 570px) { 
+@media screen and (min-width: $mobile) and (max-width: 570px) { 
       .group-2 {
            width: 100%;
            padding-bottom: 50px;
