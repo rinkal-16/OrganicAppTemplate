@@ -64,6 +64,9 @@ $mobile: 480px;
      float: center;
      justify-items: center;
      align-items: center;
+     .row {
+          flex-wrap: wrap;
+     }
      .p-5 {
           padding: 0rem!important;
      }
@@ -119,8 +122,8 @@ $mobile: 480px;
                height: 400px;
                margin-top: -50px;
                margin-bottom: -100px;
-               margin-left: -50px;
-               margin-right: -100px;
+               margin-left: -300px;
+               margin-right: 0;
           }
      }  
      .group-1 {
@@ -147,8 +150,8 @@ $mobile: 480px;
                height: 400px;
                margin-top: -50px;
                margin-bottom: -100px;
-               margin-left: -50px;
-               margin-right: -100px;
+               margin-left: -300px;
+               margin-right: 0px;
           }
      } 
      .group-1 {
@@ -163,9 +166,19 @@ $mobile: 480px;
                 }
            }
            
-      }  
+      } 
+      .group-2 {
+           margin-left: 80px;
+           margin-right: 80px;
+      } 
  }
  @media screen and (min-width: $tablet) and (max-width: 870px) {
+      .contact-container {
+           .right-img {
+                width: 400px;
+                margin-left: -250px;
+           }
+      }
       .group-1 {
            width: 100%;
            padding-bottom: 50px;
@@ -173,7 +186,11 @@ $mobile: 480px;
                 padding-left: 60px;
                 padding-right: 60px;
            }          
-      }  
+      } 
+      .group-2 {
+           margin-left: 15%;
+           margin-right: 15%;
+      } 
  }
  @media screen and (min-width: 870px) and (max-width: 1000px) {
       .group-1 {
@@ -183,7 +200,11 @@ $mobile: 480px;
                 padding-left: 80px;
                 padding-right: 80px;
            }          
-      }    
+      } 
+      .group-2 {
+           margin-left: 20%;
+           margin-right: 20%;
+      }   
  }
  @media screen and (min-width: 1000px) and (max-width: 1280px) {
       .group-1 {

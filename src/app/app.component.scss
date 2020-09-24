@@ -34,9 +34,9 @@ $mobile: 480px;
                     margin-top: 15px;
                     margin-left: 0px;
                     .logo{
-                         width: 150px;
-                         height: 50px;
-                         margin-left: 70px;
+                         width: 200px;
+                         height: 60px;
+                         margin-left: 100px;
                     }
                }
           }         
@@ -196,9 +196,9 @@ $mobile: 480px;
                     .nav-area {
                          vertical-align: top;
                          .logo {
-                              width: 100px;
-                              height: 40px;
-                              margin-left: 30px;
+                              width: 150px;
+                              height: 50px;
+                              margin-left: 50px;
                          }
                     }
                }
@@ -223,6 +223,20 @@ $mobile: 480px;
      .collapsible-menu {
           display: none;
           visibility: hidden;
+     }
+     .header-container {
+          header {
+               nav {
+                    .nav-area {
+                         .logo {
+                              width: 150px;
+                              height: 50px;
+                              margin-left: 60px;
+                         } 
+                    }
+               }
+               
+          }
      }
 }
 @media screen and (min-width: $laptop) {

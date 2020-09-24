@@ -23,7 +23,7 @@ $mobile: 480px;
      .first-section {
           vertical-align: middle;
           z-index: 3;
-          margin-left: 10%;
+          margin-left: 15%;
           margin-right: 10%;
           position: absolute;
           margin-top: 80px;
@@ -60,10 +60,10 @@ $mobile: 480px;
           float: right;
           justify-items: right;
           z-index: 2;
-          height: 550px;
-          width: 550px;
+          height: 600px;
+          width: 600px;
           margin-right: -200px;
-          opacity: 0.7;
+          opacity: 0.6;
           align-items: right;
           justify-content: right;
           margin-right: 0;
@@ -164,6 +164,7 @@ $mobile: 480px;
           }
      }
 }
+
 .group-2 {
      display: flex;
      flex-wrap: wrap;
@@ -768,13 +769,12 @@ $mobile: 480px;
                // margin-left: -200px;
           }
           .right-img {
-               width: 350px;
+               width: 300px;
                height: 400px;
                margin-top: -50px;
                margin-bottom: -100px;
-               margin-left: -50px;
-               margin-right: -100px;
-               //object-position: -100% 0%;
+               margin-left: -300px;
+               margin-right: 0px;
           }
      }    
 }
