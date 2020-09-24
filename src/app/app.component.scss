@@ -145,8 +145,12 @@ $mobile: 480px;
           .menu-content a:hover, .menu-content a.focus {
                opacity: 0.6;
           }          
-     }   
+     }  
+     .route {
+          width: 100%;
+     } 
 }
+
 @media screen and (max-width: $mobile) {
      header {
           display: none;
@@ -246,8 +250,8 @@ $mobile: 480px;
 
 
 .footer-container {
-     display: flex;
-     flex-wrap: wrap;
+     // display: flex;
+     // flex-wrap: wrap;
      width: 100%;
      .footer {
           background: url("../../src/assets/Group229/Group229@2x.png");
@@ -257,7 +261,7 @@ $mobile: 480px;
           background-color:  #F1FEFE;
           padding-left: 100px;
           padding-right: 100px;
-          padding-top: 100px;
+          padding-top: 150px;
           padding-bottom: 0px;
           display: flex;
           flex-wrap: wrap;
@@ -273,10 +277,11 @@ $mobile: 480px;
                text-decoration: none;
                hr {
                     border:none;
-                    color:#fff;
-                    background-color:#fff;
+                    color:#00DBD0;
+                    background-color:#00DBD0;
                     height:1px;
                     width:50%;
+                    
                   }
                .social-icons a {
                     width:20px;
