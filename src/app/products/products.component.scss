@@ -55,7 +55,6 @@ $mobile: 480px;
           align-items: center;             
           margin-bottom: auto;
           align-content: center;
-          background: #fff;
           padding-bottom: 10px;
           width: 70%;
                .col-sm {
@@ -63,6 +62,7 @@ $mobile: 480px;
                     height: fit-content;
                     padding-left: 0;
                     padding-right: 0;
+                    justify-content: center;
                     .card-content {
                          width: 300px;
                          .card-body {  

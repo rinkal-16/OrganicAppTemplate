@@ -5,23 +5,26 @@ $mobile: 480px;
      margin: 0;
      padding: 0;    
      opacity: 1;
+     box-sizing: border-box;
 }
 .main-container {
      display: flex;
      flex-direction: column;
-     background: #FFFFFF 0% 0% no-repeat padding-box;  
+     
 }
 .header-container {
      background: url("../assets/Rectangle1/Rectangle1@2x.png") 0% 0% no-repeat;
-     display: flex;
-     flex-wrap: wrap;
+     // display: flex;
+     // flex-wrap: wrap;
      width: 100%;
      margin: 0;
      opacity: 1;
+     -webkit-background-size: cover;
      background-size: cover;
      background-position: center top;
 	flex: auto;
      z-index: 1;
+     overflow-x: hidden;
      header {
           display: flex;
           height:  100px;
@@ -136,6 +139,7 @@ $mobile: 480px;
 @media screen and (max-width: $mobile) {
      .header-container {
           width: 100%;
+          
      }
      header {
           display: none;

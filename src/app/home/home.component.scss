@@ -23,7 +23,7 @@ $mobile: 480px;
      .first-section {
           vertical-align: middle;
           z-index: 3;
-          margin-left: 15%;
+          margin-left: 10%;
           margin-right: 10%;
           position: absolute;
           margin-top: 80px;
@@ -95,8 +95,8 @@ $mobile: 480px;
                }
           }
           .first-section-img {
-               height: 400px;
-               width: 400px;
+               height: 350px;
+               width: 350px;
                //margin-right: -50px;
           }
      }
@@ -126,9 +126,9 @@ $mobile: 480px;
                }
           }
           .first-section-img {
-               height: 400px;
-               width: 400px;
-               //margin-right: -50px;
+               height: 350px;
+               width: 350px;
+               
           }
      }
 }
@@ -649,7 +649,7 @@ $mobile: 480px;
      }    
 }
 .group-4 {
-     //width: 100%;
+     width: 100%;
      padding-bottom: 50px;
      margin-top: 50px;
      .left-img {
@@ -1047,6 +1047,7 @@ $mobile: 480px;
                     height: fit-content;
                     padding-left: 0;
                     padding-right: 0;
+                    justify-content: center;
                     .card-content {
                          width: 300px;
                          .card-body {  
