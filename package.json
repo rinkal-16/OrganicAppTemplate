@@ -8,8 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --output-path organicApp --aot --prod"
+    "postinstall": "ng build --output-path organicApp  --aot --prod"
   },
+
+  
   "engines": {
     "node": "v12.16.2",
     "npm": "6.14.4"
