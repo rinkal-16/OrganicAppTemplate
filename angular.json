@@ -56,8 +56,23 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
+                  "maximumWarning": "10kb",
                   "maximumError": "10kb"
+                },
+                {
+                  "type": "allScript",
+                  "maximumWarning": "250kb",
+                  "maximumError": "300kb"
+                },
+                {
+                  "type": "any",
+                  "maximumWarning": "150000"                  
+                },
+                {
+                  "type": "bundle",
+                  "name": "main",
+                  "baseline": "150kg",
+                  "error": "10%"
                 }
               ]
             }
