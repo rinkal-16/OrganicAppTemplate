@@ -56,24 +56,24 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "10kb",
-                  "maximumError": "10kb"
-                },
-                {
-                  "type": "allScript",
-                  "maximumWarning": "250kb",
-                  "maximumError": "300kb"
-                },
-                {
-                  "type": "any",
-                  "maximumWarning": "150000"                  
-                },
-                {
-                  "type": "bundle",
-                  "name": "main",
-                  "baseline": "150kg",
-                  "error": "10%"
+                  "maximumWarning": "6kb",
+                  "maximumError": "18kb"
                 }
+                // {
+                //   "type": "allScript",
+                //   "maximumWarning": "500kb",
+                //   "maximumError": "700kb"
+                // },
+                // {
+                //   "type": "any",
+                //   "maximumWarning": "150000"                  
+                // },
+                // {
+                //   "type": "bundle",
+                //   "name": "main",
+                //   "baseline": "150kb",
+                //   "error": "10%"
+                // }
               ]
             }
           }
