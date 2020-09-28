@@ -77,7 +77,7 @@ $mobile: 480px;
                     text-align: center;
                     font: normal normal normal 16px/20px Libre Baskerville;
                     letter-spacing: 0px;
-                    color: #374B5C;
+                    color: #00DBD0;
                     opacity: 1;
                     margin-right: 15px;
                }
@@ -242,7 +242,12 @@ $mobile: 480px;
                          } 
                     }
                }
-               
+               .ml-auto {
+                    .btn {
+                         padding-left: 15px;
+                         padding-right: 15px;
+                    }
+               }
           }
      }
 }
@@ -250,6 +255,16 @@ $mobile: 480px;
      .collapsible-menu {
           display: none;
           visibility: hidden;
+     }
+     .header-container {
+          header {
+               .ml-auto {
+                    .btn {
+                         padding-left: 15px;
+                         padding-right: 15px;
+                    }                    
+               }
+          }
      }
 }
 

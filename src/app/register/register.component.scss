@@ -103,12 +103,27 @@
        color: #777;
      }
      
-     .register {
+     .login {
        text-align:center;
        padding:20px 0 0;
   }
-  .reset-pwd {
-       text-align:center;
-       padding:20px 0 0;
+  
+}
+
+@media screen and (max-width: 500px) {
+  .register-container {
+    margin-left: 10%;
+    margin-right: 10%;
+    .login {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 580px) {
+  .register-container {
+    margin-left: 10%;
+    margin-right: 10%;
   }
 }

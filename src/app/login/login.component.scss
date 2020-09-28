@@ -112,3 +112,25 @@
           padding:20px 0 0;
      }
 }
+@media screen and (max-width: 500px) {
+  .login-container {
+    margin-left: 10%;
+    margin-right: 10%;
+    .register {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+    .reset-pwd {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 580px) {
+  .login-container {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
