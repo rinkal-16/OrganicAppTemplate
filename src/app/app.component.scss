@@ -79,6 +79,7 @@ $mobile: 480px;
                     letter-spacing: 0px;
                     color: #374B5C;
                     opacity: 1;
+                    margin-right: 20px;
                }
           }          
      }
@@ -119,7 +120,7 @@ $mobile: 480px;
           }
           .menu-content a:hover, .menu-content a.focus {
           opacity: 0.6;
-     }
+          }
           .collapsible-menu label {
           font-family: 'Sedgwick Ave Display', cursive;
           font-size: 36px;
