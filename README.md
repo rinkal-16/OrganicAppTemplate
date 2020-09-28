@@ -1,2 +1,0 @@
-# OrganicAppTemplate
-Organic app template

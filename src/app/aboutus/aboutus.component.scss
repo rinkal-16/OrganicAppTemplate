@@ -1,0 +1,383 @@
+$laptop: 992px;
+$tablet: 768px;
+$mobile: 480px;
+* {
+     font: normal normal normal Libre Baskerville;
+     letter-spacing: 0px;
+     color: #374B5C;
+}
+.about-container {
+     width: 100%;
+     justify-content: center;
+     justify-items: center;
+     align-content: center;
+     align-items: center;
+     background-size: cover;
+     .right-img {
+          width: 450px;
+          height: 550px;
+          opacity: 0.7;
+          float: right;
+          margin-top: -20px;
+          margin-bottom: -100px;
+          margin-left: -300px;
+          object-fit: cover;
+          object-position: -150% 0%;
+     }
+}
+.group-1 { 
+     width: 100%;
+     padding-bottom: 10px;  
+     margin-top: 100px;       
+     .heading-about {
+          padding-top: 0;
+          text-align: center;
+          padding-top: 0%;
+          margin: auto; 
+          width: 80%;
+          padding-left: 25%;
+          padding-right: 25%;
+          text-align: center;
+          align-items: center;
+          align-content: center;
+          vertical-align: center; 
+          margin-bottom: 70px;  
+          img {
+               width: 70px;
+               height: 70px;
+          } 
+          h3 {
+               color: #4A4A4A;
+               font: normal normal 900 Roboto;
+               font-size: 25px; 
+          }
+          p{
+               color: #4A4A4A;
+               font: normal normal normal Roboto;
+               font-size: 14px;
+               text-align: center;
+          }
+     }
+}
+.group-2 {
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: column;
+     width: 100%;
+     padding-bottom: 50px;
+     margin-top: -50px;                
+     .card-section {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+          padding-top: 0;
+          text-align: center;
+          padding-top: 10px;
+          width: 80%;
+          margin-left: 20%;
+          margin-right: 20%;
+          margin: auto; 
+          justify-content: center;
+          justify-items: center;
+          align-content: center;
+          align-items: center;
+          .row {
+               width: 80%;
+               margin-left: 20%;
+               margin-right: 20%;
+               display: flex;
+               justify-content: center;
+               justify-items: center;
+               align-content: center;
+               align-items: center;
+               margin: auto;
+               .col-sm {
+                    margin: 10px;
+                    padding: 0;
+                    .card {
+                         padding: 20px;
+                         border: 0.5px dashed;
+
+                         border-radius: 20px;
+                         text-align: center;
+                         align-items: center;
+                         img {
+                              width: 50px;
+                              height: 50px;
+                         }                        
+                    }         
+               }
+               .item-1 {                   
+                    -webkit-order: 1; 
+                    order: 1;
+               }
+               .item-2 {  
+                    .card {
+                         padding: 20px;
+                         border: 0.5px dashed;
+                         border-radius: 20px;
+                         text-align: center;
+                         align-items: center;
+                         background-color: #00DBD0;
+                         img {
+                              width: 50px;
+                              height: 50px;
+                         } 
+                         h4 {
+                              color: #ffffff;
+                         }
+                         p {
+                              color: #ffffff;
+                         }
+                    }                  
+                    -webkit-order: 2; 
+                    order: 2;
+                    border: none;
+               }
+               .item-3 {                   
+                    -webkit-order: 3; 
+                    order: 3;
+               }
+               .item-4 {                   
+                    -webkit-order: 4; 
+                    order: 4;
+               }         
+          }     
+     }                              
+} 
+@media screen and (max-width: $mobile) {
+     .about-container {
+          .right-img {
+               width: 250px;
+               height: 350px;
+               margin-top: -50px;
+               margin-bottom: -100px;
+               margin-left: -300px;
+          }
+     }
+     .group-1 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-about {
+               padding-left: 30px;
+               padding-right: 30px;
+               img {
+                    width: 40px;
+                    height: 40px;
+               }
+          }         
+     } 
+     .group-2 {
+          width: 100%;
+          padding-bottom: 50px;
+          .card-section {
+               .row {
+                    width: 100%;
+                    .col-sm {
+                         .card {
+                              img {
+                                   width: 40px;
+                                   height: 40px;
+                              }
+                         }
+                    }
+               }
+          }
+     } 
+ }
+ @media screen and (min-width: $mobile) and (max-width: 570px) { 
+     .about-container {
+          .right-img {
+               width: 350px;
+               height: 400px;
+               margin-top: -50px;
+               margin-bottom: -100px;
+               margin-left: -300px;
+               margin-right: 0px;
+          }
+     } 
+     .group-1 {
+           width: 100%;
+           padding-bottom: 50px;
+           .heading-about {
+                padding-left: 40px;
+                padding-right: 40px;
+                img {
+                     width: 40px;
+                     height: 40px;
+                }
+           }          
+      }
+      .group-2 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-cards {
+               padding-left: 40px;
+               padding-right: 40px;
+               img {
+                    width: 40px;
+                    height: 40px;
+               }
+          }
+          .card-section {
+               .row {
+                    width: 100%;
+                    .col-sm {
+                         .card {
+                              img {
+                                   width: 40px;
+                                   height: 40px;
+                              }
+                         }
+                    }
+               }
+          }
+     }  
+ }
+ @media screen and (min-width: 570px) and (max-width: $tablet) {
+     .about-container {
+          .right-img {
+               width: 350px;
+               height: 400px;
+               margin-top: -50px;
+               margin-bottom: -100px;
+               margin-left: -300px;
+               margin-right: 0px;
+          }
+     } 
+     .group-1 {
+           width: 100%;
+           padding-bottom: 50px;
+           .heading-about {
+                padding-left: 50px;
+                padding-right: 50px;
+                img {
+                     width: 50px;
+                     height: 50px;
+                }
+           }          
+      } 
+      .group-2 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-cards {
+               padding-left: 50px;
+               padding-right: 50px;
+               img {
+                    width: 50px;
+                    height: 50px;
+               }
+          }
+          .card-section {
+               .row {
+                    width: 80%;
+                    .col-sm {
+                         .card {
+                              img {
+                                   width: 50px;
+                                   height: 50px;
+                              }
+                         }
+                    }
+               }
+          }
+     }   
+ }
+ @media screen and (min-width: $tablet) and (max-width: 870px) {
+     .about-container {
+          .right-img {
+               width: 400px;
+               margin-left: -250px;
+          }
+     } 
+     .group-1 {
+           width: 100%;
+           padding-bottom: 50px;
+           .heading-about {
+                padding-left: 60px;
+                padding-right: 60px;
+           }          
+      } 
+      .group-2 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-cards {
+               padding-left: 60px;
+               padding-right: 60px;
+          }
+          .card-section {
+               .row {
+                    width: 100%;
+                    .col-sm {
+                         .card {
+                              img {
+                                   width: 50px;
+                                   height: 50px;
+                              }
+                         }
+                    }
+               }
+          }
+     }   
+ }
+ @media screen and (min-width: 870px) and (max-width: 1000px) {
+      .group-1 {
+           width: 100%;
+           padding-bottom: 50px;
+           .heading-about{
+                padding-left: 80px;
+                padding-right: 80px;
+           }          
+      } 
+      .group-2 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-cards {
+               padding-left: 80px;
+               padding-right: 80px;
+          }
+          .card-section {
+               .row {
+                    width: 100%;
+                    .col-sm {
+                         .card {
+                              img {
+                                   width: 50px;
+                                   height: 50px;
+                              }
+                         }
+                    }
+               }
+          }
+     }       
+ }
+ @media screen and (min-width: 1000px) and (max-width: 1280px) {
+      .group-1 {
+           width: 100%;
+           padding-bottom: 50px;
+           .heading-about {
+                padding-left: 15%;
+                padding-right: 15%;
+           }
+      }
+      .group-2 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-cards {
+               padding-left: 15%;
+               padding-right: 15%;
+          }
+          .card-section {
+               .row {
+                    width: 100%;
+               }
+          }
+     }     
+ }             
+
+
+
+ 
+ 
+ 
+ 

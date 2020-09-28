@@ -1,0 +1,236 @@
+$laptop: 992px;
+$tablet: 768px;
+$mobile: 480px;
+.product-container {
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     justify-items: center;
+     align-content: center;
+     align-items: center;
+     //background-size: cover;
+}
+.group-1 {
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: column;;
+     width: 100%;
+     padding-bottom: 50px;  
+     margin-top: 100px; 
+     .heading-product {
+          padding-top: 0;
+          text-align: center;
+          padding-top: 0%;
+          margin: auto; 
+          width: 80%;
+          padding-left: 20%;
+          padding-right: 20%;
+          text-align: center;
+          align-items: center;
+          align-content: center;
+          vertical-align: center;           
+          h3 {
+               color: #4A4A4A;
+               font: normal normal 900 Roboto;
+               font-size: 25px; 
+          }
+          p{
+               color: #4A4A4A;
+               font: normal normal normal Roboto;
+               font-size: 14px;
+               text-align: center;
+          }
+     }                                                   
+}
+.group-2 {
+     width: 100%;
+     padding-bottom: 50px;  
+     margin-top: 0px;
+     .row {
+          background-position: center;
+          margin: auto;
+          justify-content: center;
+          justify-items: center;
+          align-items: center;             
+          margin-bottom: auto;
+          align-content: center;
+          padding-bottom: 10px;
+          width: 70%;
+               .col-sm {
+                    width: 300px;
+                    height: fit-content;
+                    padding-left: 0;
+                    padding-right: 0;
+                    justify-content: center;
+                    .card-content {
+                         width: 300px;
+                         .card-body {  
+                              width: 300px;                            
+                              border: none;
+                              border-radius: 0px;
+                              align-content: center;
+                              text-align: center;
+                              margin: 0 0;
+                              img {
+                                   padding-bottom: 20px;
+                                   width: fit-content;
+                                   height: fit-content;
+                              }  
+                              h4 {
+                                   line-height: 2px;
+                                   color: #00DBD0;                                       
+                              }                                
+                              p {
+                                   line-height: normal;
+                                   font-size: 14px;
+                                   font: normal normal normal Roboto;
+                              }
+                              button, .btn {
+                                   border-radius: 10px;
+                                   border-color: #00DBD0;
+                                   font: normal normal normal 16px/20px Libre Baskerville;
+                                   letter-spacing: 0px;
+                                   color: #00DBD0;
+                                   opacity: 1;
+                              }
+                         }
+                    }                              
+               }
+          }        
+}     
+@media screen and (max-width: $mobile) {
+     .group-1 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-product {
+               padding-left: 30px;
+               padding-right: 30px;
+          }
+     }
+}
+@media screen and (min-width: $mobile) and (max-width: 570px) { 
+     .group-1 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-product {
+               padding-left: 40px;
+               padding-right: 40px;
+          }
+          
+     }
+     .group-2 {
+          width: 100%;
+     }
+}
+@media screen and (min-width: 570px) and (max-width: $tablet) {
+     .group-1 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-product {
+               padding-left: 50px;
+               padding-right: 50px;
+          }
+          
+     }
+     .group-2 {
+          width: 100%;
+          .row {
+               width: 80%;
+               display: flex;
+               flex-wrap: wrap;
+               flex-direction: column;
+               .col-sm {
+                    width: 300px;
+                    height: fit-content;
+                    justify-content: center;
+                    align-content: center;
+                    .card-content {
+                         .card-body {
+                              width: 300px;
+                         }
+                    }
+               }          
+          }
+     }
+}
+@media screen and (min-width: $tablet) and (max-width: 870px) {
+     .group-1 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-product {
+               padding-left: 60px;
+               padding-right: 60px;
+          }
+          
+     }
+     .group-2 {
+          .row {
+               width: 80%;
+               .col-sm {
+                    width: 300px;
+                    height: fit-content;
+                    justify-content: center;
+                    align-content: center;
+                    .card-content {
+                         .card-body {
+                              width: 300px;
+                         }
+                    }
+               }          
+          }
+     }
+}  
+@media screen and (min-width: 870px) and (max-width: 1000px) {
+     .group-1 {
+          width: 100%;
+          padding-bottom: 50px;
+          .heading-product {
+               padding-left: 80px;
+               padding-right: 80px;
+          }
+          
+     }
+     .group-2 {
+          .row {
+               .col-sm {
+                    width: 300px;
+                    height: fit-content;
+                    justify-content: center;
+                    align-content: center;
+                    .card-content {
+                         .card-body {
+                              width: 300px;
+                         }
+                    }
+               }          
+          }
+     }
+}
+@media screen and (min-width: 1000px) and (max-width: 1280px) {
+     .group-1 {
+          width: 80%;
+          padding-bottom: 50px;
+          .heading-product {
+               padding-left: 15%;
+               padding-right: 15%;
+          }
+          
+     }
+     .group-2 {
+          .row {
+               .col-sm {
+                    width: 280px;
+                    height: fit-content;
+                    justify-content: center;
+                    align-content: center;
+                    .card-content {
+                         width: 280px;
+                         .card-body {
+                              width: 280px;
+                         }
+                    }
+               }          
+          }
+     }
+}
