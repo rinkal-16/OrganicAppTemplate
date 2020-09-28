@@ -811,46 +811,57 @@ $mobile: 480px;
                font: normal normal normal Roboto;
                font-size: 14px;
                text-align: center;
-          }  
-          .input-mail {
-               width: 450px;
-               height: 50px; 
-               position: relative;
-               direction: ltr;
-               display: flex;
-               display: inline-block;
+          }         
+     } 
+     .input-mail {
+          padding-top: 0;
+          padding-top: 0%;
+          margin: auto; 
+          //width: 80%;
+          margin-left: 30%;
+          margin-right: 30%;
+          text-align: center;
+          align-items: center;
+          align-content: center;
+          vertical-align: center;
+          //width: 450px;
+          height: 50px; 
+          position: relative;
+          direction: ltr;
+          display: flex;
+          display: inline-block;
+          border-radius: 10px;
+          display: flex;
+          padding-top: 20px;
+          justify-content: center;
+          align-content: center;
+          input {
+               //width: 350px;
+               height: 50px;
                border-radius: 10px;
-               display: flex;
-               padding-top: 20px;
-               justify-content: center;
-               align-content: center;
-               input {
-                    width: 350px;
-                    height: 50px;
-                    border-radius: 10px;
-                    border-color: #ffffff;
-                    margin: 0;
-               }
-               input::placeholder {
-                    font-size: 12px;
-               }                   
-               .input-btn {
-                    width: 100px;
-                    height: 50px;
-                    background-color: #00DBD0;
-                    position: absolute;
-                    border-radius: 20px;
-                    bottom: auto;
-                    right: 20px;
-               }                    
-               .text {
-                    text-align: center;
-                    opacity: 1;
-                    color: #ffffff;
-                    letter-spacing: 0;
-                    font-size: 14px;
-               }
-          }        
+               border-color: #ffffff;
+               margin: 0;
+          }
+          input::placeholder {
+               font-size: 12px;
+          }                   
+          .input-btn {
+               //width: 100px;
+               height: 50px;
+               background-color: #00DBD0;
+               position: absolute;
+               border-radius: 20px;
+               bottom: auto;
+               right: 20px;
+               margin-left: 20px;
+          }                    
+          .text {
+               text-align: center;
+               opacity: 1;
+               color: #ffffff;
+               letter-spacing: 0;
+               font-size: 14px;
+          }
      }    
 }
 @media screen and (max-width: $mobile) {
@@ -862,21 +873,23 @@ $mobile: 480px;
                padding-right: 30px;
                h3 {
                     font-size: 20px;
-               }
-               .input-mail {
-                    width: 300px;
+               }               
+          }
+          .input-mail {
+               //width: 300px;
+               height: 40px;
+               margin-left:40px;
+               margin-right: 40px;
+               input {
+                    //width: 250px;
                     height: 40px;
-                    input {
-                         width: 250px;
-                         height: 40px;
-                    }
-                    .input-btn {
-                         width: 80px;
-                         height: 40px;
-                    }
-                    .text {
-                         font-size: 12px;
-                    }
+               }
+               .input-btn {
+                    //width: 80px;
+                    height: 40px;
+               }
+               .text {
+                    font-size: 12px;
                }
           }
      }
@@ -891,20 +904,22 @@ $mobile: 480px;
                h3 {
                     font-size: 20px;
                }
-               .input-mail {
-                    width: 300px;
+          }
+          .input-mail {
+               //width: 300px;
+               height: 40px;
+               margin-left:60px;
+               margin-right: 60px;
+               input {
+                    //width: 250px;
                     height: 40px;
-                    input {
-                         width: 250px;
-                         height: 40px;
-                    }
-                    .input-btn {
-                         width: 80px;
-                         height: 40px;
-                    }
-                    .text {
-                         font-size: 12px;
-                    }
+               }
+               .input-btn {
+                    //width: 80px;
+                    height: 40px;
+               }
+               .text {
+                    font-size: 12px;
                }
           }
      } 
@@ -916,20 +931,23 @@ $mobile: 480px;
           .heading-subscribe {               
                padding-left: 50px;
                padding-right: 50px;
-               .input-mail {
-                    width: 380px;
-                    height: 50px;
-                    input {
-                         width: 300px;
-                         height: 40px;
-                    }
-                    .input-btn {
-                         width: 80px;
-                         height: 40px;
-                    }
-                    .text {
-                         font-size: 12px;
-                    }
+               
+          }
+          .input-mail {
+               //width: 380px;
+               height: 50px;
+               margin-left:20%;
+               margin-right: 20%;
+               input {
+                    //width: 300px;
+                    height: 40px;
+               }
+               .input-btn {
+                    //width: 80px;
+                    height: 40px;
+               }
+               .text {
+                    font-size: 12px;
                }
           }
      } 
@@ -941,20 +959,23 @@ $mobile: 480px;
           .heading-subscribe {               
                padding-left: 60px;
                padding-right: 60px;
-               .input-mail {
-                    width: 450px;
-                    height: 50px;
-                    input {
-                         width: 350px;
-                         height: 40px;
-                    }
-                    .input-btn {
-                         width: 100px;
-                         height: 40px;
-                    }
-                    .text {
-                         font-size: 12px;
-                    }
+              
+          }
+          .input-mail {
+               //width: 450px;
+               height: 50px;
+               margin-left:20%;
+               margin-right: 20%;
+               input {
+                    //width: 350px;
+                    height: 40px;
+               }
+               .input-btn {
+                    //width: 100px;
+                    height: 40px;
+               }
+               .text {
+                    font-size: 12px;
                }
           }
      } 
@@ -966,20 +987,21 @@ $mobile: 480px;
           .heading-subscribe {               
                padding-left: 80px;
                padding-right: 80px;
-               .input-mail {
-                    width: 450px;
-                    height: 50px;
-                    input {
-                         width: 350px;
-                         height: 40px;
-                    }
-                    .input-btn {
-                         width: 100px;
-                         height: 40px;
-                    }
-                    .text {
-                         font-size: 12px;
-                    }
+               
+          }
+          .input-mail {
+               width: 450px;
+               height: 50px;
+               input {
+                    width: 350px;
+                    height: 40px;
+               }
+               .input-btn {
+                    width: 100px;
+                    height: 40px;
+               }
+               .text {
+                    font-size: 12px;
                }
           }
      } 
@@ -994,6 +1016,7 @@ $mobile: 480px;
           }
      } 
 }
+
 .group-6 {
      width: 100%;
      padding-bottom: 50px;
