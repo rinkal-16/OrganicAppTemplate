@@ -7,6 +7,11 @@ import { ProductsComponent } from './products/products.component';
 import { BlogComponent } from './blog/blog.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AuthGuard } from './auth.guard';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -16,14 +21,18 @@ import { ContactComponent } from './contact/contact.component';
     ProductsComponent,
     BlogComponent,
     AboutusComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     //NgbModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
