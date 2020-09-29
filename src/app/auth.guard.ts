@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
       if(sessionStorage.getItem('x-auth')) {
         return true
       } else {
-        alert("You are not logged in, please provide login!!")
+        
         this.router.navigate(["/login"]);
         return false
       }
