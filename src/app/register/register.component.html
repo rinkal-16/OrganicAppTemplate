@@ -1,42 +1,50 @@
 <div class="register-container">
-     <div class="row">
+     
+    <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-register my-5">          
-          <div class="card-title text-center rounded text-uppercase"><h5>register</h5></div>
+        <div class="card card-register my-5">
+        <div class="card-title text-center text-uppercase rounded"><h5>register</h5></div>
           <div class="card-body">
+            
             <form class="form-register">
-              <text>Name</text>
-              <div class="form-label-group">             
-                <input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
-                <label for="inputName"></label>
-              </div>
-              <text>Email address</text>
-              <div class="form-label-group">             
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputEmail"></label>
-              </div>
-              <text>Password</text>
+            <label>Name</label>
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <label for="inputPassword"></label>
+                <input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus style="padding-left: 10px;">
+                <label for="inputName" style="padding-left: 10px;">Name</label>
               </div>
-              <text>Confirm Password</text>
+            <label>Email Address</label>
               <div class="form-label-group">
-                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required>
-                <label for="inputConfirmPassword"></label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus style="padding-left: 10px;">
+                <label for="inputEmail" style="padding-left: 10px;">Email address</label>
+              </div>
+              
+               <label>Password</label>
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required style="padding-left: 10px;">
+                <label for="inputPassword" style="padding-left: 10px;">Password</label>                
+              </div>
+
+              <label>Confirm Password</label>
+              <div class="form-label-group">
+                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required style="padding-left: 10px;">
+                <label for="inputConfirmPassword" style="padding-left: 10px;">Confirm password</label>
+                
               </div>
 
               <div class="custom-control custom-checkbox mb-3">
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">register</button> 
-               <div class="login">
-				      Already have an account? <a routerLink="/login" routerLinkActive="">Login</a>
-			</div>           
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">register</button>
+              <div class="login">
+					Already have an account? <a routerLink="/login" routerLinkActive="">Login</a>
+				</div>
+                    
+              
             </form>
           </div>
         </div>
       </div>
-     </div>
+    </div>
+  
 </div>

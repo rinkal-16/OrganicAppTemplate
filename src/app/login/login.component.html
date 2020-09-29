@@ -1,36 +1,42 @@
 <div class="login-container">
-     <div class="row">
+     
+    <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-login my-5">          
-          <div class="card-title text-center rounded text-uppercase"><h5>Login</h5></div>
+        <div class="card card-login my-5">
+        <div class="card-title text-center text-uppercase rounded"><h5>Login</h5></div>
           <div class="card-body">
+            
             <form class="form-login">
-              <text>Email address</text>
-              <div class="form-label-group">             
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputEmail"></label>
-              </div>
-              <text>Password</text>
-              <a routerLink="/forget-pwd" routerLinkActive="" style="float:right;font-size:12px;">Forgot password?</a>
+            <label>Email Address</label>
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <label for="inputPassword"></label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus style="padding-left: 10px;">
+                <label for="inputEmail" style="padding-left: 10px;">Email Address</label>
+              </div>
+              
+               <label>Password</label>
+               <a routerLink="/forget-pwd" routerLinkActive="" style="float:right;font-size:12px;">Forgot password?</a>
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required style="padding-left: 10px;">
+                <label for="inputPassword" style="padding-left: 10px;">Password</label>
+                
               </div>
 
               <div class="custom-control custom-checkbox mb-3">
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button> 
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
               <div class="register">
-				Don't have an account? <a routerLink="/register" routerLinkActive="">Create One</a>
-			</div>   
-               <div class="reset-password">
-				Want to reset your password? <a routerLink="/reset-pwd" routerLinkActive="">Reset Password</a>
-			</div>         
+					Don't have an account? <a routerLink="/register" routerLinkActive="">Create One</a>
+				</div>
+                    <div class="reset-pwd">
+					Want to reset password? <a routerLink="/reset-pwd" routerLinkActive="">Reset Password</a>
+				</div>
+              
             </form>
           </div>
         </div>
       </div>
-     </div>
+    </div>
+  
 </div>
