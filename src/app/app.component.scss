@@ -227,7 +227,42 @@ $mobile: 480px;
      }
           
 } 
-@media screen and (min-width: $tablet) and (max-width: $laptop) {
+@media screen and (min-width: $tablet) and (max-width:850px) {
+     .collapsible-menu {
+          display: none;
+          visibility: hidden;
+     }
+     .header-container {
+          header {
+               nav {
+                    .nav-area {
+                         .logo {
+                              width: 150px;
+                              height: 50px;
+                              margin-left: 60px;
+                         } 
+                    }
+               }
+               .nav-area-2 {
+                    .nav-link {
+                         padding-left: .2rem !important;
+                         padding-right: .2rem !important;
+                    }
+               }
+               .ml-auto {
+                    a {
+                         margin-left: 15px;
+                         margin-right: 15px;
+                    }
+                    .btn {
+                         padding-left: 8px;
+                         padding-right: 8px;
+                    }
+               }
+          }
+     }
+}
+@media screen and (min-width: 850px) and (max-width: $laptop) {
      .collapsible-menu {
           display: none;
           visibility: hidden;
@@ -252,6 +287,7 @@ $mobile: 480px;
           }
      }
 }
+
 @media screen and (min-width: $laptop) {
      .collapsible-menu {
           display: none;
