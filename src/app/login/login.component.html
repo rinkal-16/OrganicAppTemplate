@@ -6,17 +6,17 @@
         <div class="card-title text-center text-uppercase rounded"><h5>Login</h5></div>
           <div class="card-body">
             
-            <form class="form-login">
+            <form class="form-login" [formGroup]="loginForm">
             <label>Email Address</label>
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus style="padding-left: 10px;">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" required autofocus style="padding-left: 10px;">
                 <label for="inputEmail" style="padding-left: 10px;">Email Address</label>
               </div>
               
-               <label>Password</label>
+             <label>Password</label>
                <a routerLink="/forget-pwd" routerLinkActive="" style="float:right;font-size:12px;">Forgot password?</a>
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required style="padding-left: 10px;">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" required style="padding-left: 10px;">
                 <label for="inputPassword" style="padding-left: 10px;">Password</label>
                 
               </div>
@@ -25,9 +25,9 @@
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="Submit()" type="submit">Login</button>
               <div class="register">
-					Don't have an account? <a routerLink="/register" routerLinkActive="">Create One</a>
+					Don't have an account? <a routerLink="/signup" routerLinkActive="">Create One</a>
 				</div>
                     <div class="reset-pwd">
 					Want to reset password? <a routerLink="/reset-pwd" routerLinkActive="">Reset Password</a>

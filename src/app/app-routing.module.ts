@@ -10,7 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthGuard } from './auth.guard';
-
+ 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'aboutus', component: AboutusComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
+  { path: 'signup', component: RegisterComponent},
   { path: 'forget-pwd', component: ForgetPasswordComponent},
   { path: 'reset-pwd', component: ResetPasswordComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }

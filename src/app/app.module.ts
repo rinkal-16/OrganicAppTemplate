@@ -12,7 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthGuard } from './auth.guard';
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -25,12 +27,16 @@ import { AuthGuard } from './auth.guard';
     LoginComponent,
     RegisterComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    //NgbModule
+    HttpClientModule, 
+    FormsModule,
+    ReactiveFormsModule  
+    
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

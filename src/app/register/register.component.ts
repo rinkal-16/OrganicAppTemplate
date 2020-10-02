@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SignupService } from '../services/signup.service';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  signupForm = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    confirmpassword: new FormControl('', Validators.required),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required)
+  });
 
-  ngOnInit(): void {
+  constructor(private _signupService: SignupService, private _router: Router, private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void { }
+
+  Submit() {
+    this._signupService.post_signup(this.signupForm.value).subscribe((data) => {
+      console.log(data);
+    })
   }
 
 }

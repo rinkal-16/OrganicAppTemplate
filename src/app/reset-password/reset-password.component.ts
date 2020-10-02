@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ResetPswdService } from '../services/reset-pswd.service';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  constructor() { }
+  resetpswdForm = new FormGroup({
+    password: new FormControl('', Validators.required),
+    confirmpassword: new FormControl('', Validators.required)
+  })
+
+  constructor(private _resetpswdService: ResetPswdService, private _router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  Submit(event: any) {
+    this._resetpswdService.post_resetpswd(this.resetpswdForm.value).subscribe((data) => {
+      console.log(this.resetpswdForm.value);
+      console.log(data);
+    })
   }
 
 }
