@@ -23,6 +23,7 @@ export class ForgetPasswordComponent implements OnInit {
     this._forgetpswdService.post_forgetpswd(this.forgetpswdForm.value).subscribe((data) => {
       console.log(this.forgetpswdForm.value);
       console.log(data);
+      localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
     })
   }
 

@@ -24,6 +24,7 @@ export class ResetPasswordComponent implements OnInit {
     this._resetpswdService.post_resetpswd(this.resetpswdForm.value).subscribe((data) => {
       console.log(this.resetpswdForm.value);
       console.log(data);
+      localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
     })
   }
 

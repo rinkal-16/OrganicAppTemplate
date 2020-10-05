@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   Submit() {
     this._signupService.post_signup(this.signupForm.value).subscribe((data) => {
       console.log(data);
+      localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
     })
   }
 
