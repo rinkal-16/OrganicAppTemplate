@@ -28,7 +28,7 @@ export class LoginService {
     if(localStorage.getItem('token')) {
       let bearer : string = "Bearer ";
       let stringToken : string = localStorage.getItem('token');    
-      var removeQuotes = stringToken.split('-').join('');     
+      var removeQuotes = stringToken.split('"').join('');     
       var concatString : string = bearer + stringToken
       var concatString : string = bearer.concat(removeQuotes);
     }

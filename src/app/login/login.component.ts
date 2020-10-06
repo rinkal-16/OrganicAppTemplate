@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     let stringValue = this.route.snapshot.paramMap.get('value');
     console.log(stringValue);
-    this.showVerify = JSON.parse(stringValue);+
+    this.showVerify = JSON.parse(stringValue);
     console.log(this.showVerify);
 
     this.returnUrl = this.route.snapshot.queryParamMap['returnUrl'] || '/';
@@ -33,10 +32,11 @@ export class LoginComponent implements OnInit {
 
   Submit(event: any) {    
     this._loginService.post_login(this.loginForm.value).subscribe((data) => {
-      console.log(data);
-      console.log(data['status_code']);  
-      if(data['status_code'] === 200 ) {
+      console.log(data);  
+      if(data['status_code'] == '200' ) {
         alert("Sucessfully loggedIn!!");
+      } else {
+        alert(data['error']);
       }
       localStorage.setItem("token", JSON.stringify(data['token']));
     })     
