@@ -35,9 +35,9 @@ export class LoginComponent implements OnInit {
     this._loginService.post_login(this.loginForm.value).subscribe((data) => {
       console.log(data);
       console.log(data['status_code']);  
-      // if(data['status_code'] === 200 ) {
-      //   alert("Sucessfully loggedIn!!");
-      // }
+      if(data['status_code'] === 200 ) {
+        alert("Sucessfully loggedIn!!");
+      }
       localStorage.setItem("token", JSON.stringify(data['token']));
     })     
   }

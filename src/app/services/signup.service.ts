@@ -13,7 +13,7 @@ export class SignupService {
   constructor(private http: HttpClient) { }
 
   public get_signup(): Observable<any> {
-    return this.http.get<any>("https://fde0c9e1b0ce.ngrok.io/lrf/signup/");    
+    return this.http.get<any>("https://6595ebe5cfce.ngrok.io/lrf/signup/");    
   }
 
   public post_signup(formData: any): Observable<Signup> {
@@ -24,14 +24,8 @@ export class SignupService {
     form.append('pswd1', formData.password); 
     form.append('pswd2', formData.confirmpassword);
     
-    return this.http.post<Signup>("https://fde0c9e1b0ce.ngrok.io/lrf/signup/", form, 
-    // {
-    //   headers: {'Content-type': 'application/form-data; chartset=utf-8'}
-    // }
-    );  
-    // {
-    //   email: formData.email, pswd1: formData.password, pswd2: formData.confirmpassword, fname:formData.firstname, ///   lname: formData.lastname
-    // })    
+    return this.http.post<Signup>("https://6595ebe5cfce.ngrok.io/lrf/signup/", form);  
+   
   }
 
 }

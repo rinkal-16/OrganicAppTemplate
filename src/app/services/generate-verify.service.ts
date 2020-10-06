@@ -13,13 +13,13 @@ export class GenerateVerifyService {
   constructor(private http: HttpClient) { }
 
   public get_gnrtvrfcnt(): Observable<any> {
-    return this.http.get<any>("https://fde0c9e1b0ce.ngrok.io/lrf/generate_verification/");    
+    return this.http.get<any>("https://6595ebe5cfce.ngrok.io/lrf/generate_verification/");    
   }
 
   public post_gnrtvrfcnt(formData: any): Observable<GenerateVerify> {
     let form: FormData = new FormData();
     form.append('email', formData.email);
     
-    return this.http.post<GenerateVerify>("https://fde0c9e1b0ce.ngrok.io/lrf/generate_verification/", form);
+    return this.http.post<GenerateVerify>("https://6595ebe5cfce.ngrok.io/lrf/generate_verification/", form);
   }
 }
