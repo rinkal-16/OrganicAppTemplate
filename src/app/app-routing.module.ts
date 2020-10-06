@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { GenerateVerificationComponent } from './generate-verification/generate-verification.component';
 import { AuthGuard } from './auth.guard';
  
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'signup', component: RegisterComponent},
   { path: 'forget-pwd', component: ForgetPasswordComponent},
   { path: 'reset-pwd', component: ResetPasswordComponent},
+  { path: 'gnrt-verfy', component: GenerateVerificationComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
   ];
 

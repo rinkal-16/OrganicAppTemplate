@@ -23,7 +23,15 @@ export class ForgetPasswordComponent implements OnInit {
     this._forgetpswdService.post_forgetpswd(this.forgetpswdForm.value).subscribe((data) => {
       console.log(this.forgetpswdForm.value);
       console.log(data);
-      localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
+      if(data['status_code'] === 401) {
+        this._router.navigate(['/login',{value: true}]);
+      }
+      else if(data['status_code'] === 200) {
+        alert("Successfully request sent. Check your mail!!");        
+      }
+      else if(data['status_code'] === 400) {
+        alert(data['error']);        
+      }
     })
   }
 

@@ -25,6 +25,15 @@ export class RegisterComponent implements OnInit {
   Submit() {
     this._signupService.post_signup(this.signupForm.value).subscribe((data) => {
       console.log(data);
+      if(data['status_code'] === 200 ) {
+        alert("Sucessfully registered!!");
+      }
+      else if (data['status_code'] === 400) {
+        alert(data['error']);
+      }
+      else if (data['status_code'] === 401) {
+        alert(data['error']);
+      }
       localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
     })
   }

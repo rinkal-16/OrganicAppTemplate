@@ -1,0 +1,26 @@
+<div class="gnrt-verfctn-container">
+     
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-gnrt-verfctn my-5">
+        <div class="card-title text-center text-uppercase rounded"><h5>Generate Verification</h5></div>
+          <div class="card-body">
+            
+            <form class="form-gnrt-verfctn" [formGroup]="gnrtvrfcntForm">
+            <label>Email Address</label>
+              <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" required autofocus style="padding-left: 10px;">
+                <label for="inputEmail" style="padding-left: 10px;">Email address</label>
+              </div>
+ 
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="Submit($event)">Submit</button>
+              
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</div>
+

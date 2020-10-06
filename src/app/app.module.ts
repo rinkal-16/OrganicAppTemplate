@@ -15,6 +15,7 @@ import { AuthGuard } from './auth.guard';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderInterceptor } from './header.interceptor';
+import { GenerateVerificationComponent } from './generate-verification/generate-verification.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HeaderInterceptor } from './header.interceptor';
     RegisterComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
+    GenerateVerificationComponent,
     
   ],
   imports: [
