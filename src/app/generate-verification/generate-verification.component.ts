@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class GenerateVerificationComponent implements OnInit {
 
-  
+  submitted: false;
 
   gnrtvrfcntForm = new FormGroup({
     email: new FormControl('', Validators.required)
@@ -19,6 +19,10 @@ export class GenerateVerificationComponent implements OnInit {
   constructor(private _gnrtvrfcntService: GenerateVerifyService, private _router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  get validate() {
+    return this.gnrtvrfcntForm.controls;
   }
 
   Submit(event: any) {
@@ -32,7 +36,7 @@ export class GenerateVerificationComponent implements OnInit {
         alert(data['error']);
       }
       else if(data['status_code'] === 401) {
-        alert("User is already verified");
+        alert(data['error']);
       }
       localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
     })

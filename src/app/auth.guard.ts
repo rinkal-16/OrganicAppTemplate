@@ -25,11 +25,12 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(url: string): boolean {
-    if(localStorage.getItem('token')) {
+    if(localStorage.getItem('token') !== null && localStorage.getItem('token') !== 'undefined') {
       this._loginService.isLoggedIn = true;
+      console.log(localStorage.getItem('token'));
     }
     else {
-      this._loginService.isLoggedIn = false;
+      this._loginService.isLoggedIn = false;     
     }
     if(this._loginService.isLoggedIn) {     
       return true;

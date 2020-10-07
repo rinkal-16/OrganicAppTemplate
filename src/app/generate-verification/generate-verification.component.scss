@@ -55,6 +55,13 @@
         .form-label-group>label {
           padding: var(--input-padding-y) var(--input-padding-x);
         }
+
+        .alert, .alert-danger {
+          display: contents;
+          padding-left: 10px;
+          color: darkred;
+          size: 10px;
+        }
         
         .form-label-group>label {
           position: absolute;
@@ -99,7 +106,7 @@
         .form-label-group input:not(:placeholder-shown)~label {
           padding-top: calc(var(--input-padding-y) / 3);
           padding-bottom: calc(var(--input-padding-y) / 3);
-          font-size: 12px;
+          font-size: 1px;
           color: #777;
         }    
    }

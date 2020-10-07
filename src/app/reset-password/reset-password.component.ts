@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ResetPasswordComponent implements OnInit {
 
+  submitted: false;
+
   resetpswdForm = new FormGroup({
     password: new FormControl('', Validators.required),
     confirmpassword: new FormControl('', Validators.required)
@@ -18,6 +20,10 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private _resetpswdService: ResetPswdService, private _router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  get validate() {
+    return this.resetpswdForm.controls;
   }
 
   Submit(event: any) {

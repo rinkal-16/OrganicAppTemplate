@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ForgetPasswordComponent implements OnInit {
 
+  submitted: false;
+
   forgetpswdForm = new FormGroup({
     email: new FormControl('', Validators.required)    
   });
@@ -17,6 +19,10 @@ export class ForgetPasswordComponent implements OnInit {
   constructor(private _forgetpswdService: ForgetPswdService, private _router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+  
+  get validate() {
+    return this.forgetpswdForm.controls;
   }
 
   Submit(event: any) {

@@ -17,7 +17,7 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) { }
 
   public get_login(): Observable<Login> {
-    return this.http.get<Login>("https://6595ebe5cfce.ngrok.io/lrf/login/");   
+    return this.http.get<Login>("https://988cbe80f9a7.ngrok.io/lrf/login/");   
   }
 
   public post_login(formData: any): Observable<Login> {
@@ -33,12 +33,12 @@ export class LoginService {
       var concatString : string = bearer.concat(removeQuotes);
     }
          
-    this.isLoggedIn = true;
+    //this.isLoggedIn = true;
     if(this.redirectUrl) {
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = null;
     }
-    return this.http.post<Login>("https://6595ebe5cfce.ngrok.io/lrf/login/", form); 
+    return this.http.post<Login>("https://988cbe80f9a7.ngrok.io/lrf/login/", form); 
     // {
     //   headers: {'Authorization': concatString}
     // });

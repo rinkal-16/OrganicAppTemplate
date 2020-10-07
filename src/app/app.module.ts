@@ -16,6 +16,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderInterceptor } from './header.interceptor';
 import { GenerateVerificationComponent } from './generate-verification/generate-verification.component';
+import { CommonModule } from "@angular/common"; 
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { GenerateVerificationComponent } from './generate-verification/generate-
     AppRoutingModule,
     HttpClientModule, 
     FormsModule,
-    ReactiveFormsModule  
+    ReactiveFormsModule,
+    CommonModule  
     
   ],
   providers: [AuthGuard, 

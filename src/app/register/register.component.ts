@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  submitted: false;
+
   signupForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -21,6 +23,10 @@ export class RegisterComponent implements OnInit {
   constructor(private _signupService: SignupService, private _router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void { }
+
+  get validate() {
+    return this.signupForm.controls;
+  }
 
   Submit() {
     this._signupService.post_signup(this.signupForm.value).subscribe((data) => {
