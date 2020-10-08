@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: RegisterComponent},
   { path: 'forget-pwd', component: ForgetPasswordComponent},
-  { path: 'reset-pwd', component: ResetPasswordComponent},
+  { path: 'reset-pwd', component: ResetPasswordComponent, children:[{path: '**', component: ResetPasswordComponent}]},
   { path: 'gnrt-verfy', component: GenerateVerificationComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
   ];
