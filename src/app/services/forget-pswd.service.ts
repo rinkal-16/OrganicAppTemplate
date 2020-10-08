@@ -13,14 +13,14 @@ export class ForgetPswdService {
   constructor(private http: HttpClient) { }
 
   public get_forgetpswd(): Observable<any> {
-    return this.http.get<any>("https://988cbe80f9a7.ngrok.io/lrf/forgot_password/");    
+    return this.http.get<any>("https://dec9f985aa0b.ngrok.io/lrf/forgot_password/");    
   }
 
   public post_forgetpswd(formData: any): Observable<ForgetPswd> {
     let form: FormData = new FormData();
     form.append('email', formData.email);
     
-    return this.http.post<ForgetPswd>("https://988cbe80f9a7.ngrok.io/lrf/forgot_password/", form);
+    return this.http.post<ForgetPswd>("https://dec9f985aa0b.ngrok.io/lrf/forgot_password/", form);
   }
 
 }

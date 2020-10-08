@@ -39,7 +39,12 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value);  
       if(data['status_code'] == '200' ) {
         alert("Sucessfully loggedIn!!");
-      } else {
+      } 
+      else if(data['status_code'] == '401') {
+        alert(data['error']);
+        this._router.navigate(['/login']);
+      }
+      else {
         alert(data['error']);
         
       }
