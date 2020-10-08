@@ -43,7 +43,7 @@ import { CommonModule } from "@angular/common";
     
   ],
   providers: [AuthGuard, 
-    //{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },    
   ],
   bootstrap: [AppComponent]
 })

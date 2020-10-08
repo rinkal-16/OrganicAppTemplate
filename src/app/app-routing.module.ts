@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: RegisterComponent},
   { path: 'forget-pwd', component: ForgetPasswordComponent},
-  { path: 'reset-pwd', component: ResetPasswordComponent, children:[{path: '**', component: ResetPasswordComponent}]},
+  { path: 'reset-pwd', component: ResetPasswordComponent},
+  { path: 'reset-pwd/:token', component: ResetPasswordComponent},   //For send token to backend
   { path: 'gnrt-verfy', component: GenerateVerificationComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
   ];

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResetPswdService } from '../services/reset-pswd.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -12,21 +12,17 @@ export class ResetPasswordComponent implements OnInit {
 
   submitted: false;
   resetpswdForm:  FormGroup;
+  public token: string;
 
-  // resetpswdForm = new FormGroup({
-  //   password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-  //   confirmpassword: new FormControl('', Validators.required)
-  // },{ validator: this.MustMatch('password','confirmpassword') })
-
-  constructor(private _resetpswdService: ResetPswdService, private _router: Router, private formBuilder: FormBuilder) { }
+  constructor(private _resetpswdService: ResetPswdService, private _router: Router, private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
       this.resetpswdForm = this.formBuilder.group({
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
         confirmpassword: new FormControl ('', Validators.required)
-    }, {
-        validator: this.MustMatch('password', 'confirmpassword')
-    });
+      }, {
+          validator: this.MustMatch('password', 'confirmpassword')
+      });      
   }
 
   get validate() {
@@ -37,13 +33,9 @@ export class ResetPasswordComponent implements OnInit {
     return (formGroup: FormGroup) => {
         const control = formGroup.controls[controlName];
         const matchingControl = formGroup.controls[matchingControlName];
-
         if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-            // return if another validator has already found an error on the matchingControl
             return;
         }
-
-        // set error on matchingControl if validation fails
         if (control.value !== matchingControl.value) {
             matchingControl.setErrors({ mustMatch: true });
         } else {
@@ -52,8 +44,10 @@ export class ResetPasswordComponent implements OnInit {
     }
   }
 
+
   Submit(event: any) {
-    this._resetpswdService.post_resetpswd(this.resetpswdForm.value).subscribe((data) => {
+    let accessToken = this.activatedRoute.snapshot.paramMap.get('token');  //To send token to backend
+    this._resetpswdService.post_resetpswd(this.resetpswdForm.value, accessToken).subscribe((data) => {
       console.log(this.resetpswdForm.value);
       console.log(data);
       if(data['status_code'] === 200 ) {
@@ -68,5 +62,4 @@ export class ResetPasswordComponent implements OnInit {
       localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
     })
   }
-
 }
