@@ -1,0 +1,208 @@
+$laptop: 992px;
+$tablet: 768px;
+$mobile: 480px;
+
+.product-info-container {
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     justify-items: center;
+     align-content: center;
+     align-items: center;  
+     .row {          
+          background-position: center;
+          margin: auto;
+          justify-content: center;
+          justify-items: center;                    
+          margin-bottom: auto;
+          align-content: center;
+          padding-bottom: 10px;
+          width: 60%;
+          .col-sm {
+               img {
+                    width: 400px;
+                    height: 400px;
+                    margin: 40px;
+               }
+               .info {
+                    margin-top: 40px;
+                    h4 {
+                         font-size: 30px;
+                    }
+                    p {
+                         font-size: 16px;
+                    }
+                    form {
+                         button, .btn {
+                              border-radius: 10px;
+                              border-color: #00DBD0;
+                              font: normal normal normal 16px/20px Libre Baskerville;
+                              letter-spacing: 0px;
+                              color: #00DBD0;
+                              opacity: 1;
+                              text-align: left;                              
+                         } 
+                         input {
+                              width: 50px;
+                              border-color: #00DBD0;
+                              border-radius: 10px;
+                              height: 33px;
+                              text-align: center;
+                              
+                         }
+                         label {
+                              font-size: 16px;     
+                              color: black;                         
+                         }
+                    }  
+               }                                     
+          }
+     }     
+}
+
+@media screen and (min-width: 768px ) and (max-width: 900px) {
+     .product-info-container {
+          .row {
+               width: 80%;
+               .col-sm {
+                    img {
+                         width: 300px;
+                         height: 300px;
+                         margin: 25px; 
+                    }
+                    .info {
+                         h4 {
+                              font-size: 24px;
+                         }
+                         p {
+                              font-size: 16px;
+                         }
+                    }
+               }
+          }
+     }
+}
+@media screen and (min-width: 670px) and (max-width: 768px) {
+     .product-info-container {
+          .row {
+               width: 80%;
+               .col-sm {
+                    img {
+                         width: 250px;
+                         height: 250px;
+                         margin: 25px;
+                    }
+                    .info {
+                         
+                         h4 {
+                              font-size: 24px;
+                         }
+                         p {
+                              font-size: 14px;
+                         }
+                    }
+               }
+          }
+     }
+}
+@media screen and (min-width: 600px) and (max-width: 670px) {
+     .product-info-container {
+          .row {
+               width: 70%;
+               .col-sm {
+                    img {
+                         width: 350px;
+                         height: 350px;
+                         margin: 30px;
+                    }
+                    .info {
+                         margin: 30px;
+                         text-align: center;
+                         justify-content: center;
+                         h4 {
+                              font-size: 24px;
+                         }
+                         p {
+                              font-size: 14px;
+                         }
+                    }
+               }
+          }
+     }
+}
+@media screen and (min-width: 500px) and (max-width: 600px) {
+     .product-info-container {
+          .row {
+               width: 70%;
+               .col-sm {
+                    img {
+                         width: 300px;
+                         height: 300px;
+                         margin: 30px;
+                    }
+                    .info {
+                         margin: 30px;
+                         text-align: center;
+                         justify-content: center;
+                         h4 {
+                              font-size: 24px;
+                         }
+                         p {
+                              font-size: 14px;
+                         }
+                    }
+               }
+          }
+     }
+}
+@media screen and (min-width: 480px) and (max-width: 500px) {
+     .product-info-container {
+          .row {
+               width: 70%;
+               .col-sm {
+                    img {
+                         width: 250px;
+                         height: 250px;
+                    
+                    }
+                    .info {                        
+                         text-align: center;
+                         justify-content: center;
+                         h4 {
+                              font-size: 24px
+                         }
+                         p {
+                              font-size: 14px;
+                         }
+                    }
+               }
+          }
+     }
+}
+@media screen and (max-width: 480px) {
+     .product-info-container {
+          .row {
+               width: 70%;
+               .col-sm {
+                    img {
+                         width: 250px;
+                         height: 250px;
+                         margin: 25px;
+                    }
+                    .info {
+                         text-align: center;
+                         justify-content: center;
+                         margin: 25px;
+                         h4 {
+                              font-size: 24px
+                         }
+                         p {
+                              font-size: 14px;
+                         }
+                    }
+               }
+          }
+     }
+}
+

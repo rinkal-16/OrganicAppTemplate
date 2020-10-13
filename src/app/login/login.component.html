@@ -19,12 +19,13 @@
               
              <label>Password</label>
                <a routerLink="/forget-pwd" routerLinkActive="" style="float:right;font-size:12px;">Forgot password?</a>
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; loginForm.controls.password.touched }" />
+              <div class="form-label-group">                
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; loginForm.controls.password.touched }" >               
                   <div *ngIf="validate.password.invalid && validate.password.touched" class="alert alert-danger">
                         <div *ngIf="validate.password.invalid">Password is required</div>
                       </div>
-                <label for="inputPassword" style="padding-left: 10px;">Password</label>                
+                <label for="inputPassword" style="padding-left: 10px;">Password</label>  
+                            
               </div>
 
               <div class="custom-control custom-checkbox mb-3">
@@ -35,7 +36,7 @@
               <div class="register">
 					Don't have an account? <a routerLink="/signup" routerLinkActive="">Create One</a>
 				</div>
-                    <div class="reset-pwd">
+        <div class="reset-pwd">
 					Want to reset password? <a routerLink="/reset-pwd" routerLinkActive="">Reset Password</a>
 				</div>
 

@@ -14,10 +14,12 @@ export class LoginService {
 
   loginData: Login;
   
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    localStorage.setItem('token','abcd');
+   }
 
   public get_login(): Observable<Login> {
-    return this.http.get<Login>("https://dec9f985aa0b.ngrok.io/lrf/login/");   
+    return this.http.get<Login>("https://ef840d9c09d3.ngrok.io/lrf/login/");   
   }
 
   public post_login(formData: any): Observable<Login> {
@@ -38,7 +40,7 @@ export class LoginService {
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = null;
     }
-    return this.http.post<Login>("https://dec9f985aa0b.ngrok.io/lrf/login/", form); 
+    return this.http.post<Login>("https://ef840d9c09d3.ngrok.io/lrf/login/", form); 
     // {
     //   headers: {'Authorization': concatString}
     // });

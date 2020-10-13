@@ -16,7 +16,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderInterceptor } from './header.interceptor';
 import { GenerateVerificationComponent } from './generate-verification/generate-verification.component';
-import { CommonModule } from "@angular/common"; 
+import { CommonModule } from "@angular/common";
+import { ProductInfoComponent } from './product-info/product-info.component';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component'; 
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { CommonModule } from "@angular/common";
     ForgetPasswordComponent,
     ResetPasswordComponent,
     GenerateVerificationComponent,
+    ProductInfoComponent,
+    AddToCartComponent,
     
   ],
   imports: [

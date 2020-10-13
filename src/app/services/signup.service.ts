@@ -13,7 +13,7 @@ export class SignupService {
   constructor(private http: HttpClient) { }
 
   public get_signup(): Observable<any> {
-    return this.http.get<any>("https://dec9f985aa0b.ngrok.io/lrf/signup/");    
+    return this.http.get<any>("https://ef840d9c09d3.ngrok.io/lrf/signup/");    
   }
 
   public post_signup(formData: any): Observable<Signup> {
@@ -24,7 +24,7 @@ export class SignupService {
     form.append('pswd1', formData.password); 
     form.append('pswd2', formData.confirmpassword);
     
-    return this.http.post<Signup>("https://dec9f985aa0b.ngrok.io/lrf/signup/", form);  
+    return this.http.post<Signup>("https://ef840d9c09d3.ngrok.io/lrf/signup/", form);  
    
   }
 

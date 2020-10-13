@@ -1,30 +1,197 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <div class="product-container">
-     
+     <!--<nav class="navbar navbar-expand-lg">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"><img class="collapse-icon" src="../../assets/collapse.jpeg" alt="" width="20px" height="20px"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+               <ul class="navbar-nav">
+                    <li class="nav-item dropdown position-static"> 
+                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Apply Filters
+                         </a>
+                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <div class="row">
+                                   <div class="col-sm">
+                                        <form>
+                                             <h5>Category</h5>
+                                             <div class="form-check">
+                                                  <label>
+                                                       <input type="checkbox" name="check" checked> <span class="label-text">Option 01</span>
+                                                  </label>
+                                             </div>
+                                             <div class="form-check">
+                                                  <label>
+                                                       <input type="checkbox" name="check"> <span class="label-text">Option 02</span>
+                                                  </label>
+                                             </div>
+                                             <div class="form-check">
+                                                  <label>
+                                                       <input type="checkbox" name="check"> <span class="label-text">Option 03</span>
+                                                  </label>
+                                             </div>
+                                             <div class="form-check">
+                                                  <label>
+                                                       <input type="checkbox" name="check"> <span class="label-text">Option 04</span>
+                                                  </label>
+                                             </div>
+                                        </form>
+                                   </div>
+                                   <div class="col-sm">
+                                        <form>
+                                             <h5>Price</h5>
+                                             <div class="form-check">
+                                                  <label>
+                                                       <input type="checkbox" name="check" checked> <span class="label-text">Option 01</span>
+                                                  </label>
+                                             </div>
+                                             <div class="form-check">
+                                                  <label>
+                                                       <input type="checkbox" name="check"> <span class="label-text">Option 02</span>
+                                                  </label>
+                                             </div>
+                                             <div class="form-check">
+                                                  <label>
+                                                       <input type="checkbox" name="check"> <span class="label-text">Option 03</span>
+                                                  </label>
+                                             </div>
+                                             <div class="form-check">
+                                                  <label>
+                                                       <input type="checkbox" name="check"> <span class="label-text">Option 04</span>
+                                                  </label>
+                                             </div>
+                                        </form>
+                                   </div>   
+                              </div>    
+                              <div class="dropdown-divider"></div>
+                              <button type="button" class="btn" >Apply</button>
+                         </div>
+                    </li>                                                            
+               </ul>
+               <form class="form-inline my-2 my-lg-0" style="padding-top:10px; padding-bottom:10px; margin-right:20px;" >
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+               </form>
+          </div>
+     </nav>-->    
      <div class="group-1">
           <div class="heading-product">
                <h3>Products</h3>
                <p>Feel free to fill out the form and reach to us. We will get back to you shortly.</p>
           </div>          
      </div>
-     <div class="group-2">
+     <div class="group-2">          
+          <nav class="navbar navbar-expand-lg navbar-light">                   
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                         <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Dropdown
+                              </a>  
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                   <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+                                        <div class="row d-flex ">                                                                                
+                                             <!--<div class="col-sm">
+                                                  <h5>Category</h5>
+                                                  <div class="form-check">
+                                                       <label>
+                                                            <input type="checkbox" name="check" checked> <span class="label-text" style="margin-left: 15px;">Option 01</span>
+                                                       </label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <label>
+                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 02</span>
+                                                       </label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <label>
+                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 03</span>
+                                                       </label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <label>
+                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 04</span>
+                                                       </label>
+                                                  </div>
+                                             </div>                                        
+                                             <div class="col-sm">                                             
+                                                  <h5>Price</h5>
+                                                  <div class="form-check">
+                                                       <label>
+                                                            <input type="checkbox" name="check" checked> <span class="label-text" style="margin-left: 15px;">Option 01</span>
+                                                       </label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <label>
+                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 02</span>
+                                                       </label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <label>
+                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 03</span>
+                                                       </label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <label>
+                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 04</span>
+                                                       </label>
+                                                  </div>                                             
+                                             </div> --> 
+                                             <div class="col-sm">
+                                                  <div *ngFor="let data of Data; let i=index">
+                                                       <label>
+                                                            <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />{{ data.value }}
+                                                       </label>
+                                                  </div>
+                                             </div> 
+                                             <div class="col-sm">
+                                                  <div *ngFor="let data of Data; let i=index">
+                                                       <label>
+                                                            <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />{{ data.value }}
+                                                       </label>
+                                                  </div>
+                                             </div>                                                                                            
+                                        </div>    
+                                        <div class="dropdown-divider"></div>
+                                        <button type="submit" class="btn">Apply</button>
+                                   </form>     
+                              </div>                                        
+                         </li>                                                     
+                    </ul>  
+                                                            
+               </div>
+          </nav>
+          
           <div class="row">                    
                     <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap; ">
                          <div>
                               <div class="card-content">
                                    <div class="card-body">
-                                        <img src="../../assets/Homepage/MaskGroup6.png" > 
-                                        <h4>Product One</h4> 
-                                        <br>                                
-                                        <p style="padding-bottom: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>  
-                                        <button class="btn btn-outline-info">Contact</button>
-                                                                                                   
-                                   </div>
+                                        <a routerLink="/product-info" routerLinkActive="">
+                                             <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
+                                             <img src="../../assets/Homepage/MaskGroup6.png" >
+                                             <h4>Product One</h4> 
+                                             <br>                                
+                                             <p style="padding-bottom: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p> 
+                                        </a>                                                                  
+                                   </div>                                                          
+                                   <div>
+                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button> 
+                                        <form [formGroup]="productForm" (ngSubmit)="submit()">                                       
+                                             <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                             <input formControlName="quantity" id="input" type="number"
+                                             min="1" max="5" value=1>
+                                        </form>
+                                   </div>                                       
                               </div>
                          </div>
                     </div>
@@ -32,13 +199,25 @@
                          <div >
                               <div class="card-content">
                                    <div class="card-body">
+                                   <a routerLink="/product-info" routerLinkActive="">
+                                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
                                         <img src="../../assets/Homepage/MaskGroup6-1.png" >
                                         <h4>Product Two</h4>  
                                         <br>                            
                                         <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                                        <button class="btn btn-outline-info">Contact</button> 
+                                   </a>     
+                                   </div>     
+                                        <!--<button class="btn btn-outline-info">Contact</button>--> 
+                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
+                                        <div>
+                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
+                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                        <input formControlName="quantity" id="input" type="number"
+                                        min="1" max="5" value=1>
+                                        </div>
+                                   </form>     
                                                                     
-                                   </div>
+                                   
                               </div>
                          </div>
                     </div>
@@ -46,13 +225,24 @@
                          <div >
                               <div class="card-content">
                                    <div class="card-body">
+                                   <a routerLink="/product-info" routerLinkActive="">
+                                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
                                         <img src="../../assets/Homepage/MaskGroup6-2.png" >   
                                         <h4>Product Three</h4>
                                         <br>                         
                                         <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p> 
-                                        <button class="btn btn-outline-info">Contact</button>
+                                   </a>     
+                                   </div>     
+                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
+                                        <div>
+                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
+                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                        <input formControlName="quantity" id="input" type="number"
+                                        min="1" max="5" value=1>
+                                        </div>
+                                   </form>     
                                                                      
-                                   </div>
+                                   
                               </div>
                          </div>
                     </div> 
@@ -62,13 +252,24 @@
                          <div>
                               <div class="card-content">
                                    <div class="card-body">
+                                   <a routerLink="/product-info" routerLinkActive="">
+                                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
                                         <img src="../../assets/Homepage/MaskGroup6.png" > 
                                         <h4>Product One</h4> 
                                         <br>                                
                                         <p style="padding-bottom: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p> 
-                                        <button class="btn btn-outline-info">Contact</button>
+                                   </a>     
+                                   </div>     
+                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
+                                        <div>
+                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
+                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                        <input formControlName="quantity" id="input" type="number"
+                                        min="1" max="5" value=1>
+                                        </div>
+                                   </form>     
                                                                                                     
-                                   </div>
+                                   
                               </div>
                          </div>
                     </div>
@@ -76,13 +277,24 @@
                          <div >
                               <div class="card-content">
                                    <div class="card-body">
+                                   <a routerLink="/product-info" routerLinkActive="">
+                                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
                                         <img src="../../assets/Homepage/MaskGroup6-1.png" >
                                         <h4>Product Two</h4>  
                                         <br>                            
                                         <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                                        <button class="btn btn-outline-info">Contact</button> 
+                                   </a>     
+                                   </div>     
+                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
+                                        <div>
+                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
+                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                        <input formControlName="quantity" id="input" type="number"
+                                        min="1" max="5" value=1>
+                                        </div>
+                                   </form>     
                                                                  
-                                   </div>
+                                   
                               </div>
                          </div>
                     </div>
@@ -90,13 +302,23 @@
                          <div >
                               <div class="card-content">
                                    <div class="card-body">
-                                        <img src="../../assets/Homepage/MaskGroup6-2.png" >   
-                                        <h4>Product Three</h4>
-                                        <br>                         
-                                        <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p> 
-                                        <button class="btn btn-outline-info text-center">Order now</button>
-                                                                 
-                                   </div>
+                                        <a routerLink="/product-info" routerLinkActive="">
+                                             <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
+                                             <img src="../../assets/Homepage/MaskGroup6-2.png" >   
+                                             <h4>Product Three</h4>
+                                             <br>                         
+                                             <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                        </a>      
+                                   </div>   
+                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
+                                        <div>
+                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
+                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                        <input formControlName="quantity" id="input" type="number"
+                                        min="1" max="5" value=1>
+                                        </div>
+                                   </form>                              
+                                   
                               </div>
                          </div>
                     </div>                                   

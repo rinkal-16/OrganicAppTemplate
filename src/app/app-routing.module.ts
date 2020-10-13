@@ -11,7 +11,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { GenerateVerificationComponent } from './generate-verification/generate-verification.component';
 import { AuthGuard } from './auth.guard';
- 
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component'; 
+import { ProductInfoComponent } from './product-info/product-info.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -25,6 +26,8 @@ const routes: Routes = [
   { path: 'reset-pwd', component: ResetPasswordComponent},
   { path: 'reset-pwd/:token', component: ResetPasswordComponent},   //For send token to backend
   { path: 'gnrt-verfy', component: GenerateVerificationComponent},
+  { path: 'product-info', component: ProductInfoComponent},
+  { path: 'cart', component: AddToCartComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
   ];
 

@@ -14,7 +14,7 @@ export class ResetPswdService {
   constructor(private http: HttpClient) { }
 
   public get_resetpswd(): Observable<any> {
-    return this.http.get<any>("https://dec9f985aa0b.ngrok.io/lrf/reset_password/");    
+    return this.http.get<any>("https://ef840d9c09d3.ngrok.io/lrf/reset_password/");    
   }
 
   public post_resetpswd(formData: any, token: string): Observable<any> {
@@ -22,7 +22,7 @@ export class ResetPswdService {
     form.append('pswd1', formData.password);
     form.append('pswd2', formData.confirmpassword); 
     
-    return this.http.post<ResetPswd>("https://dec9f985aa0b.ngrok.io/lrf/reset_password/"+token,  form);  
+    return this.http.post<ResetPswd>("https://ef840d9c09d3.ngrok.io/lrf/reset_password/"+token,  form);  
   }
 
 }
