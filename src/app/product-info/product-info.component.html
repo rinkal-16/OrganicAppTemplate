@@ -6,13 +6,32 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <div class="product-info-container d-flex justify-content-center">
-     <div class="row">
+     <div class="row" *ngFor="let product of product_data">
+    
           <div class="col-sm">
-               <img src="../../assets/Homepage/MaskGroup6.png" > 
+               <img src="{{product.image_url}}" > 
           </div>
           <div class="col-sm">
                <div class="info">
-                    <h4>Product name</h4>
+                    <div class="card border-secondary mb-3" style="max-width: 300px; height: fit-content; margin-left: -40px; border: none;" *ngFor="let product of product_data">
+                         <div class="card-header">{{product.p_name}}</div>
+                              <div class="card-body text-secondary">
+                              <h5 class="card-title">Price: {{product.price}}</h5>
+                              <p class="card-text">{{product.description}}</p>
+                              <p>{{product.product_id}}</p>
+                              <form [formGroup]="productInfoForm" novalidate> 
+                                   <div class="form-group">                          
+                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                        <input  formControlName="quantity" id="input" type="number" min="1" max="5" value=1> 
+                                        <br>  
+                                        <br>             
+                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive="" (click)="AddCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>  
+                                        <button class="btn btn-outline-info" routerLink="/checkout" routerLinkActive="" (click)="Purchase($event)"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Purchase</button> 
+                                   </div>                           
+                              </form>
+                         </div>
+                    </div>
+                    <!--<h4>Product name</h4>
                     <p>Product Information Product Information Product Information Product Information Product Information</p>
                     <p>Price : $500/-</p>
                     <form>                           
@@ -21,7 +40,7 @@
                          <br>  
                          <br>             
                          <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>                         
-                    </form>
+                    </form>-->
                </div>     
           </div>
      </div>

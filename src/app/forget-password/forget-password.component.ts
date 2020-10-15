@@ -32,7 +32,7 @@ export class ForgetPasswordComponent implements OnInit {
       if(data['status_code'] === 401) {
         this._router.navigate(['/login',{value: true}]);
       }
-      else if(data['status_code'] === 200) {
+      else if(data['meta']['status_code'] === 200) {
         alert("Successfully request sent. Check your mail!!");        
       }
       else if(data['status_code'] === 400) {

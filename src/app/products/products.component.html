@@ -98,68 +98,16 @@
                                    Dropdown
                               </a>  
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                   <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-                                        <div class="row d-flex ">                                                                                
-                                             <!--<div class="col-sm">
-                                                  <h5>Category</h5>
-                                                  <div class="form-check">
+                                   <form [formGroup]="productForm" (ngSubmit)="submit()" novalidate>
+                                        <div class="row d-flex">                                                                                                         
+                                             <div class="col-sm" >
+                                                  <div *ngFor="let category of category_data">
                                                        <label>
-                                                            <input type="checkbox" name="check" checked> <span class="label-text" style="margin-left: 15px;">Option 01</span>
-                                                       </label>
-                                                  </div>
-                                                  <div class="form-check">
-                                                       <label>
-                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 02</span>
-                                                       </label>
-                                                  </div>
-                                                  <div class="form-check">
-                                                       <label>
-                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 03</span>
-                                                       </label>
-                                                  </div>
-                                                  <div class="form-check">
-                                                       <label>
-                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 04</span>
-                                                       </label>
-                                                  </div>
-                                             </div>                                        
-                                             <div class="col-sm">                                             
-                                                  <h5>Price</h5>
-                                                  <div class="form-check">
-                                                       <label>
-                                                            <input type="checkbox" name="check" checked> <span class="label-text" style="margin-left: 15px;">Option 01</span>
-                                                       </label>
-                                                  </div>
-                                                  <div class="form-check">
-                                                       <label>
-                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 02</span>
-                                                       </label>
-                                                  </div>
-                                                  <div class="form-check">
-                                                       <label>
-                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 03</span>
-                                                       </label>
-                                                  </div>
-                                                  <div class="form-check">
-                                                       <label>
-                                                            <input type="checkbox" name="check"> <span class="label-text" style="margin-left: 15px;">Option 04</span>
-                                                       </label>
-                                                  </div>                                             
-                                             </div> --> 
-                                             <div class="col-sm">
-                                                  <div *ngFor="let data of Data; let i=index">
-                                                       <label>
-                                                            <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />{{ data.value }}
+                                                            <input type="checkbox" [value]="category.cat_name" (change)="onCheckboxChange($event)" />{{ category.cat_name }}
                                                        </label>
                                                   </div>
                                              </div> 
-                                             <div class="col-sm">
-                                                  <div *ngFor="let data of Data; let i=index">
-                                                       <label>
-                                                            <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />{{ data.value }}
-                                                       </label>
-                                                  </div>
-                                             </div>                                                                                            
+                                                                                                                                        
                                         </div>    
                                         <div class="dropdown-divider"></div>
                                         <button type="submit" class="btn">Apply</button>
@@ -172,30 +120,35 @@
           </nav>
           
           <div class="row">                    
-                    <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap; ">
+                    <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;" *ngFor="let product of product_data">
                          <div>
                               <div class="card-content">
                                    <div class="card-body">
-                                        <a routerLink="/product-info" routerLinkActive="">
-                                             <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
-                                             <img src="../../assets/Homepage/MaskGroup6.png" >
-                                             <h4>Product One</h4> 
+                                        <a routerLink="/product-info/{{product.id}}" routerLinkActive="">{{product.id}}
+                                             <div class="image">
+                                                  <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
+                                                  <img src="{{product.image_url}}" >
+                                             </div>
+                                             <h4>{{product.p_name}}</h4> 
                                              <br>                                
-                                             <p style="padding-bottom: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p> 
+                                             <p style="padding-bottom: 10px;">{{product.description}}</p> 
+                                             <p class="pr">Price: {{product.price}} </p>
+                                             <p>Discount price: {{product.disscount_price}}</p>
                                         </a>                                                                  
                                    </div>                                                          
                                    <div>
-                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button> 
-                                        <form [formGroup]="productForm" (ngSubmit)="submit()">                                       
-                                             <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                             <input formControlName="quantity" id="input" type="number"
-                                             min="1" max="5" value=1>
-                                        </form>
+                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
+                                        <div>
+                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
+                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                        <input id="input" type="number" min="1" max="5" value=1>
+                                        </div>
+                                   </form> 
                                    </div>                                       
                               </div>
                          </div>
                     </div>
-                    <div class="col-sm" style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;">
+                    <!--<div class="col-sm" style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;">
                          <div >
                               <div class="card-content">
                                    <div class="card-body">
@@ -205,9 +158,11 @@
                                         <h4>Product Two</h4>  
                                         <br>                            
                                         <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                        <p class="pr">Price: </p>
+                                        <p>Discount price: </p>
                                    </a>     
                                    </div>     
-                                        <!--<button class="btn btn-outline-info">Contact</button>--> 
+                                       
                                    <form [formGroup]="productForm" (ngSubmit)="submit()">  
                                         <div>
                                         <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
@@ -230,7 +185,9 @@
                                         <img src="../../assets/Homepage/MaskGroup6-2.png" >   
                                         <h4>Product Three</h4>
                                         <br>                         
-                                        <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p> 
+                                        <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                        <p class="pr">Price: </p>
+                                        <p>Discount price: </p> 
                                    </a>     
                                    </div>     
                                    <form [formGroup]="productForm" (ngSubmit)="submit()">  
@@ -245,9 +202,9 @@
                                    
                               </div>
                          </div>
-                    </div> 
+                    </div> -->
           </div>
-          <div class="row">                                                           
+          <!--<div class="row">                                                           
                     <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap; ">
                          <div>
                               <div class="card-content">
@@ -257,7 +214,9 @@
                                         <img src="../../assets/Homepage/MaskGroup6.png" > 
                                         <h4>Product One</h4> 
                                         <br>                                
-                                        <p style="padding-bottom: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p> 
+                                        <p style="padding-bottom: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                        <p class="pr">Price: </p>
+                                        <p>Discount price: </p> 
                                    </a>     
                                    </div>     
                                    <form [formGroup]="productForm" (ngSubmit)="submit()">  
@@ -283,6 +242,8 @@
                                         <h4>Product Two</h4>  
                                         <br>                            
                                         <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                        <p class="pr">Price: </p>
+                                        <p>Discount price: </p>
                                    </a>     
                                    </div>     
                                    <form [formGroup]="productForm" (ngSubmit)="submit()">  
@@ -308,6 +269,8 @@
                                              <h4>Product Three</h4>
                                              <br>                         
                                              <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                             <p class="pr">Price: </p>
+                                             <p>Discount price: </p>
                                         </a>      
                                    </div>   
                                    <form [formGroup]="productForm" (ngSubmit)="submit()">  
@@ -322,7 +285,7 @@
                               </div>
                          </div>
                     </div>                                   
-          </div>
+          </div>-->
      </div>
         
 </div>

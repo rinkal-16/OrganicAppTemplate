@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -9,25 +11,26 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@ang
 export class ProductsComponent implements OnInit {
 
   productForm: FormGroup;
+  product_data : any;
+  category_data : any;
 
-  Data: Array<any> = [
-    { id: 1, value:"option1" },
-    { id: 2, value:"option2" },
-    { id: 3, value:"option3" }
-  ];
 
-  constructor(private fb: FormBuilder) { 
-    this.productForm = this.fb.group({
-      checkArray: this.fb.array([])
+  constructor(private _productService: ProductService, private _router: Router, private formBuilder: FormBuilder) { 
+    this.productForm = this.formBuilder.group({
+      checkArray: this.formBuilder.array([])
     })
   }
 
   ngOnInit(): void {
+    this._productService.get_product().subscribe((data) => {
+      console.log(data);
+      this.product_data = data['data']['products'];
+      this.category_data = data['data']['category'];
+    })
   }
 
   onCheckboxChange(e) {
-    const checkArray: FormArray = this.productForm.get('checkArray') as FormArray;
-  
+    const checkArray: FormArray = this.productForm.get('checkArray') as FormArray;  
     if (e.target.checked) {
       checkArray.push(new FormControl(e.target.value));
     } else {
@@ -40,10 +43,17 @@ export class ProductsComponent implements OnInit {
         i++;
       });
     }
+    console.log(checkArray.value[0]);
+    this._productService.get_product_with_filter(checkArray.value[0]).subscribe((data) => {
+      console.log(data);
+      this.product_data = data['data']['products'];
+      
+    })
   }
 
   submit() {
     console.log(this.productForm.value)
   }
 
+  
 }

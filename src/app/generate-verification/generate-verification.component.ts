@@ -29,7 +29,7 @@ export class GenerateVerificationComponent implements OnInit {
     this._gnrtvrfcntService.post_gnrtvrfcnt(this.gnrtvrfcntForm.value).subscribe((data) => {
       console.log(this.gnrtvrfcntForm.value);
       console.log(data);
-      if(data['status_code'] === 200 ) {
+      if(data['meta']['status_code'] === 200 ) {
         alert("Successfully request sent. Generate verification via mail!!");
       }
       else if(data['status_code'] === 400 ) {

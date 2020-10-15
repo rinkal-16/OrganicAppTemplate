@@ -50,7 +50,7 @@ export class ResetPasswordComponent implements OnInit {
     this._resetpswdService.post_resetpswd(this.resetpswdForm.value, accessToken).subscribe((data) => {
       console.log(this.resetpswdForm.value);
       console.log(data);
-      if(data['status_code'] === 200 ) {
+      if(data['meta']['status_code'] === 200 ) {
         alert("Successfully password reseted!!");
       }
       else if (data['status_code'] === 400) {

@@ -3,7 +3,7 @@ $tablet: 768px;
 $mobile: 480px;
 
 .cart-container {
-     width: 70%;
+     width: 80%;
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
@@ -11,6 +11,8 @@ $mobile: 480px;
      align-content: center;
      align-items: center;
      margin: auto;
+     margin-top: 30px;
+     
      input {
           width: 50px;
           border-color: #00DBD0;
@@ -23,4 +25,8 @@ $mobile: 480px;
           font-size: 16px;     
           color: black;                         
      }
-}       
+} 
+
+
+
+

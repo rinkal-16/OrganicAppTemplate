@@ -18,7 +18,8 @@ import { HeaderInterceptor } from './header.interceptor';
 import { GenerateVerificationComponent } from './generate-verification/generate-verification.component';
 import { CommonModule } from "@angular/common";
 import { ProductInfoComponent } from './product-info/product-info.component';
-import { AddToCartComponent } from './add-to-cart/add-to-cart.component'; 
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { CheckoutComponent } from './checkout/checkout.component'; 
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
     GenerateVerificationComponent,
     ProductInfoComponent,
     AddToCartComponent,
+    CheckoutComponent,
     
   ],
   imports: [

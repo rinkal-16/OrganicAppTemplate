@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this._loginService.post_login(this.loginForm.value).subscribe((data) => {
       console.log(data); 
       console.log(this.loginForm.value);  
-      if(data['status_code'] == '200' ) {
+      if(data['meta']['status_code'] == '200' ) {
         alert("Sucessfully loggedIn!!");
       } 
       else if(data['status_code'] == '401') {
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         alert(data['error']);
         
       }
-      localStorage.setItem("token", JSON.stringify(data['token']));
+      localStorage.setItem("token", JSON.stringify(data['meta']['token']));
     })     
   }
   

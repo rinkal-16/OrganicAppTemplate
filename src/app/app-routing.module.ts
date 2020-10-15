@@ -13,10 +13,11 @@ import { GenerateVerificationComponent } from './generate-verification/generate-
 import { AuthGuard } from './auth.guard';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component'; 
 import { ProductInfoComponent } from './product-info/product-info.component';
+import { CheckoutComponent } from './checkout/checkout.component'; 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
-  { path: 'products', component: ProductsComponent, canActivate: [AuthGuard]},
+  { path: 'products', component: ProductsComponent},
   { path: 'blog', component: BlogComponent, canActivate: [AuthGuard]},
   { path: 'aboutus', component: AboutusComponent},
   { path: 'contact', component: ContactComponent},
@@ -26,8 +27,9 @@ const routes: Routes = [
   { path: 'reset-pwd', component: ResetPasswordComponent},
   { path: 'reset-pwd/:token', component: ResetPasswordComponent},   //For send token to backend
   { path: 'gnrt-verfy', component: GenerateVerificationComponent},
-  { path: 'product-info', component: ProductInfoComponent},
-  { path: 'cart', component: AddToCartComponent},
+  { path: 'product-info/:id', component: ProductInfoComponent},
+  { path: 'cart', component: AddToCartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
   ];
 
