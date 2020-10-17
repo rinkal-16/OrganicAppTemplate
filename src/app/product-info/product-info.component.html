@@ -4,16 +4,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <div class="product-info-container d-flex justify-content-center">
-     <div class="row" *ngFor="let product of product_data">
-    
+     <div class="row" *ngFor="let product of product_data">   
           <div class="col-sm">
                <img src="{{product.image_url}}" > 
           </div>
           <div class="col-sm">
                <div class="info">
-                    <div class="card border-secondary mb-3" style="max-width: 300px; height: fit-content; margin-left: -40px; border: none;" *ngFor="let product of product_data">
+                    <div class="card border-secondary mb-3" style="max-width: 300px; height: fit-content; margin-left: -40px; border: none;">
                          <div class="card-header">{{product.p_name}}</div>
                               <div class="card-body text-secondary">
                               <h5 class="card-title">Price: {{product.price}}</h5>
@@ -25,23 +27,47 @@
                                         <input  formControlName="quantity" id="input" type="number" min="1" max="5" value=1> 
                                         <br>  
                                         <br>             
-                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive="" (click)="AddCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>  
-                                        <button class="btn btn-outline-info" routerLink="/checkout" routerLinkActive="" (click)="Purchase($event)"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Purchase</button> 
+                                        <button class="btn btn-outline-info" (click)="AddCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>  
+
+                                        <button class="btn btn-outline-info" (click)="Purchase($event)"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Purchase</button> 
                                    </div>                           
                               </form>
                          </div>
                     </div>
-                    <!--<h4>Product name</h4>
-                    <p>Product Information Product Information Product Information Product Information Product Information</p>
-                    <p>Price : $500/-</p>
-                    <form>                           
-                         <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                         <input formControlName="quantity" id="input" type="number" min="1" max="5" value=1> 
-                         <br>  
-                         <br>             
-                         <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>                         
-                    </form>-->
                </div>     
-          </div>
+          </div>  
+                 
      </div>
+
+     <div class="container" >
+          <h1>Customer Reviews</h1>          
+          <div class="row-fluid"> 
+               <div class="col-sm-6" *ngFor="let review of review_data" >
+                    <div class="panel panel-default">
+                         <div class="panel-heading">                              
+                              <h3 class="panel-title" itemprop="name">Review Title</h3>
+                         </div><!--/panel-heading-->
+
+                         <div class="panel-body" itemprop="reviewBody">
+                              <span>{{review.text}}</span>              
+                              <span class="pull-right">
+                                   <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                        <meta itemprop="worstRating" content="1">
+                                        <span itemprop="ratingValue">5</span> / 
+                                        <span itemprop="bestRating"> stars </span>
+                                   </span><!--/reviewRating-->
+                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                              </span>
+                         </div><!--/panel-body-->
+
+                        
+                    </div><!--/panel-->
+               </div><!--/col-sm-6-->
+          </div>
+     </div> 
+
 </div>

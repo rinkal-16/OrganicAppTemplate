@@ -1,6 +1,6 @@
   <div class="container">
     <div class="py-5 text-center">  
-      <h2>Checkout form</h2>  
+      <h2>Pay here</h2>  
     </div>
 
     <div class="row">
@@ -24,90 +24,55 @@
             </div>
             <span class="text-muted">$8</span>
           </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Third item</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$5</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">-$5</span>
-          </li>
+          
+          
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
             <strong>$20</strong>
           </li>
         </ul>
-
-        <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-secondary">Redeem</button>
-            </div>
-          </div>
-        </form>
+        
       </div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation" novalidate>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="firstName">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+        <form class="needs-validation"[formGroup]="checkoutForm" novalidate>
+          
+            <div class="mb-3">
+              <label for="firstName">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name" value="" required>
+              <div *ngIf="validate.name.invalid && validate.name.touched" class="alert alert-danger">
+                <div *ngIf="validate.name.invalid">Name is required</div>
+              </div>
               <div class="invalid-feedback">
-                Valid first name is required.
+                Valid name is required.
               </div>
             </div>
-            <div class="col-md-6 mb-3">
-              <label for="lastName">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
-            </div>
-          </div>
-
+            
+          
+         
           <div class="mb-3">
-            <label for="username">Username</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">@</span>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email Address">
+            <div *ngIf="validate.email.invalid && validate.email.touched" class="alert alert-danger">
+                <div *ngIf="validate.email.invalid">Email is required</div>
               </div>
-              <input type="text" class="form-control" id="username" placeholder="Username" required>
-              <div class="invalid-feedback" style="width: 100%;">
-                Your username is required.
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="email">Email <span class="text-muted">(Optional)</span></label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com">
             <div class="invalid-feedback">
               Please enter a valid email address for shipping updates.
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+            <label for="address">Shipping Address</label>
+            <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address" required>
+            <div *ngIf="validate.address.invalid && validate.address.touched" class="alert alert-danger">
+                <div *ngIf="validate.address.invalid">Address is required</div>
+              </div>
             <div class="invalid-feedback">
               Please enter your shipping address.
             </div>
           </div>
 
-          <div class="mb-3">
-            <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-          </div>
-
-          <div class="row">
+          <!--<div class="row">
             <div class="col-md-5 mb-3">
               <label for="country">Country</label>
               <select class="custom-select d-block w-100" id="country" required>
@@ -144,12 +109,21 @@
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="save-info">
             <label class="custom-control-label" for="save-info">Save this information for next time</label>
-          </div>
+          </div>-->
           <hr class="mb-4">
 
           <h4 class="mb-3">Payment</h4>
+          <img class="mr-2" width="45px"
+            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+            alt="Visa">
+          <img class="mr-2" width="45px"
+            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+            alt="Mastercard">
+          <img class="mr-2" width="45px"
+            src="https://mdbootstrap.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
+            alt="PayPal acceptance mark">
 
-          <div class="d-block my-3">
+          <!--<div class="d-block my-3">
             <div class="custom-control custom-radio">
               <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
               <label class="custom-control-label" for="credit">Credit card</label>
@@ -195,7 +169,7 @@
                 Security code required
               </div>
             </div>
-          </div>
+          </div>-->
           <hr class="mb-4">
           <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
         </form>

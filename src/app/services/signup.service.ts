@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Signup } from '../modals/signup';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
 
+  apiURL = environment.apiURL;
+
   signupData: Signup;
 
   constructor(private http: HttpClient) { }
 
   public get_signup(): Observable<any> {
-    return this.http.get<any>("https://aa09bb498911.ngrok.io/lrf/signup/");    
+    return this.http.get<any>(this.apiURL+"/signup/");    
   }
 
   public post_signup(formData: any): Observable<Signup> {
@@ -24,7 +27,7 @@ export class SignupService {
     form.append('pswd1', formData.password); 
     form.append('pswd2', formData.confirmpassword);
     
-    return this.http.post<Signup>("https://aa09bb498911.ngrok.io/lrf/signup/", form);  
+    return this.http.post<Signup>(this.apiURL+"/signup/", form);  
    
   }
 

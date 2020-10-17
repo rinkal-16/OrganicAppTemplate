@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResetPswd } from '../modals/reset-pswd';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResetPswdService {
 
+  apiURL = environment.apiURL;
+
   resetpswdData: ResetPswd;
   
   constructor(private http: HttpClient) { }
 
   public get_resetpswd(): Observable<any> {
-    return this.http.get<any>("https://aa09bb498911.ngrok.io/lrf/reset_password/");    
+    return this.http.get<any>(this.apiURL+"/reset_password/");    
   }
 
   public post_resetpswd(formData: any, token: string): Observable<any> {
@@ -22,7 +24,7 @@ export class ResetPswdService {
     form.append('pswd1', formData.password);
     form.append('pswd2', formData.confirmpassword); 
     
-    return this.http.post<ResetPswd>("https://aa09bb498911.ngrok.io/lrf/reset_password/"+token,  form);  
+    return this.http.post<ResetPswd>(this.apiURL+"/reset_password/"+token,  form);  
   }
 
 }

@@ -1,71 +1,64 @@
 <div class="cart-container">
   <section>
-    <div class="row" >
+    <div class="row" *ngFor="let cart of cart_data">
       <div class="col-sm">        
             <div class="row">
               <div class="col-sm">
                 <div class="rounded">
                   <img class="img-fluid" style="width:300px; height:300px;"
-                    src="">
+                    src="{{cart.image_url}}">
                 </div>
               </div>
               <div class="col-sm"> 
                 <div>
                   <div class="d-flex justify-content-between">
                     <div>
-                      <h5></h5>
+                      <h5>{{cart.p_name}}</h5>
                       <p></p>                      
                     </div>                    
                   </div>
-                  <div>
-                    <label class="label" for="quantity" value="Quantity">Quantity : </label>
-                    <input id="input" type="number" min="1" max="5" value=1> 
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p><span><strong id="summary">Price </strong></span></p>
-                  </div>
-                  <div>
-                    <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i class="fa fa-trash" aria-hidden="true"></i> Remove item </a>
-                  </div>
+                  <form [formGroup]="addToCartForm" (click)="Remove(cart.product_id)" novalidate> 
+                    <div>
+                      <label class="label" for="quantity" value="Quantity">Quantity :{{cart.quantity}} </label>
+                      <input id="input" type="number" min="1" max="5" value=1> 
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><span><strong id="summary">Price {{cart.price}}</strong></span></p>
+                    </div>
+                    <div>
+                      <button type="button" (click)="Remove(cart.product_id)" class="btn btn-danger small text-uppercase mr-3"><i class="fa fa-trash" aria-hidden="true"></i> Remove item </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>         
-    </div>
-
-    <div class="col-lg-4">
-      <div class="mb-3">
-        <div class="pt-4">
-          <h5 class="mb-3">The total amount of</h5>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Temporary amount
-              <span>Price </span>
-            </li>
-            <br>
-            <li class="d-flex justify-content-between align-items-center">
-              <div>
-                <strong>The total amount of</strong>
-              </div>
-              <span><strong>Price </strong></span>
-            </li>
-            <br>
-          </ul>
-          <button type="button" class="btn btn-primary btn-block" routerLink="/checkout" routerLinkActive="">Proceed to checkout</button>
+      </div> 
+      
+      <div class="col-lg-4">
+        <div class="mb-3">
+          <div class="pt-4">
+            <h5 class="mb-3">The total amount of</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Temporary amount
+                <span>Price {{cart.price}}</span>
+              </li>
+              <br>
+              <li class="d-flex justify-content-between align-items-center">
+                <div>
+                  <strong>The total amount of</strong>
+                </div>
+                <span><strong>Price </strong></span>
+              </li>
+              <br>
+            </ul>
+            <button type="button" class="btn btn-primary btn-block" routerLink="/checkout" routerLinkActive="">Proceed to checkout</button>
+          </div>
+          <br>
+          
         </div>
-        <br>
-        <!--<h5 class="mb-4">We accept</h5>
-        <img class="mr-2" width="45px"
-            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-            alt="Visa">
-          <img class="mr-2" width="45px"
-            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-            alt="Mastercard">
-          <img class="mr-2" width="45px"
-            src="https://mdbootstrap.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
-            alt="PayPal acceptance mark">-->
-      </div>
+      </div>  
     </div>
-  </div>
-</section>
+  </section>
 </div>
 

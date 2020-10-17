@@ -3,11 +3,14 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Login } from '../modals/login';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
+  apiURL = environment.apiURL;
 
   isLoggedIn: boolean = false;
   public redirectUrl: string;
@@ -19,7 +22,7 @@ export class LoginService {
    }
 
   public get_login(): Observable<Login> {
-    return this.http.get<Login>("https://aa09bb498911.ngrok.io/lrf/login/");   
+    return this.http.get<Login>(this.apiURL+"/login/");   
   }
 
   public post_login(formData: any): Observable<Login> {
@@ -35,15 +38,13 @@ export class LoginService {
       var concatString : string = bearer.concat(removeQuotes);
     }
          
-    //this.isLoggedIn = true;
+    
     if(this.redirectUrl) {
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = null;
     }
-    return this.http.post<Login>("https://aa09bb498911.ngrok.io/lrf/login/", form); 
-    // {
-    //   headers: {'Authorization': concatString}
-    // });
+    return this.http.post<Login>(this.apiURL+"/login/", form); 
+    
   }
 
   logout(): void {

@@ -25,11 +25,11 @@ const routes: Routes = [
   { path: 'signup', component: RegisterComponent},
   { path: 'forget-pwd', component: ForgetPasswordComponent},
   { path: 'reset-pwd', component: ResetPasswordComponent},
-  { path: 'reset-pwd/:token', component: ResetPasswordComponent},   //For send token to backend
+  { path: 'reset-pwd/:token', component: ResetPasswordComponent},   //To send token to backend
   { path: 'gnrt-verfy', component: GenerateVerificationComponent},
   { path: 'product-info/:id', component: ProductInfoComponent},
-  { path: 'cart', component: AddToCartComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'cart/:quantity/:product_id', component: AddToCartComponent, canActivate: [AuthGuard] },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
   ];
 
@@ -37,4 +37,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
