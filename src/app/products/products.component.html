@@ -6,80 +6,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <div class="product-container">
-     <!--<nav class="navbar navbar-expand-lg">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"><img class="collapse-icon" src="../../assets/collapse.jpeg" alt="" width="20px" height="20px"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-               <ul class="navbar-nav">
-                    <li class="nav-item dropdown position-static"> 
-                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         Apply Filters
-                         </a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <div class="row">
-                                   <div class="col-sm">
-                                        <form>
-                                             <h5>Category</h5>
-                                             <div class="form-check">
-                                                  <label>
-                                                       <input type="checkbox" name="check" checked> <span class="label-text">Option 01</span>
-                                                  </label>
-                                             </div>
-                                             <div class="form-check">
-                                                  <label>
-                                                       <input type="checkbox" name="check"> <span class="label-text">Option 02</span>
-                                                  </label>
-                                             </div>
-                                             <div class="form-check">
-                                                  <label>
-                                                       <input type="checkbox" name="check"> <span class="label-text">Option 03</span>
-                                                  </label>
-                                             </div>
-                                             <div class="form-check">
-                                                  <label>
-                                                       <input type="checkbox" name="check"> <span class="label-text">Option 04</span>
-                                                  </label>
-                                             </div>
-                                        </form>
-                                   </div>
-                                   <div class="col-sm">
-                                        <form>
-                                             <h5>Price</h5>
-                                             <div class="form-check">
-                                                  <label>
-                                                       <input type="checkbox" name="check" checked> <span class="label-text">Option 01</span>
-                                                  </label>
-                                             </div>
-                                             <div class="form-check">
-                                                  <label>
-                                                       <input type="checkbox" name="check"> <span class="label-text">Option 02</span>
-                                                  </label>
-                                             </div>
-                                             <div class="form-check">
-                                                  <label>
-                                                       <input type="checkbox" name="check"> <span class="label-text">Option 03</span>
-                                                  </label>
-                                             </div>
-                                             <div class="form-check">
-                                                  <label>
-                                                       <input type="checkbox" name="check"> <span class="label-text">Option 04</span>
-                                                  </label>
-                                             </div>
-                                        </form>
-                                   </div>   
-                              </div>    
-                              <div class="dropdown-divider"></div>
-                              <button type="button" class="btn" >Apply</button>
-                         </div>
-                    </li>                                                            
-               </ul>
-               <form class="form-inline my-2 my-lg-0" style="padding-top:10px; padding-bottom:10px; margin-right:20px;" >
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-               </form>
-          </div>
-     </nav>-->    
+     
      <div class="group-1">
           <div class="heading-product">
                <h3>Products</h3>
@@ -135,157 +62,23 @@
                                              <p class="pr">Price: {{product.price}} </p>
                                              <p>Discount price: {{product.disscount_price}}</p>
                                         </a>                                                                  
-                                   </div>                                                          
-                                   <div>
-                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
-                                        <div>
-                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
-                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                        <input id="input" type="number" min="1" max="5" value=1>
-                                        </div>
-                                   </form> 
-                                   </div>                                       
+                                   </div>  
+                                   <form [formGroup]="productForm" (click)="Direct_Cart()">                                                         
+                                        <div class="row"> 
+                                             <div class="col">                                                                               
+                                             <button class="btn btn-outline-info"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
+                                             </div>
+                                             <div class="col">                                                                             
+                                             <input id="input" type="number" min="1" max="5" value=1>    
+                                             </div>                                         
+                                        </div>    
+                                   </form>                                       
                               </div>
                          </div>
                     </div>
-                    <!--<div class="col-sm" style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;">
-                         <div >
-                              <div class="card-content">
-                                   <div class="card-body">
-                                   <a routerLink="/product-info" routerLinkActive="">
-                                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
-                                        <img src="../../assets/Homepage/MaskGroup6-1.png" >
-                                        <h4>Product Two</h4>  
-                                        <br>                            
-                                        <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                                        <p class="pr">Price: </p>
-                                        <p>Discount price: </p>
-                                   </a>     
-                                   </div>     
-                                       
-                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
-                                        <div>
-                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
-                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                        <input formControlName="quantity" id="input" type="number"
-                                        min="1" max="5" value=1>
-                                        </div>
-                                   </form>     
-                                                                    
-                                   
-                              </div>
-                         </div>
-                    </div>
-                    <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap; ">
-                         <div >
-                              <div class="card-content">
-                                   <div class="card-body">
-                                   <a routerLink="/product-info" routerLinkActive="">
-                                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
-                                        <img src="../../assets/Homepage/MaskGroup6-2.png" >   
-                                        <h4>Product Three</h4>
-                                        <br>                         
-                                        <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                                        <p class="pr">Price: </p>
-                                        <p>Discount price: </p> 
-                                   </a>     
-                                   </div>     
-                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
-                                        <div>
-                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
-                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                        <input formControlName="quantity" id="input" type="number"
-                                        min="1" max="5" value=1>
-                                        </div>
-                                   </form>     
-                                                                     
-                                   
-                              </div>
-                         </div>
-                    </div> -->
+                    
           </div>
-          <!--<div class="row">                                                           
-                    <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap; ">
-                         <div>
-                              <div class="card-content">
-                                   <div class="card-body">
-                                   <a routerLink="/product-info" routerLinkActive="">
-                                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
-                                        <img src="../../assets/Homepage/MaskGroup6.png" > 
-                                        <h4>Product One</h4> 
-                                        <br>                                
-                                        <p style="padding-bottom: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                                        <p class="pr">Price: </p>
-                                        <p>Discount price: </p> 
-                                   </a>     
-                                   </div>     
-                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
-                                        <div>
-                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
-                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                        <input formControlName="quantity" id="input" type="number"
-                                        min="1" max="5" value=1>
-                                        </div>
-                                   </form>     
-                                                                                                    
-                                   
-                              </div>
-                         </div>
-                    </div>
-                    <div class="col-sm" style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;">
-                         <div >
-                              <div class="card-content">
-                                   <div class="card-body">
-                                   <a routerLink="/product-info" routerLinkActive="">
-                                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
-                                        <img src="../../assets/Homepage/MaskGroup6-1.png" >
-                                        <h4>Product Two</h4>  
-                                        <br>                            
-                                        <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                                        <p class="pr">Price: </p>
-                                        <p>Discount price: </p>
-                                   </a>     
-                                   </div>     
-                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
-                                        <div>
-                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
-                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                        <input formControlName="quantity" id="input" type="number"
-                                        min="1" max="5" value=1>
-                                        </div>
-                                   </form>     
-                                                                 
-                                   
-                              </div>
-                         </div>
-                    </div>
-                    <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap; ">
-                         <div >
-                              <div class="card-content">
-                                   <div class="card-body">
-                                        <a routerLink="/product-info" routerLinkActive="">
-                                             <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
-                                             <img src="../../assets/Homepage/MaskGroup6-2.png" >   
-                                             <h4>Product Three</h4>
-                                             <br>                         
-                                             <p style="padding-bottom: 10px;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                                             <p class="pr">Price: </p>
-                                             <p>Discount price: </p>
-                                        </a>      
-                                   </div>   
-                                   <form [formGroup]="productForm" (ngSubmit)="submit()">  
-                                        <div>
-                                        <button class="btn btn-outline-info" routerLink="/cart" routerLinkActive=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>                                        
-                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                        <input formControlName="quantity" id="input" type="number"
-                                        min="1" max="5" value=1>
-                                        </div>
-                                   </form>                              
-                                   
-                              </div>
-                         </div>
-                    </div>                                   
-          </div>-->
+          
      </div>
         
 </div>

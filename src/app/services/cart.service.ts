@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cart } from '../modals/cart';
 import { Router } from '@angular/router'; 
@@ -33,7 +33,6 @@ export class CartService {
   }
 
   public delete_cart(id: number): Observable<Cart> {
-
     if(localStorage.getItem('token')) {
       let bearer : string = "Bearer ";
       let stringToken : string = localStorage.getItem('token');    
@@ -54,6 +53,18 @@ export class CartService {
       var concatString : string = bearer.concat(removeQuotes);
     }
     return this.http.get<Cart>(this.apiURL+`/cart/`, 
+    { headers: { Authorization: concatString } });
+  }
+
+  public buy_from_cart() {
+    if(localStorage.getItem('token')) {
+      let bearer : string = "Bearer ";
+      let stringToken : string = localStorage.getItem('token');    
+      var removeQuotes = stringToken.split('"').join('');     
+      var concatString : string = bearer + stringToken
+      var concatString : string = bearer.concat(removeQuotes);
+    }
+    return this.http.post<Cart>(this.apiURL+`/buy_cart/`, {},
     { headers: { Authorization: concatString } });
   }
 

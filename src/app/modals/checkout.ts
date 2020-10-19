@@ -1,5 +1,4 @@
 export interface Checkout {
-     email: string;
-     name: string;
-     address: string;
+     order_id: string;
+     shipping_address: string;
 }

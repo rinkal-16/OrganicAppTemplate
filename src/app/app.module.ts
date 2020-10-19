@@ -19,7 +19,8 @@ import { GenerateVerificationComponent } from './generate-verification/generate-
 import { CommonModule } from "@angular/common";
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
-import { CheckoutComponent } from './checkout/checkout.component'; 
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductPaginationComponent } from './product-pagination/product-pagination.component'; 
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ProductInfoComponent,
     AddToCartComponent,
     CheckoutComponent,
+    ProductPaginationComponent,
     
   ],
   imports: [

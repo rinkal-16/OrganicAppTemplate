@@ -39,10 +39,12 @@ export class AddToCartComponent implements OnInit {
         alert(data['error']);
       } else {
         this.cart_data = data['data']['cart_product'];
-      }
-      
-    });
-    
+      }      
+    });    
+  }
+
+  checkout() {
+    this._router.navigate(['checkout']);
   }
 
 }

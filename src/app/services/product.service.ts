@@ -15,7 +15,7 @@ export class ProductService {
   constructor(private http: HttpClient, private router: Router) { }
 
   public get_product(): Observable<Products> {
-    return this.http.get<Products>(this.apiURL+"/product_listing/");   
+    return this.http.get<Products>(this.apiURL+"/product_listing/?page=1&size=6");   
   }
 
   public get_product_with_filter(category: string): Observable<Products> {
@@ -25,5 +25,22 @@ export class ProductService {
 
   public get_product_info(id: number): Observable<Products> {
     return this.http.get<Products>(this.apiURL+`/product_info/`+id+`/`);
+  }
+
+  public purchase_product(formData: any) {
+    let form: FormData = new FormData();
+    form.append('product_id', formData.password);
+    form.append('quantity', formData.confirmpassword); 
+
+    if(localStorage.getItem('token')) {
+      let bearer : string = "Bearer ";
+      let stringToken : string = localStorage.getItem('token');    
+      var removeQuotes = stringToken.split('"').join('');     
+      var concatString : string = bearer + stringToken
+      var concatString : string = bearer.concat(removeQuotes);
+    }
+    return this.http.post<Products>(this.apiURL+`/buy_product/`, form,
+    { headers: { Authorization: concatString } });
+
   }
 }

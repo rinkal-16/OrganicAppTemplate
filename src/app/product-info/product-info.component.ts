@@ -35,15 +35,13 @@ export class ProductInfoComponent implements OnInit {
   AddCart() {
     this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
     console.log(this.productInfoForm.value);
-    // this._cartService.post_cart(this.productInfoForm.value).subscribe((data) => {
-    //   console.log(data);
-    // });
-    this._router.navigate(['/cart',this.productInfoForm.value.quantity, this.productInfoForm.value.product_id]);
-    
-    
+    this._router.navigate(['/cart',this.productInfoForm.value.quantity, this.productInfoForm.value.product_id]);        
   }
 
   Purchase(event: any) {
+    this._productService.purchase_product(this.productInfoForm.value).subscribe((data) => {
+      console.log(data);
+    })
     this._router.navigate(['/checkout']);
   }
 

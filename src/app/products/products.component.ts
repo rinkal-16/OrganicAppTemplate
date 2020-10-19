@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   category_data : any;
 
 
-  constructor(private _productService: ProductService, private _router: Router, private formBuilder: FormBuilder) { 
+  constructor(private _productService: ProductService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { 
     this.productForm = this.formBuilder.group({
       checkArray: this.formBuilder.array([])
     })
@@ -52,7 +52,15 @@ export class ProductsComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.productForm.value)
+    //this.productForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
+    console.log(this.productForm.value);
+    this._router.navigate(['/cart',this.productForm.value.quantity, this.productForm.value.product_id]);
+  }
+
+  Direct_Cart() {
+    //this.productForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
+    console.log(this.productForm.value);
+    this._router.navigate(['/cart',this.productForm.value.quantity, this.productForm.value.product_id]);
   }
 
   
