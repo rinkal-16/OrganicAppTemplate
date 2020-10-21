@@ -4,26 +4,21 @@
     </div>
 
     <div class="row">
+
       <div class="col-md-4 order-md-2 mb-4" >
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Order Summary </span>
           <span class="badge badge-secondary badge-pill"> </span>
         </h4>
-        <ul class="list-group mb-3" *ngFor="let order of order_buy_product">
-          <li class="list-group-item d-flex justify-content-between lh-condensed" >
+        <ul class="list-group mb-3" >
+          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let order of order_buy_product">
             <div>
-              <h6 class="my-0"></h6>
-              <small class="text-muted">{{order.p_name}}</small>
+              <h6 class="my-0">{{order.p_name}}</h6>
+              <small class="text-muted">{{order.quantity}}</small>
             </div>
-            <span class="text-muted"></span>
+            <span class="text-muted">{{order.discount_price}}</span>
           </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Second product</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$8</span>
-          </li>          
+              
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
             <strong>$20</strong>
@@ -31,10 +26,13 @@
         </ul>
         
       </div>
+
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation"[formGroup]="checkoutForm" novalidate>
-          <div class="mb-3">
+        <form class="needs-validation"  [formGroup]="checkoutForm" novalidate>
+          <div class="mb-3" >
+            <label>Order Id</label>
+            <input type="text" class="form-control" id="order_id" formControlName="order_id" placeholder="order id"  required>
             <label>Shipping Address</label>
             <input type="text" class="form-control" id="address" formControlName="shipping_address" placeholder="Address" required>
             <!--<div *ngIf="validate.address.invalid && validate.address.touched" class="alert alert-danger">
@@ -59,10 +57,10 @@
           <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="Submit_Checkout($event)">Continue to checkout</button>
         </form>
       </div>
+
     </div>
 
 </div>
-
 
 
 

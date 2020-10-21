@@ -56,7 +56,7 @@ export class CartService {
     { headers: { Authorization: concatString } });
   }
 
-  public buy_from_cart() {
+  public buy_from_cart(): Observable<Cart> {
     if(localStorage.getItem('token')) {
       let bearer : string = "Bearer ";
       let stringToken : string = localStorage.getItem('token');    
@@ -67,6 +67,8 @@ export class CartService {
     return this.http.post<Cart>(this.apiURL+`/buy_cart/`, {},
     { headers: { Authorization: concatString } });
   }
+
+  
 
 }
 

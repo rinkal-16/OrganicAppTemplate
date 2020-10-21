@@ -47,29 +47,29 @@
           </nav>
           
           <div class="row">                    
-                    <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;" *ngFor="let product of product_data">
+                    <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;" *ngFor="let item of pageOfItems">
                          <div>
                               <div class="card-content">
                                    <div class="card-body">
-                                        <a routerLink="/product-info/{{product.id}}" routerLinkActive="">{{product.id}}
+                                        <a routerLink="/product-info/{{item.datas.id}}" routerLinkActive="">{{item.datas.id}}
                                              <div class="image">
                                                   <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
-                                                  <img src="{{product.image_url}}" >
+                                                  <img src="{{item.datas.image_url}}" >
                                              </div>
-                                             <h4>{{product.p_name}}</h4> 
+                                             <h4>{{item.datas.p_name}}</h4> 
                                              <br>                                
-                                             <p style="padding-bottom: 10px;">{{product.description}}</p> 
-                                             <p class="pr">Price: {{product.price}} </p>
-                                             <p>Discount price: {{product.disscount_price}}</p>
+                                             <p style="padding-bottom: 10px;">{{item.datas.description}}</p> 
+                                             <p class="pr">Price: {{item.datas.price}} </p>
+                                             <p>Discount price: {{item.datas.disscount_price}}</p>
                                         </a>                                                                  
                                    </div>  
-                                   <form [formGroup]="productForm" (click)="Direct_Cart()">                                                         
+                                   <form >                                                         
                                         <div class="row"> 
                                              <div class="col">                                                                               
-                                             <button class="btn btn-outline-info"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
+                                             <button class="btn btn-outline-info" (click)="Direct_Cart(item.datas.id)"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
                                              </div>
                                              <div class="col">                                                                             
-                                             <input id="input" type="number" min="1" max="5" value=1>    
+                                             <input #quan id="input" type="number" min="1" max="5" value=1>    
                                              </div>                                         
                                         </div>    
                                    </form>                                       
@@ -82,3 +82,6 @@
      </div>
         
 </div>
+<!--<div *ngFor="let item of pageOfItems">
+            {{item.datas.p_name}}</div>-->
+<app-product-pagination (changePage)="onChangePage($event)" > </app-product-pagination>

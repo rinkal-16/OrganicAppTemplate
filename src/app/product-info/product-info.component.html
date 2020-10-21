@@ -27,9 +27,9 @@
                                         <input  formControlName="quantity" id="input" type="number" min="1" max="5" value=1> 
                                         <br>  
                                         <br>             
-                                        <button class="btn btn-outline-info" (click)="AddCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>  
+                                        <button class="btn btn-outline-info" (click)="AddCart($event)"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>  
 
-                                        <button class="btn btn-outline-info" (click)="Purchase($event)"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Purchase</button> 
+                                        <button class="btn btn-outline-info" (click)="Purchase()"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Purchase</button> 
                                    </div>                           
                               </form>
                          </div>
@@ -42,13 +42,15 @@
      <div class="container" >
           <h1>Customer Reviews</h1>          
           <div class="row-fluid"> 
-               <div class="col-sm-6" *ngFor="let review of review_data" >
+               <div class="col-sm">
                     <div class="panel panel-default">
                          <div class="panel-heading">                              
                               <h3 class="panel-title" itemprop="name">Review Title</h3>
-                         </div><!--/panel-heading-->
-
-                         <div class="panel-body" itemprop="reviewBody">
+                              <br>
+                              <textarea #review class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                              <button class="btn btn-outline-info" (click)="PostReview()">Submit</button>
+                         </div><!--/panel-heading-->                         
+                         <div class="panel-body" itemprop="reviewBody"  *ngFor="let review of review_data">
                               <span>{{review.text}}</span>              
                               <span class="pull-right">
                                    <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Products } from '../modals/products';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -14,8 +15,12 @@ export class ProductsComponent implements OnInit {
   product_data : any;
   category_data : any;
 
+  @ViewChild('quan', {static:false}) quan:ElementRef;
+  valueQuan: number;
+
 
   constructor(private _productService: ProductService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { 
+
     this.productForm = this.formBuilder.group({
       checkArray: this.formBuilder.array([])
     })
@@ -57,10 +62,23 @@ export class ProductsComponent implements OnInit {
     this._router.navigate(['/cart',this.productForm.value.quantity, this.productForm.value.product_id]);
   }
 
-  Direct_Cart() {
-    //this.productForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
+  Direct_Cart(product_id: any) {
+    console.log(this.route.snapshot.params);
+    this.valueQuan = this.quan.nativeElement.value;
+    console.log(product_id, this.valueQuan);
+    // this.productForm.controls['product_id'].setValue(product_id); 
+    // this.productForm.controls['quantity'].setValue(this.valueQuan);
     console.log(this.productForm.value);
-    this._router.navigate(['/cart',this.productForm.value.quantity, this.productForm.value.product_id]);
+    this._router.navigate(['/cart',this.valueQuan, product_id]);
+  }
+
+  index: number;
+  pageOfItems: Array<Products>;
+
+  onChangePage(OfItems: any) {
+    this.pageOfItems = OfItems;
+    console.log(this.pageOfItems);
+    return this.pageOfItems;
   }
 
   

@@ -12,6 +12,7 @@ export class AddToCartComponent implements OnInit {
 
   cart_data : any;
   addToCartForm: FormGroup;
+  buyFromCart: boolean;
 
   constructor(private _cartService: CartService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
@@ -20,15 +21,24 @@ export class AddToCartComponent implements OnInit {
       product_id: new FormControl('', Validators.required),
       quantity: new FormControl('', Validators.required)
     }); 
-    console.log(this.route.snapshot.params);
-    this.addToCartForm.controls['product_id'].setValue(this.route.snapshot.params['product_id']);
-    this.addToCartForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);
-        
-    console.log(this.route.snapshot.params);
-    this._cartService.post_cart(this.addToCartForm.value).subscribe((data) => {
-      console.log(data);
-      this.cart_data = data['data']['cart_product'];
-    });
+
+    if(JSON.stringify(this.route.snapshot.params) === '{}') {
+      this._cartService.get_cart().subscribe((data) => {
+        console.log(data);
+        this.cart_data = data['data']['cart_product'];
+      });
+    } else {
+      console.log(this.route.snapshot.params);
+      this.addToCartForm.controls['product_id'].setValue(this.route.snapshot.params['product_id']);
+      this.addToCartForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);
+          
+      console.log(this.route.snapshot.params);
+      this._cartService.post_cart(this.addToCartForm.value).subscribe((data) => {
+        console.log(data);
+        this.cart_data = data['data']['cart_product'];
+      });
+    }
+    
   }
 
   Remove(item) {
@@ -44,7 +54,16 @@ export class AddToCartComponent implements OnInit {
   }
 
   checkout() {
-    this._router.navigate(['checkout']);
+    this._cartService.buy_from_cart().subscribe((data) => {
+      console.log(data);
+      this.buyFromCart = data['data']['buy_from_cart'];
+    });
+    if(this.buyFromCart = true) {
+      this._router.navigate(['checkout'], {queryParams: { buy_from_cart: true }});
+    } else {
+      this._router.navigate(['checkout'], {queryParams: { buy_from_cart: false }});
+    }
+    
   }
 
 }

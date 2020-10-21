@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
 export class ProductService {
 
   apiURL = environment.apiURL;
+  rconcatString: string;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -29,18 +30,59 @@ export class ProductService {
 
   public purchase_product(formData: any) {
     let form: FormData = new FormData();
-    form.append('product_id', formData.password);
-    form.append('quantity', formData.confirmpassword); 
+    form.append('product_id', formData.product_id);
+    form.append('quantity', formData.quantity); 
 
     if(localStorage.getItem('token')) {
       let bearer : string = "Bearer ";
       let stringToken : string = localStorage.getItem('token');    
       var removeQuotes = stringToken.split('"').join('');     
       var concatString : string = bearer + stringToken
-      var concatString : string = bearer.concat(removeQuotes);
+      this.rconcatString = bearer.concat(removeQuotes);
     }
-    return this.http.post<Products>(this.apiURL+`/buy_product/`, form,
-    { headers: { Authorization: concatString } });
+    return this.http.post<Products>(this.apiURL+`/buy_product/`, formData,
+    { headers: { Authorization: this.rconcatString } });
 
   }
+
+  public getProductList(page: number): Observable<Products> {
+    console.log(page);
+    return this.http.get<Products>(this.apiURL+`/product_listing/?page=`+page+`&size=4`);
+  }
+
+  public postReview(product_id, review) {
+    
+
+    if(localStorage.getItem('token')) {
+      let bearer : string = "Bearer ";
+      let stringToken : string = localStorage.getItem('token');    
+      var removeQuotes = stringToken.split('"').join('');     
+      var concatString : string = bearer + stringToken
+      this.rconcatString = bearer.concat(removeQuotes);
+    }
+    var form = new FormData();
+    form.append('review', review);
+    return this.http.post(this.apiURL+`/review/`+product_id+`/`, form, {
+      headers: { Authorization: this.rconcatString }
+    });
+    
+  } 
+
+  public post_buy_product(formData: any): Observable<Products> {
+    console.log(formData);
+    let form: FormData = new FormData();
+    form.append('product_id', formData.product_id);
+    form.append('quantity', formData.quantity); 
+
+    if(localStorage.getItem('token')) {
+      let bearer : string = "Bearer ";
+      let stringToken : string = localStorage.getItem('token');    
+      var removeQuotes = stringToken.split('"').join('');     
+      var concatString : string = bearer + stringToken
+      this.rconcatString = bearer.concat(removeQuotes);
+    }
+    return this.http.post<Products>(this.apiURL+`/buy_product`+`/`, formData,
+    { headers: { Authorization: this.rconcatString}});
+  }
+
 }

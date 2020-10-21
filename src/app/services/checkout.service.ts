@@ -23,7 +23,16 @@ export class CheckoutService {
     form.append('order_id', formData.order_id);
     form.append('shipping_addr', formData.shipping_address);
 
-    return this.http.post<Checkout>(this.apiURL+`/checkout/`,form);   
+    if(localStorage.getItem('token')) {
+      let bearer : string = "Bearer ";
+      let stringToken : string = localStorage.getItem('token');    
+      var removeQuotes = stringToken.split('"').join('');     
+      var concatString : string = bearer + stringToken
+      var concatString : string = bearer.concat(removeQuotes);
+    }
+
+    return this.http.post<Checkout>(this.apiURL+`/checkout/`,form,
+    { headers: { Authorization: concatString } });   
   }
 
 }

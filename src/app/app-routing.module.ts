@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'gnrt-verfy', component: GenerateVerificationComponent},
   { path: 'product-info/:id', component: ProductInfoComponent},
   { path: 'cart/:quantity/:product_id', component: AddToCartComponent, canActivate: [AuthGuard] },
+  { path: 'cart', component: AddToCartComponent, canActivate: [AuthGuard] },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
   ];
