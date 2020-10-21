@@ -27,6 +27,11 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.productForm = this.formBuilder.group({
+      product_id: new FormControl('', Validators.required),
+      quantity: new FormControl('', Validators.required)
+    });  
+
     this._productService.get_product().subscribe((data) => {
       console.log(data);
       this.product_data = data['data']['products'];
@@ -62,14 +67,18 @@ export class ProductsComponent implements OnInit {
     this._router.navigate(['/cart',this.productForm.value.quantity, this.productForm.value.product_id]);
   }
 
-  Direct_Cart(product_id: any) {
+  Direct_Cart(product_id: any) {    
     console.log(this.route.snapshot.params);
     this.valueQuan = this.quan.nativeElement.value;
-    console.log(product_id, this.valueQuan);
+    console.log(this.valueQuan);
+    this.productForm.controls['product_id'].setValue(this.route.snapshot.params['id']);    
+    console.log(this.productForm.value);
+    this._router.navigate(['/cart',this.valueQuan, product_id]); 
     // this.productForm.controls['product_id'].setValue(product_id); 
     // this.productForm.controls['quantity'].setValue(this.valueQuan);
-    console.log(this.productForm.value);
-    this._router.navigate(['/cart',this.valueQuan, product_id]);
+    
+    
+    
   }
 
   index: number;

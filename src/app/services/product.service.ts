@@ -51,8 +51,6 @@ export class ProductService {
   }
 
   public postReview(product_id, review) {
-    
-
     if(localStorage.getItem('token')) {
       let bearer : string = "Bearer ";
       let stringToken : string = localStorage.getItem('token');    
@@ -73,7 +71,7 @@ export class ProductService {
     let form: FormData = new FormData();
     form.append('product_id', formData.product_id);
     form.append('quantity', formData.quantity); 
-
+    console.log(form);
     if(localStorage.getItem('token')) {
       let bearer : string = "Bearer ";
       let stringToken : string = localStorage.getItem('token');    
@@ -86,3 +84,7 @@ export class ProductService {
   }
 
 }
+
+
+
+

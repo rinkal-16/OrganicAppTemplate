@@ -16,23 +16,23 @@
               <h6 class="my-0">{{order.p_name}}</h6>
               <small class="text-muted">{{order.quantity}}</small>
             </div>
-            <span class="text-muted">{{order.discount_price}}</span>
+            <span class="text-muted">{{order.total_price}}</span>
           </li>
-              
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
+            
+          <li class="list-group-item d-flex justify-content-between">           
+              <span>Total (USD)</span>
+              <strong>{{total}}</strong>            
           </li>
-        </ul>
-        
+          
+        </ul>        
       </div>
 
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation"  [formGroup]="checkoutForm" novalidate>
+        <form class="needs-validation"  [formGroup]="checkoutForm" (ngSubmit)="Submit_Checkout()" novalidate>
           <div class="mb-3" >
-            <label>Order Id</label>
-            <input type="text" class="form-control" id="order_id" formControlName="order_id" placeholder="order id"  required>
+            <!--<label>Order Id</label>
+            <input type="text" class="form-control" id="order_id" formControlName="order_id" placeholder="order id"  required>-->
             <label>Shipping Address</label>
             <input type="text" class="form-control" id="address" formControlName="shipping_address" placeholder="Address" required>
             <!--<div *ngIf="validate.address.invalid && validate.address.touched" class="alert alert-danger">
@@ -54,7 +54,7 @@
             src="https://mdbootstrap.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
             alt="PayPal acceptance mark">          
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="Submit_Checkout($event)">Continue to checkout</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
         </form>
       </div>
 

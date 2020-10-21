@@ -13,6 +13,7 @@ export class CartService {
   apiURL = environment.apiURL;
 
   cartData: Cart;
+  rconcatString: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -26,10 +27,10 @@ export class CartService {
       let stringToken : string = localStorage.getItem('token');    
       var removeQuotes = stringToken.split('"').join('');     
       var concatString : string = bearer + stringToken
-      var concatString : string = bearer.concat(removeQuotes);
+      this.rconcatString = bearer.concat(removeQuotes);
     }
     return this.http.post<Cart>(this.apiURL+`/cart/`,form, 
-    { headers: { Authorization: concatString}});   
+    { headers: { Authorization: this.rconcatString}});   
   }
 
   public delete_cart(id: number): Observable<Cart> {
@@ -38,10 +39,10 @@ export class CartService {
       let stringToken : string = localStorage.getItem('token');    
       var removeQuotes = stringToken.split('"').join('');     
       var concatString : string = bearer + stringToken
-      var concatString : string = bearer.concat(removeQuotes);
+      this.rconcatString = bearer.concat(removeQuotes);
     }
     return this.http.delete<Cart>(this.apiURL+`/cart/`+id+`/` , 
-    { headers: { Authorization: concatString } });
+    { headers: { Authorization: this.rconcatString } });
   }
 
   public get_cart(): Observable<Cart> {
@@ -50,10 +51,10 @@ export class CartService {
       let stringToken : string = localStorage.getItem('token');    
       var removeQuotes = stringToken.split('"').join('');     
       var concatString : string = bearer + stringToken
-      var concatString : string = bearer.concat(removeQuotes);
+      this.rconcatString = bearer.concat(removeQuotes);
     }
     return this.http.get<Cart>(this.apiURL+`/cart/`, 
-    { headers: { Authorization: concatString } });
+    { headers: { Authorization: this.rconcatString } });
   }
 
   public buy_from_cart(): Observable<Cart> {
@@ -62,10 +63,10 @@ export class CartService {
       let stringToken : string = localStorage.getItem('token');    
       var removeQuotes = stringToken.split('"').join('');     
       var concatString : string = bearer + stringToken
-      var concatString : string = bearer.concat(removeQuotes);
+      this.rconcatString = bearer.concat(removeQuotes);
     }
     return this.http.post<Cart>(this.apiURL+`/buy_cart/`, {},
-    { headers: { Authorization: concatString } });
+    { headers: { Authorization: this.rconcatString } });
   }
 
   

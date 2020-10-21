@@ -13,13 +13,14 @@ export class CheckoutService {
   apiURL = environment.apiURL;
 
   checkoutData: Checkout;
+  rconcatString: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
   
 
   public post_checkout(formData: any): Observable<Checkout> {
-    let form: FormData = new FormData();
+    let form = new FormData();
     form.append('order_id', formData.order_id);
     form.append('shipping_addr', formData.shipping_address);
 
@@ -28,11 +29,11 @@ export class CheckoutService {
       let stringToken : string = localStorage.getItem('token');    
       var removeQuotes = stringToken.split('"').join('');     
       var concatString : string = bearer + stringToken
-      var concatString : string = bearer.concat(removeQuotes);
+      this.rconcatString = bearer.concat(removeQuotes);
     }
 
     return this.http.post<Checkout>(this.apiURL+`/checkout/`,form,
-    { headers: { Authorization: concatString } });   
+    { headers: { Authorization: this.rconcatString } });   
   }
 
 }

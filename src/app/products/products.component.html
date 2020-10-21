@@ -63,13 +63,13 @@
                                              <p>Discount price: {{item.datas.disscount_price}}</p>
                                         </a>                                                                  
                                    </div>  
-                                   <form >                                                         
+                                   <<form [formGroup]="productForm" novalidate>  >                                                         
                                         <div class="row"> 
                                              <div class="col">                                                                               
                                              <button class="btn btn-outline-info" (click)="Direct_Cart(item.datas.id)"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
                                              </div>
                                              <div class="col">                                                                             
-                                             <input #quan id="input" type="number" min="1" max="5" value=1>    
+                                             <input #quan formControlName="quantity" id="input" type="number" min="1" max="5" value=1>    
                                              </div>                                         
                                         </div>    
                                    </form>                                       

@@ -19,6 +19,8 @@ export class ProductInfoComponent implements OnInit {
   valueReview: any;
 
   @ViewChild('review', { static: false }) review:ElementRef;
+  @ViewChild('quan', {static:false}) quan:ElementRef;
+  valueQuan: number;
 
   constructor(private _productService: ProductService, private _cartService: CartService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
@@ -37,17 +39,22 @@ export class ProductInfoComponent implements OnInit {
   }
 
   AddCart() {
+    console.log(this.route.snapshot.params);
+    this.valueQuan = this.quan.nativeElement.value;
+    console.log(this.valueQuan);
     this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
     console.log(this.productInfoForm.value);
 
-    this._router.navigate(['/cart',this.productInfoForm.value.quantity, this.productInfoForm.value.product_id]);        
+    this._router.navigate(['/cart',this.valueQuan, this.productInfoForm.value.product_id]);        
   }
 
   Purchase() {
     console.log(this.route.snapshot.params);
-     
-    this.productInfoForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);
-    this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['product_id']);
+    if(!this.valueQuan) {
+      this.productInfoForm.controls['quantity'].setValue(1);
+    }     
+    //this.productInfoForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);
+    this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
     console.log(this.productInfoForm.value);
     this._productService.purchase_product(this.productInfoForm.value).subscribe((data) => {
       console.log(data);
@@ -57,7 +64,7 @@ export class ProductInfoComponent implements OnInit {
     if(this.buyFromCart === true) {
       this._router.navigate(['/checkout'], { queryParams: { buy_from_cart: true}});
     } else {
-      this._router.navigate(['/checkout'], { queryParams: { buy_from_cart: false}});
+      this._router.navigate(['/checkout'], { queryParams: { buy_from_cart: false, id: this.productInfoForm.value.product_id, quantity: this.productInfoForm.value.quantity}});
     }
     
   }

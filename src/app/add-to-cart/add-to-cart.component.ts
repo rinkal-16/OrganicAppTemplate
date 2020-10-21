@@ -22,20 +22,29 @@ export class AddToCartComponent implements OnInit {
       quantity: new FormControl('', Validators.required)
     }); 
 
-    if(JSON.stringify(this.route.snapshot.params) === '{}') {
+    console.log(this.route.snapshot.params);
+    if(JSON.stringify(this.route.snapshot.params) == '{}') {
       this._cartService.get_cart().subscribe((data) => {
         console.log(data);
-        this.cart_data = data['data']['cart_product'];
+        if(data['error']) {
+          alert(data['error']);
+        } else {
+          this.cart_data = data['data']['cart_product'];
+        }       
       });
     } else {
       console.log(this.route.snapshot.params);
       this.addToCartForm.controls['product_id'].setValue(this.route.snapshot.params['product_id']);
       this.addToCartForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);
           
-      console.log(this.route.snapshot.params);
+      console.log(this.route.snapshot.params['product_id'],this.route.snapshot.params['quantity']);
       this._cartService.post_cart(this.addToCartForm.value).subscribe((data) => {
         console.log(data);
-        this.cart_data = data['data']['cart_product'];
+        if(data['error']) {
+          alert(data['error']);
+        } else {
+          this.cart_data = data['data']['cart_product'];
+        }        
       });
     }
     
@@ -57,6 +66,7 @@ export class AddToCartComponent implements OnInit {
     this._cartService.buy_from_cart().subscribe((data) => {
       console.log(data);
       this.buyFromCart = data['data']['buy_from_cart'];
+      console.log(this.buyFromCart);
     });
     if(this.buyFromCart = true) {
       this._router.navigate(['checkout'], {queryParams: { buy_from_cart: true }});
