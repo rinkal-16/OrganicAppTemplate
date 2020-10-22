@@ -27,8 +27,6 @@ export class ForgetPasswordComponent implements OnInit {
 
   Submit(event: any) {
     this._forgetpswdService.post_forgetpswd(this.forgetpswdForm.value).subscribe((data) => {
-      console.log(this.forgetpswdForm.value);
-      console.log(data);
       if(data['status_code'] === 401) {
         this._router.navigate(['/login',{value: true}]);
       }

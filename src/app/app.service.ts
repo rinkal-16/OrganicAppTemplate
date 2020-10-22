@@ -5,16 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class AppService {
 
+  Token: string;
+
   constructor() { }
 
   getToken() {
     const token = localStorage.getItem('token');
     if(localStorage.getItem('token')) {
       let bearer : string = "Bearer ";
-      let stringToken : string = localStorage.getItem('token');    
-      var removeQuotes = stringToken.split('"').join('');     
-      var concatString : string = bearer + stringToken
-      var concatString : string = bearer.concat(removeQuotes);
+      let tokenString : string = localStorage.getItem('token');    
+      var removeQuotes = tokenString.split('"').join('');     
+      var concatToken : string = bearer + tokenString;
+      this.Token = bearer.concat(removeQuotes);
     }
+    return this.Token;
   }
 }

@@ -10,7 +10,6 @@ import { environment } from '../../environments/environment';
 export class ForgetPswdService {
 
   apiURL = environment.apiURL;
-
   forgetpswdData: ForgetPswd;
 
   constructor(private http: HttpClient) { }
@@ -21,8 +20,7 @@ export class ForgetPswdService {
 
   public post_forgetpswd(formData: any): Observable<ForgetPswd> {
     let form: FormData = new FormData();
-    form.append('email', formData.email);
-    
+    form.append('email', formData.email);    
     return this.http.post<ForgetPswd>(this.apiURL+"/forgot_password/", form);
   }
 

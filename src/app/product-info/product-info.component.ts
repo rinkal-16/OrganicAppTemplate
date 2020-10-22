@@ -1,9 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
  
 @Component({
   selector: 'app-product-info',
@@ -16,10 +15,11 @@ export class ProductInfoComponent implements OnInit {
   productInfoForm: FormGroup;
   review_data: any;
   buyFromCart: boolean;
-  valueReview: any;
+  valueReview: any;  
+  name: any;
 
   @ViewChild('review', { static: false }) review:ElementRef;
-  @ViewChild('quan', {static:false}) quan:ElementRef;
+  @ViewChild('quann', {static:false}) quann:ElementRef;
   valueQuan: number;
 
   constructor(private _productService: ProductService, private _cartService: CartService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
@@ -32,61 +32,52 @@ export class ProductInfoComponent implements OnInit {
     
     const id = this.route.snapshot.params['id'];
     this._productService.get_product_info(id).subscribe((data) => {
-      console.log(data);
       this.product_data = data['data']['product'];
       this.review_data = data['data']['review'];
     });
   }
 
   AddCart() {
-    console.log(this.route.snapshot.params);
-    this.valueQuan = this.quan.nativeElement.value;
-    console.log(this.valueQuan);
+    this.valueQuan = this.quann.nativeElement.value;
     this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
-    console.log(this.productInfoForm.value);
-
     this._router.navigate(['/cart',this.valueQuan, this.productInfoForm.value.product_id]);        
   }
 
+  valueChange(value) {
+    this.valueQuan = value;
+    if(value === undefined) {
+      this.valueQuan = 1;      
+    }
+  }
+  
   Purchase() {
-    console.log(this.route.snapshot.params);
+    this.valueQuan = this.quann.nativeElement.value;    
     if(!this.valueQuan) {
       this.productInfoForm.controls['quantity'].setValue(1);
     }     
-    //this.productInfoForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);
     this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
-    console.log(this.productInfoForm.value);
-    this._productService.purchase_product(this.productInfoForm.value).subscribe((data) => {
-      console.log(data);
-      this.buyFromCart = data['data']['buy_from_cart'];
-      console.log(this.buyFromCart);
-    });
-    if(this.buyFromCart === true) {
-      this._router.navigate(['/checkout'], { queryParams: { buy_from_cart: true}});
-    } else {
-      this._router.navigate(['/checkout'], { queryParams: { buy_from_cart: false, id: this.productInfoForm.value.product_id, quantity: this.productInfoForm.value.quantity}});
-    }
     
+    if(this.buyFromCart === true) {
+      this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : true } });
+    }
+    else {
+      this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : false, id: this.productInfoForm.value.product_id, quantity: this.valueQuan } });
+    }   
   }
-
+  
   PostReview() {
     this.valueReview = this.review.nativeElement.value;
-    console.log(this.review.nativeElement.value);
     this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
-    console.log(this.route.snapshot.params['id']);
     this._productService.postReview(this.productInfoForm.value['product_id'], this.review.nativeElement.value).subscribe((data) => {
-      console.log(data);  
       if(data['error']) {
         alert(data['error']);
       } else {
         alert(data['meta']['success']);
+        this.review_data = data['data']['product_review'];        
+        this.productInfoForm.reset();
       }
-
     });
     this.productInfoForm.reset();
   }
-
-  
-
 }
  

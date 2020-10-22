@@ -27,8 +27,6 @@ export class GenerateVerificationComponent implements OnInit {
 
   Submit(event: any) {
     this._gnrtvrfcntService.post_gnrtvrfcnt(this.gnrtvrfcntForm.value).subscribe((data) => {
-      console.log(this.gnrtvrfcntForm.value);
-      console.log(data);
       if(data['meta']['status_code'] === 200 ) {
         alert("Successfully request sent. Generate verification via mail!!");
       }
@@ -41,5 +39,4 @@ export class GenerateVerificationComponent implements OnInit {
       localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
     })
   }
-
 }

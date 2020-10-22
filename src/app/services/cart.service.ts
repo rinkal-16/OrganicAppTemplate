@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Cart } from '../modals/cart';
 import { Router } from '@angular/router'; 
 import { environment } from '../../environments/environment';
+import { AppService } from '../app.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,65 +12,46 @@ import { environment } from '../../environments/environment';
 export class CartService {
 
   apiURL = environment.apiURL;
-
   cartData: Cart;
   rconcatString: any;
+  token: any;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private _appService: AppService) { }
 
   public post_cart(formData: any): Observable<Cart> {
     let form: FormData = new FormData();
     form.append('product_id', formData.product_id);
     form.append('quantity', formData.quantity);
 
-    if(localStorage.getItem('token')) {
-      let bearer : string = "Bearer ";
-      let stringToken : string = localStorage.getItem('token');    
-      var removeQuotes = stringToken.split('"').join('');     
-      var concatString : string = bearer + stringToken
-      this.rconcatString = bearer.concat(removeQuotes);
-    }
+    this.token = this._appService.getToken();
+    
     return this.http.post<Cart>(this.apiURL+`/cart/`,form, 
-    { headers: { Authorization: this.rconcatString}});   
+    { headers: { Authorization: this.token }});   
   }
 
   public delete_cart(id: number): Observable<Cart> {
-    if(localStorage.getItem('token')) {
-      let bearer : string = "Bearer ";
-      let stringToken : string = localStorage.getItem('token');    
-      var removeQuotes = stringToken.split('"').join('');     
-      var concatString : string = bearer + stringToken
-      this.rconcatString = bearer.concat(removeQuotes);
-    }
+
+    this.token = this._appService.getToken();
+    
     return this.http.delete<Cart>(this.apiURL+`/cart/`+id+`/` , 
-    { headers: { Authorization: this.rconcatString } });
+    { headers: { Authorization: this.token }});
   }
 
   public get_cart(): Observable<Cart> {
-    if(localStorage.getItem('token')) {
-      let bearer : string = "Bearer ";
-      let stringToken : string = localStorage.getItem('token');    
-      var removeQuotes = stringToken.split('"').join('');     
-      var concatString : string = bearer + stringToken
-      this.rconcatString = bearer.concat(removeQuotes);
-    }
+
+    this.token = this._appService.getToken();
+    
     return this.http.get<Cart>(this.apiURL+`/cart/`, 
-    { headers: { Authorization: this.rconcatString } });
+    { headers: { Authorization: this.token }});
   }
 
   public buy_from_cart(): Observable<Cart> {
-    if(localStorage.getItem('token')) {
-      let bearer : string = "Bearer ";
-      let stringToken : string = localStorage.getItem('token');    
-      var removeQuotes = stringToken.split('"').join('');     
-      var concatString : string = bearer + stringToken
-      this.rconcatString = bearer.concat(removeQuotes);
-    }
-    return this.http.post<Cart>(this.apiURL+`/buy_cart/`, {},
-    { headers: { Authorization: this.rconcatString } });
-  }
 
-  
+    this.token = this._appService.getToken();
+    
+    return this.http.post<Cart>(this.apiURL+`/buy_cart/`, {},
+    { headers: { Authorization: this.token }});
+  }
 
 }
 

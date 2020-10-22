@@ -12,15 +12,19 @@ import { ProductService } from '../services/product.service';
 export class ProductsComponent implements OnInit {
 
   productForm: FormGroup;
+  filterForm: FormGroup;
   product_data : any;
   category_data : any;
+  price_data: any;
+  category_name: string = undefined;
+  price_name: string = undefined;
+  name: any;
+  dataDefined: Boolean;
 
   @ViewChild('quan', {static:false}) quan:ElementRef;
   valueQuan: number;
 
-
   constructor(private _productService: ProductService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { 
-
     this.productForm = this.formBuilder.group({
       checkArray: this.formBuilder.array([])
     })
@@ -32,10 +36,15 @@ export class ProductsComponent implements OnInit {
       quantity: new FormControl('', Validators.required)
     });  
 
+    this.filterForm = this.formBuilder.group({
+      category: new FormControl('', Validators.required)
+    })
+   
     this._productService.get_product().subscribe((data) => {
       console.log(data);
       this.product_data = data['data']['products'];
       this.category_data = data['data']['category'];
+      this.price_data = data['data']['price_filter'];
     })
   }
 
@@ -53,32 +62,38 @@ export class ProductsComponent implements OnInit {
         i++;
       });
     }
-    console.log(checkArray.value[0]);
     this._productService.get_product_with_filter(checkArray.value[0]).subscribe((data) => {
-      console.log(data);
-      this.product_data = data['data']['products'];
-      
+      this.product_data = data['data']['products'];      
     })
   }
 
-  submit() {
-    //this.productForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
-    console.log(this.productForm.value);
+  valueChange(value) {
+    this.valueQuan = value;
+    if(value === undefined) {
+      this.valueQuan = 1;      
+    }    
+  }
+
+  onCategorySelect(event) {
+    	const value = event.target.value;      
+      this.category_name = value;
+    	this.filterForm.controls['category'].setValue(value);
+    	const category = this.filterForm.value.category;
+  }
+
+  onPriceSelect(event) {
+    const value = event.target.value;
+    this.price_name = value;
+  }
+
+  submit() {    
     this._router.navigate(['/cart',this.productForm.value.quantity, this.productForm.value.product_id]);
   }
 
   Direct_Cart(product_id: any) {    
-    console.log(this.route.snapshot.params);
     this.valueQuan = this.quan.nativeElement.value;
-    console.log(this.valueQuan);
-    this.productForm.controls['product_id'].setValue(this.route.snapshot.params['id']);    
-    console.log(this.productForm.value);
+    this.productForm.controls['product_id'].setValue(product_id);    
     this._router.navigate(['/cart',this.valueQuan, product_id]); 
-    // this.productForm.controls['product_id'].setValue(product_id); 
-    // this.productForm.controls['quantity'].setValue(this.valueQuan);
-    
-    
-    
   }
 
   index: number;
@@ -86,9 +101,6 @@ export class ProductsComponent implements OnInit {
 
   onChangePage(OfItems: any) {
     this.pageOfItems = OfItems;
-    console.log(this.pageOfItems);
     return this.pageOfItems;
-  }
-
-  
+  }  
 }

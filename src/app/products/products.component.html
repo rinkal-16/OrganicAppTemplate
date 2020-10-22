@@ -19,12 +19,19 @@
                <span class="navbar-toggler-icon"></span>
                </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto">                         
                          <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <div class="form-group">
+                              <select class="custom-select" (change)="onCategorySelect($event)">
+                                   <option selected>Catogory</option>
+                                   <option *ngFor="let category of category_data" [value]="category.cat_name">
+                                        {{category.cat_name | titlecase}} </option>
+                              </select>
+                              </div>
+                              <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                    Dropdown
-                              </a>  
-                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              </a> --> 
+                              <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                    <form [formGroup]="productForm" (ngSubmit)="submit()" novalidate>
                                         <div class="row d-flex">                                                                                                         
                                              <div class="col-sm" >
@@ -35,11 +42,21 @@
                                                   </div>
                                              </div> 
                                                                                                                                         
-                                        </div>    
-                                        <div class="dropdown-divider"></div>
+                                        </div>  -->  
+                                        <!--<div class="dropdown-divider"></div>
                                         <button type="submit" class="btn">Apply</button>
                                    </form>     
-                              </div>                                        
+                              </div>   -->                                     
+                         </li>
+                         <li class="nav-item dropdown">
+                              <div class="form-group">
+                              <select class="custom-select" (change)="onPriceSelect($event)">
+                              
+                                   <option selected>Price </option>
+                                   <option *ngFor="let price of price_data" [value]="price.price_filter_name" >
+                                        {{price.price_filter_name | titlecase}} </option>
+                              </select>
+                              </div>
                          </li>                                                     
                     </ul>  
                                                             
@@ -63,14 +80,13 @@
                                              <p>Discount price: {{item.datas.disscount_price}}</p>
                                         </a>                                                                  
                                    </div>  
-                                   <<form [formGroup]="productForm" novalidate>  >                                                         
+                                   <form novalidate>                                                           
                                         <div class="row"> 
-                                             <div class="col">                                                                               
-                                             <button class="btn btn-outline-info" (click)="Direct_Cart(item.datas.id)"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
-                                             </div>
-                                             <div class="col">                                                                             
-                                             <input #quan formControlName="quantity" id="input" type="number" min="1" max="5" value=1>    
-                                             </div>                                         
+                                                                                                                      
+                                             <button class="btn btn-outline-info text-left" (click)="Direct_Cart(item.datas.id)"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
+                                                                                                                      
+                                             <input #quan ([ngModel])="name" (ngModelChange)="valueChange($event)" class="text-right" id="input" type="number" min="1" max="5" value=1>    
+                                                                                    
                                         </div>    
                                    </form>                                       
                               </div>
@@ -82,6 +98,5 @@
      </div>
         
 </div>
-<!--<div *ngFor="let item of pageOfItems">
-            {{item.datas.p_name}}</div>-->
-<app-product-pagination (changePage)="onChangePage($event)" > </app-product-pagination>
+
+<app-product-pagination [category_name]="category_name" [price_name]="price_name" (changePage)="onChangePage($event)" > </app-product-pagination>

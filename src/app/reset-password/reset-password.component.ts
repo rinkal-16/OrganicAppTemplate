@@ -44,12 +44,9 @@ export class ResetPasswordComponent implements OnInit {
     }
   }
 
-
   Submit(event: any) {
     let accessToken = this.activatedRoute.snapshot.paramMap.get('token');  //To send token to backend
     this._resetpswdService.post_resetpswd(this.resetpswdForm.value, accessToken).subscribe((data) => {
-      console.log(this.resetpswdForm.value);
-      console.log(data);
       if(data['meta']['status_code'] === 200 ) {
         alert("Successfully password reseted!!");
       }

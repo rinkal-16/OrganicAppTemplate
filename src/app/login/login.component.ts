@@ -10,7 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   [x: string]: any; 
-
   showVerify: Boolean = false;
   submitted: false;
 
@@ -23,9 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     let stringValue = this.route.snapshot.paramMap.get('value');
-    //console.log(stringValue);
     this.showVerify = JSON.parse(stringValue);
-    //console.log(this.showVerify);
     //this.returnUrl = this.route.snapshot.queryParamMap['returnUrl'] || '/';
   }
 
@@ -35,8 +32,6 @@ export class LoginComponent implements OnInit {
 
   Submit(event: any) {     
     this._loginService.post_login(this.loginForm.value).subscribe((data) => {
-      console.log(data); 
-      console.log(this.loginForm.value);  
       if(data['meta']['status_code'] == '200' ) {
         alert("Sucessfully loggedIn!!");
       } 
@@ -45,14 +40,11 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['/login']);
       }
       else {
-        alert(data['error']);
-        
+        alert(data['error']);        
       }
       localStorage.setItem("token", JSON.stringify(data['meta']['token']));
     })     
-  }
-  
-  
+  }  
 }
 
 

@@ -11,7 +11,6 @@ import { environment } from '../../environments/environment';
 export class GenerateVerifyService {
 
   apiURL = environment.apiURL;
-
   generateVerify: GenerateVerify;
 
   constructor(private http: HttpClient) { }
@@ -22,8 +21,8 @@ export class GenerateVerifyService {
 
   public post_gnrtvrfcnt(formData: any): Observable<GenerateVerify> {
     let form: FormData = new FormData();
-    form.append('email', formData.email);
-    
+    form.append('email', formData.email);    
     return this.http.post<GenerateVerify>(this.apiURL+"/generate_verification/", form);
   }
+  
 }
