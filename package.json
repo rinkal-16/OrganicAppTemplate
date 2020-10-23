@@ -32,6 +32,7 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "jw-angular-pagination": "^1.2.0",
+    "jw-paginate": "^1.0.4",
     "ngx-pagination": "^5.0.0",
     "path": "^0.12.7",
     "rxjs": "~6.6.3",

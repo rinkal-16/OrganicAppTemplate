@@ -18,9 +18,7 @@ export class ProductPaginationComponent implements OnInit {
     initialPage: number = 1;
     pageSize: number = 4;
     maxPages: any = 10;
-    start: number;
-    end: number;
-    items: Array<any>;
+    perPageProduct: Array<any>;
     totalLenght: number;
     totalCountData: number;
     pager: any = {};
@@ -30,26 +28,26 @@ export class ProductPaginationComponent implements OnInit {
       console.log(data);
       this.totalLenght = 15;
     });
-    this.setPage(this.initialPage);
+    this.onPageClick(this.initialPage);
   }
 
-  setPage(page: number) {
+  onPageClick(page: number) {
     if(this.catName === undefined) {
       this._productService.getProductList(page).subscribe((data) => {
         this.totalLenght = data['meta']['total_count'];
         if(data['error']) {
           alert(data['error']);
-        } else {
-          const last: number = (page * 3) + (page - 1);
-          const first: number = last - 3;
+        } else {          
+          const end: number = (page * 3) + (page - 1);
+          const start: number = end - 3;
              
-          this.items = Array(this.totalLenght).fill(4, first, last+1).map(function(x,y) {
-            y = y - first;
+          this.perPageProduct = Array(this.totalLenght).fill(4, start, end+1).map(function(x,y) {
+            y = y - start;
             return { datas: data['data']['products'][y]};
           }.bind(this));
     
-          this.pager = paginate(this.items.length, page, this.pageSize, this.maxPages)
-          let pageOfItems = this.items.slice(this.pager.startIndex, this.pager.endIndex + 1);
+          this.pager = paginate(this.perPageProduct.length, page, this.pageSize, this.maxPages)
+          let pageOfItems = this.perPageProduct.slice(this.pager.startIndex, this.pager.endIndex + 1);
           this.changePage.emit(pageOfItems);
         }        
       });
@@ -60,15 +58,15 @@ export class ProductPaginationComponent implements OnInit {
           alert(data['error']);
         } else {
           this.totalLenght = data['meta']['total_count'];
-          const last: number = (page * 3) + (page - 1);
-          const first: number = last - 3;
-          this.items = Array(this.totalLenght).fill(4, first, last+1).map(function(x,y) {
-            y = y - first;
+          const end: number = (page * 3) + (page - 1);
+          const start: number = end - 3;
+          this.perPageProduct = Array(this.totalLenght).fill(4, start, end+1).map(function(x,y) {
+            y = y - start;
             return { datas: data['data']['products'][y]};
           }.bind(this));
 
-          this.pager = paginate(this.items.length, page, this.pageSize, this.maxPages)
-          let pageOfItems = this.items.slice(this.pager.startIndex, this.pager.endIndex + 1);
+          this.pager = paginate(this.perPageProduct.length, page, this.pageSize, this.maxPages)
+          let pageOfItems = this.perPageProduct.slice(this.pager.startIndex, this.pager.endIndex + 1);
           this.changePage.emit(pageOfItems);
         }
       });
