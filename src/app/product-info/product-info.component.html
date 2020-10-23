@@ -22,7 +22,7 @@
                               <p class="card-text">{{product.description}}</p>
                               <p>{{product.product_id}}</p>
                               <form> 
-                                   <div> <!--lass="form-group"-->                          
+                                   <div>                          
                                         <label class="label" for="quantity" value="Quantity">Quantity: </label>
                                         <input #quann ([ngModel])="name" (ngModelChange)="valueChange($event)" id="input" type="number" min="1" max="5" value=1>    
                                              
@@ -50,7 +50,7 @@
                               <br>
                               <textarea #review class="form-control" placeholder="write a comment..." rows="3"></textarea>
                               <button class="btn btn-outline-info" (click)="PostReview()">Submit</button>
-                         </div><!--/panel-heading-->                         
+                         </div>                    
                          <div class="panel-body" itemprop="reviewBody"  *ngFor="let review of review_data">
                               
                               <span>{{review.text}}</span>              
@@ -59,7 +59,7 @@
                                         <meta itemprop="worstRating" content="1">
                                         <span itemprop="ratingValue">5</span> / 
                                         <span itemprop="bestRating"> stars </span>
-                                   </span><!--/reviewRating-->
+                                   </span>
                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -67,11 +67,11 @@
                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                               </span>
                               <p>- {{review.first_name}}</p>
-                         </div><!--/panel-body-->
+                         </div>
 
                         
-                    </div><!--/panel-->
-               </div><!--/col-sm-6-->
+                    </div>
+               </div>
           </div>
      </div> 
 

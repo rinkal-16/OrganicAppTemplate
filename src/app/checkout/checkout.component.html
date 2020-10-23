@@ -31,8 +31,7 @@
         <h4 class="mb-3">Billing address</h4>
         <form class="needs-validation"  [formGroup]="checkoutForm" (ngSubmit)="Submit_Checkout()" novalidate>
           <div class="mb-3" >
-            <!--<label>Order Id</label>
-            <input type="text" class="form-control" id="order_id" formControlName="order_id" placeholder="order id"  required>-->
+            
             <label>Shipping Address</label>
             <input type="text" class="form-control" id="address" formControlName="shipping_address" placeholder="Address" required>
             <!--<div *ngIf="validate.address.invalid && validate.address.touched" class="alert alert-danger">
