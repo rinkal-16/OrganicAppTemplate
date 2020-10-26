@@ -58,7 +58,12 @@
                               </select>
                               </div>
                          </li>                                                     
-                    </ul>  
+                    </ul> 
+                    <form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="searchFilter($event)">
+
+                         <input class="form-control mr-sm-2" type="search" formControlName="search" placeholder="Search" aria-label="Search">
+                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form> 
                                                             
                </div>
           </nav>
@@ -80,15 +85,15 @@
                                              <p>Discount price: {{item.datas.disscount_price}}</p>
                                         </a>                                                                  
                                    </div>  
-                                   <form novalidate>                                                           
+                                   <form>                                                           
                                         <div class="row"> 
                                                                                                                       
                                              <button class="btn btn-outline-info text-left" (click)="Direct_Cart(item.datas.id)"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
                                                                                                                       
-                                             <input #quan ([ngModel])="name" (ngModelChange)="valueChange($event)" class="text-right" id="input" type="number" min="1" max="5" value=1>    
+                                             <input #quan [ngModel]="name" (ngModelChange)="valueChange($event)" class="text-right" id="input" name="quantity" type="number" min="1" value="1">    
                                                                                     
                                         </div>    
-                                   </form>                                       
+                                   </form>                                     
                               </div>
                          </div>
                     </div>
@@ -99,4 +104,4 @@
         
 </div>
 
-<app-product-pagination [category_name]="category_name" [price_name]="price_name" (changePage)="onChangePage($event)" > </app-product-pagination>
+<app-product-pagination [category_name]="category_name" [price_name]="price_name" [search_name]="search_name" (changePage)="onChangePage($event)" > </app-product-pagination>

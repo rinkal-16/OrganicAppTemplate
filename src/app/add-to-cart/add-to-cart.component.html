@@ -19,8 +19,8 @@
                   </div>
                   <form [formGroup]="addToCartForm" novalidate> 
                     <div>
-                      <label #quan class="label" for="quantity" value="Quantity">Quantity : </label>
-                      <input id="input" type="number" min="1" max="5" value={{cart.quantity}}> 
+                      <label #quan class="label" for="quantity" value="Quantity">Quantity : {{cart.quantity}}</label>
+                      <!--<input id="input" type="number" min="1" max="5" value={{cart.quantity}}> -->
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                       <p><span><strong id="summary">Price {{cart.price}}</strong></span></p>

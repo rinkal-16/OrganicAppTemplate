@@ -32,22 +32,39 @@ export class ProductService {
     return this.http.get<Products>(this.apiURL+`/product_listing/?page=`+page+`&size=4`);
   }
 
-  public getProduct_with_List_Filter(category: string, price: string, page: number) {
-    console.log(category, price, page);
-    if(price !== undefined) {
-      if (price == 'low to high') {
+  public getProduct_with_List_Filter(category: string, price: string, page: number, search: string) {
+    console.log(category, price, page, search);
+    // if(price !== undefined) {
+    //   if (price == 'low to high') {
+    //     this.pricebool = false;
+    //     console.log('low to high', this.pricebool);
+    //   } 
+    //   else {
+    //     this.pricebool = true;
+    //     console.log(this.pricebool);
+    //   }
+    // }
+    // else {
+    //   this.pricebool = false;
+    //   console.log(this.pricebool);
+    // }
+    if(!search) {
+      search == "undefined"
+    }
+    if(price === undefined ) {
+      this.pricebool  = false;
+    }
+    else {
+      if(price == "low to high") {
         this.pricebool = true;
-        console.log('low to high', this.pricebool);
-      } 
-      else {
+      } else {
         this.pricebool = false;
       }
     }
-    else {
-      this.pricebool = false;
-    }
-    return this.http.get<Products>(this.apiURL+`/demo/?f_cat=`+category+`&page=`+page+`&size=4&f_search&f_asc=`+this.pricebool);
+    return this.http.get<Products>(this.apiURL+`/demo/?f_cat=`+category+`&page=`+page+`&size=4&f_asc=`+this.pricebool+`&f_search=`+search);
   }
+
+  
 
   public get_product_info(id: number): Observable<Products> {
     return this.http.get<Products>(this.apiURL+`/product_info/`+id+`/`);
@@ -84,6 +101,8 @@ export class ProductService {
     return this.http.post<Products>(this.apiURL+`/buy_product/`, formData,
     { headers: { Authorization: this.token }});
   }
+
+  
 
 }
 

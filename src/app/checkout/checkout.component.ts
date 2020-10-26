@@ -35,6 +35,7 @@ export class CheckoutComponent implements OnInit {
           else {
             this.orderId = data['data']['order_id'];
             this.order_buy_product = data['data']['buy_products'];
+            console.log(this.order_buy_product);
             this.total = data['data']['total_pay']
           }  		    
   	    });
@@ -49,6 +50,7 @@ export class CheckoutComponent implements OnInit {
             }
             else {
               this.order_buy_product = data['data']['buy_product'];
+              console.log(this.order_buy_product);
               this.orderId = data['data']['order_id'];
               this.total = data['data']['total_pay'];
             } 	      	
@@ -62,12 +64,12 @@ export class CheckoutComponent implements OnInit {
 
   Submit_Checkout() { 
     this.checkoutForm.controls['order_id'].setValue(this.orderId);
+    console.log(this.orderId);
+    
     this._checkoutService.post_checkout(this.checkoutForm.value).subscribe((data) => {
-      if(data['error']) {
-        alert(data['error']);
-      } else {
-        alert(data['meta']['success']);
-      }      
-    });    
+      console.log(data);
+      console.log(JSON.stringify(data)); 
+    })
   }
+
 }

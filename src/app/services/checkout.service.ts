@@ -22,9 +22,11 @@ export class CheckoutService {
     let form = new FormData();
     form.append('order_id', formData.order_id);
     form.append('shipping_addr', formData.shipping_address);
+    console.log(formData, form);
+    console.log(JSON.stringify(formData));
 
     this.token = this._appService.getToken();
-    
+         
     return this.http.post<Checkout>(this.apiURL+`/checkout/`,form,
     { headers: { Authorization: this.rconcatString } });   
   }

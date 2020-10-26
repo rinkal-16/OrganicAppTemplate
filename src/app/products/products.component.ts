@@ -13,11 +13,13 @@ export class ProductsComponent implements OnInit {
 
   productForm: FormGroup;
   filterForm: FormGroup;
+  searchForm: FormGroup;
   product_data : any;
   category_data : any;
   price_data: any;
   category_name: string = undefined;
-  price_name: string = undefined;
+  price_name: string = undefined; 
+  search_name: string = undefined; 
   name: any;
   dataDefined: Boolean;
 
@@ -38,6 +40,11 @@ export class ProductsComponent implements OnInit {
 
     this.filterForm = this.formBuilder.group({
       category: new FormControl('', Validators.required)
+    })
+
+    this.searchForm = this.formBuilder.group({
+      search: new FormControl('', Validators.required)
+     
     })
    
     this._productService.get_product().subscribe((data) => {
@@ -69,6 +76,7 @@ export class ProductsComponent implements OnInit {
 
   valueChange(value) {
     this.valueQuan = value;
+    console.log(value);
     if(value === undefined) {
       this.valueQuan = 1;      
     }    
@@ -86,12 +94,18 @@ export class ProductsComponent implements OnInit {
     this.price_name = value;
   }
 
+  searchFilter() {
+    console.log(this.searchForm.value);
+    this.search_name = this.searchForm.value.search;   
+  }
+
   submit() {    
     this._router.navigate(['/cart',this.productForm.value.quantity, this.productForm.value.product_id]);
   }
 
   Direct_Cart(product_id: any) {    
-    this.valueQuan = this.quan.nativeElement.value;
+    //this.valueQuan = this.quan.nativeElement.value;
+    console.log(this.valueQuan);
     this.productForm.controls['product_id'].setValue(product_id);    
     this._router.navigate(['/cart',this.valueQuan, product_id]); 
   }
