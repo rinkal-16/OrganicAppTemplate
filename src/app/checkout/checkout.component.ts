@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { CheckoutService } from '../services/checkout.service';
 import { ProductService } from '../services/product.service';
@@ -16,9 +16,9 @@ export class CheckoutComponent implements OnInit {
   order_buy_product: any;
   orderId: number;  
   checkBoolean: string;
-  total: number;
+  total_pay: number;
   
-  constructor(private _router: Router, private formBuilder: FormBuilder, private _cartService: CartService, private route: ActivatedRoute, private _checkoutService: CheckoutService, private _productService: ProductService ) { }
+  constructor(private formBuilder: FormBuilder, private _cartService: CartService, private route: ActivatedRoute, private _checkoutService: CheckoutService, private _productService: ProductService ) { }
 
   ngOnInit() {
     this.checkoutForm = this.formBuilder.group({
@@ -35,24 +35,20 @@ export class CheckoutComponent implements OnInit {
           else {
             this.orderId = data['data']['order_id'];
             this.order_buy_product = data['data']['buy_products'];
-            console.log(this.order_buy_product);
-            this.total = data['data']['total_pay']
+            this.total_pay = data['data']['total_pay']
           }  		    
   	    });
-  	}
-  	else {
+  	} else {
       var form = new FormData();
       form.append('quantity', this.route.snapshot.queryParams['quantity']);
       form.append('product_id', this.route.snapshot.queryParams['id']);
   		this._productService.post_buy_product(form).subscribe((data) => {  	      
             if(data['error']) {
               alert(data['error']);
-            }
-            else {
+            } else {
               this.order_buy_product = data['data']['buy_product'];
-              console.log(this.order_buy_product);
               this.orderId = data['data']['order_id'];
-              this.total = data['data']['total_pay'];
+              this.total_pay = data['data']['total_pay'];
             } 	      	
       	});
   	}
@@ -64,12 +60,14 @@ export class CheckoutComponent implements OnInit {
 
   Submit_Checkout() { 
     this.checkoutForm.controls['order_id'].setValue(this.orderId);
-    console.log(this.orderId);
-    
-    this._checkoutService.post_checkout(this.checkoutForm.value).subscribe((data) => {
+    this._checkoutService.post_checkout(this.checkoutForm.value).subscribe((data) => { 
       console.log(data);
-      console.log(JSON.stringify(data)); 
-    })
+      if(data['error']) {
+        alert(data['error']);
+      } else {
+        alert(data['meta']['success']);
+      }           
+    });
   }
 
 }

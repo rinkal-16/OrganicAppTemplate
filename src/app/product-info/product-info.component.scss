@@ -18,7 +18,7 @@ $mobile: 480px;
           margin-bottom: auto;
           align-content: center;
           padding-bottom: 10px;
-          width: 60%;
+          width: 80%;
           .col-sm {
                img {
                     width: 400px;
@@ -175,7 +175,7 @@ span.glyphicon-calendar {
 @media screen and (min-width: 480px) and (max-width: 500px) {
      .product-info-container {
           .row {
-               width: 70%;
+               width: 100%;
                .col-sm {
                     img {
                          width: 250px;
@@ -199,7 +199,7 @@ span.glyphicon-calendar {
 @media screen and (max-width: 480px) {
      .product-info-container {
           .row {
-               width: 70%;
+               width: 100%;
                .col-sm {
                     img {
                          width: 250px;
@@ -221,4 +221,54 @@ span.glyphicon-calendar {
           }
      }
 }
+
+
+input {
+     width: 50px;
+     border-color: #00DBD0;
+     border-radius: 10px;
+     height: 33px;
+     text-align: center;
+     
+}
+label {
+     font-size: 16px;     
+     color: black;                         
+}
+.glyphicon-search{
+     color:#2874f0;
+   }
+   
+
+   form{
+     position:relative;
+     top:10px;
+   }
+   
+   .menu{
+     border-bottom:1px solid rgba(0,0,0,0.1);
+   }
+   section{
+     position:relative;
+     top:4.5em;
+   }
+   section .container-fluid .thumbnail .caption .buttons{
+     margin:1px;
+   }
+   
+   section .desc h5 .glyphicon{
+     color:#5cb85c;
+   }
+   section .desc .breadcrumb{
+     padding-left:0;
+   }
+   
+   section .desc button:hover{
+     background-color:#fff;
+     border:1px solid #2874f0;
+     color:#2874f0;
+   }
+   
+   
+   
 

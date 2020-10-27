@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GenerateVerifyService } from '../services/generate-verify.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-generate-verification',
@@ -10,23 +9,23 @@ import { Router } from '@angular/router';
 })
 export class GenerateVerificationComponent implements OnInit {
 
+  generateverificationForm: FormGroup;
   submitted: false;
 
-  gnrtvrfcntForm = new FormGroup({
-    email: new FormControl('', Validators.required)
-  });
-
-  constructor(private _gnrtvrfcntService: GenerateVerifyService, private _router: Router, private formBuilder: FormBuilder) { }
+  constructor(private _gnrtvrfcntService: GenerateVerifyService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.generateverificationForm = this.formBuilder.group({
+      email: new FormControl('', Validators.required) 
+    });
   }
 
   get validate() {
-    return this.gnrtvrfcntForm.controls;
+    return this.generateverificationForm.controls;
   }
 
   Submit(event: any) {
-    this._gnrtvrfcntService.post_gnrtvrfcnt(this.gnrtvrfcntForm.value).subscribe((data) => {
+    this._gnrtvrfcntService.post_gnrtvrfcnt(this.generateverificationForm.value).subscribe((data) => {
       if(data['meta']['status_code'] === 200 ) {
         alert("Successfully request sent. Generate verification via mail!!");
       }
@@ -36,7 +35,7 @@ export class GenerateVerificationComponent implements OnInit {
       else if(data['status_code'] === 401) {
         alert(data['error']);
       }
-      localStorage.setItem("token", JSON.stringify({Bearertoken: data['token']}));
-    })
+      localStorage.setItem("token", JSON.stringify({ Bearertoken: data['token'] }));
+    });
   }
 }

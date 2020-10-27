@@ -61,9 +61,9 @@ export class AddToCartComponent implements OnInit {
       this.buyFromCart = data['data']['buy_from_cart'];
     });
     if(this.buyFromCart = true) {
-      this._router.navigate(['checkout'], {queryParams: { buy_from_cart: true }});
+      this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: true } });
     } else {
-      this._router.navigate(['checkout'], {queryParams: { buy_from_cart: false }});
+      this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: false } });
     }
   }
 }

@@ -19,11 +19,11 @@ export class ProductsComponent implements OnInit {
   price_data: any;
   category_name: string = undefined;
   price_name: string = undefined; 
-  search_name: string = undefined; 
-  name: any;
+  search_string: string = undefined; 
+  qunty_model: any;
   dataDefined: Boolean;
 
-  @ViewChild('quan', {static:false}) quan:ElementRef;
+  @ViewChild('qty', {static:false}) qty:ElementRef;
   valueQuan: number;
 
   constructor(private _productService: ProductService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { 
@@ -83,10 +83,10 @@ export class ProductsComponent implements OnInit {
   }
 
   onCategorySelect(event) {
-    	const value = event.target.value;      
-      this.category_name = value;
-    	this.filterForm.controls['category'].setValue(value);
-    	const category = this.filterForm.value.category;
+    const value = event.target.value;      
+    this.category_name = value;
+    this.filterForm.controls['category'].setValue(value);
+    const category = this.filterForm.value.category;
   }
 
   onPriceSelect(event) {
@@ -96,7 +96,7 @@ export class ProductsComponent implements OnInit {
 
   searchFilter() {
     console.log(this.searchForm.value);
-    this.search_name = this.searchForm.value.search;   
+    this.search_string = this.searchForm.value.search;   
   }
 
   submit() {    
@@ -104,7 +104,7 @@ export class ProductsComponent implements OnInit {
   }
 
   Direct_Cart(product_id: any) {    
-    //this.valueQuan = this.quan.nativeElement.value;
+    //this.valueQuan = this.qty.nativeElement.value;
     console.log(this.valueQuan);
     this.productForm.controls['product_id'].setValue(product_id);    
     this._router.navigate(['/cart',this.valueQuan, product_id]); 

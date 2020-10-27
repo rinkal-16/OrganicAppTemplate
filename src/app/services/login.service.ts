@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Login } from '../modals/login';
 import { Router } from '@angular/router';
@@ -15,8 +15,7 @@ export class LoginService {
   isLoggedIn: boolean = false;
   public redirectUrl: string;
   loginData: Login;
-  
-  
+    
   constructor(private http: HttpClient, private router: Router) { }
 
   public get_login(): Observable<Login> {

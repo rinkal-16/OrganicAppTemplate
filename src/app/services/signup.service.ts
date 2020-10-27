@@ -10,7 +10,6 @@ import { environment } from '../../environments/environment';
 export class SignupService {
 
   apiURL = environment.apiURL;
-
   signupData: Signup;
 
   constructor(private http: HttpClient) { }
@@ -25,10 +24,8 @@ export class SignupService {
     form.append('lname', formData.lastname);
     form.append('email', formData.email);
     form.append('pswd1', formData.password); 
-    form.append('pswd2', formData.confirmpassword);
-    
-    return this.http.post<Signup>(this.apiURL+"/signup/", form);  
-   
+    form.append('pswd2', formData.confirmpassword);    
+    return this.http.post<Signup>(this.apiURL+"/signup/", form);     
   }
 
 }

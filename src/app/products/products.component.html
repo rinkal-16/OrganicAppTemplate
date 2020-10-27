@@ -18,51 +18,33 @@
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">                         
+               <div class="collapse navbar-collapse 
+               " id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto d-flex justify-content-center">                         
                          <li class="nav-item dropdown">
                               <div class="form-group">
-                              <select class="custom-select" (change)="onCategorySelect($event)">
-                                   <option selected>Catogory</option>
-                                   <option *ngFor="let category of category_data" [value]="category.cat_name">
-                                        {{category.cat_name | titlecase}} </option>
-                              </select>
-                              </div>
-                              <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   Dropdown
-                              </a> --> 
-                              <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                   <form [formGroup]="productForm" (ngSubmit)="submit()" novalidate>
-                                        <div class="row d-flex">                                                                                                         
-                                             <div class="col-sm" >
-                                                  <div *ngFor="let category of category_data">
-                                                       <label>
-                                                            <input type="checkbox" [value]="category.cat_name" (change)="onCheckboxChange($event)" />{{ category.cat_name }}
-                                                       </label>
-                                                  </div>
-                                             </div> 
-                                                                                                                                        
-                                        </div>  -->  
-                                        <!--<div class="dropdown-divider"></div>
-                                        <button type="submit" class="btn">Apply</button>
-                                   </form>     
-                              </div>   -->                                     
+                                   <select class="custom-select" (change)="onCategorySelect($event)">
+                                        <option selected>Catogory</option>
+                                        <option *ngFor="let category of category_data" [value]="category.cat_name">
+                                             {{category.cat_name | titlecase}} </option>
+                                   </select>
+                              </div>                                                          
                          </li>
                          <li class="nav-item dropdown">
                               <div class="form-group">
-                              <select class="custom-select" (change)="onPriceSelect($event)">
-                              
-                                   <option selected>Price </option>
-                                   <option *ngFor="let price of price_data" [value]="price.price_filter_name" >
-                                        {{price.price_filter_name | titlecase}} </option>
-                              </select>
+                                   <select class="custom-select" (change)="onPriceSelect($event)">
+                                   
+                                        <option selected>Price </option>
+                                        <option *ngFor="let price of price_data" [value]="price.price_filter_name" >
+                                             {{price.price_filter_name | titlecase}} </option>
+                                   </select>
                               </div>
                          </li>                                                     
                     </ul> 
-                    <form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="searchFilter($event)">
-
+                    <form class="form-inline my-2 my-lg-0 d-flex justify-content-end" [formGroup]="searchForm" (ngSubmit)="searchFilter($event)">
                          <input class="form-control mr-sm-2" type="search" formControlName="search" placeholder="Search" aria-label="Search">
-                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form> 
                                                             
                </div>
@@ -90,7 +72,7 @@
                                                                                                                       
                                              <button class="btn btn-outline-info text-left" (click)="Direct_Cart(item.datas.id)"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
                                                                                                                       
-                                             <input #quan [ngModel]="name" (ngModelChange)="valueChange($event)" class="text-right" id="input" name="quantity" type="number" min="1" value="1">    
+                                             <input #qty [ngModel]="qunty_model" (ngModelChange)="valueChange($event)" class="text-right" id="input" name="quantity" type="number" min="1" value="1">    
                                                                                     
                                         </div>    
                                    </form>                                     
@@ -104,4 +86,4 @@
         
 </div>
 
-<app-product-pagination [category_name]="category_name" [price_name]="price_name" [search_name]="search_name" (changePage)="onChangePage($event)" > </app-product-pagination>
+<app-product-pagination class="d-flex justify-content-center" [category_name]="category_name" [price_name]="price_name" [search_string]="search_string" (changePage)="onChangePage($event)" > </app-product-pagination>

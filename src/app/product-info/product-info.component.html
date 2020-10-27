@@ -1,14 +1,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="product-info-container d-flex justify-content-center">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<!--<div class="product-info-container d-flex justify-content-center">
      <div class="row" *ngFor="let product of product_data">   
           <div class="col-sm">
                <img src="{{product.image_url}}" > 
@@ -24,7 +25,7 @@
                               <form> 
                                    <div>                          
                                         <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                        <input #quann ([ngModel])="name" (ngModelChange)="valueChange($event)" id="input" type="number" min="1" max="5" value=1>    
+                                        <input #qty ([ngModel])="qunty_model" (ngModelChange)="valueChange($event)" id="input" type="number" min="1" max="5" value=1>    
                                              
                                         <br>  
                                         <br>             
@@ -75,4 +76,87 @@
           </div>
      </div> 
 
-</div>
+</div>-->
+
+
+
+
+
+
+ <div class="product-info-container">
+   <div class="container-fluid" style="margin: 2%;">
+     <div class="row align-content-center" *ngFor="let product of product_data">
+       <!-- Product picture -->
+          <div class="col-sm-5">
+               <div class="thumbnail">
+                    <img src="{{product.image_url}}" class="img-responsive" alt="">           
+               </div>         
+          </div>
+       
+          <!-- Product Description -->
+          <div class="col-sm-7 desc">        
+               <div>
+                    <div class="container col-xs-12">
+                         <div class="panel panel-default">
+                              <div class="panel-body">
+                                   <div class="col-sm-12">
+                                        <h3>{{product.p_name}}</h3>
+                                        <p>{{product.description}}</p>                 
+                                        <br>          
+                                                                                      
+                                        <div>
+                                             <h5>Price: {{product.price}}</h5> 
+                                        </div>
+                                        <br>
+                                        <form>
+                                             <div class="caption">
+                                                   <label class="label" for="quantity" value="Quantity">Quantity: </label>
+                                                  <input #qty ([ngModel])="qunty_model" (ngModelChange)="valueChange($event)" id="input" type="number" min="1" max="5" value=1>    
+                                                  <br><br>
+                                                  <div class="row buttons">                              
+                                                       <button class="btn  col-sm-3 col-sm-offset-2 btn-md justify-content-md-start" style="background-color:#ff9f00; color:#fff;font-size:0.7em; margin-right:20px;" (click)="AddCart($event)"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;ADD TO CART</button>                                             
+                                                       <button class="btn col-sm-3 col-sm-offset-1 btn-md justify-content-md-start" style="background-color:#fb641b; color:#fff;font-size:0.7em; margin-right:20px;" (click)="Purchase()"><i class="fa fa-bolt" style="font-size:1.2em;"></i> BUY NOW</button>
+                                                  </div>                         
+                                             </div> 
+                                        </form>  
+                                        <br><br>
+                                         <div class="row-fluid"> 
+                                             <div class="col-sm">
+                                                  <div class="panel panel-default">
+                                                       <div class="panel-heading">                              
+                                                            <h3 class="panel-title" itemprop="name">Reviews</h3>
+                                                            <br>
+                                                            <textarea #review class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                                                            <button class="btn btn-outline-info" (click)="PostReview()">Submit</button>
+                                                       </div>                    
+                                                       <div class="panel-body" itemprop="reviewBody"  *ngFor="let review of review_data">
+                                                            
+                                                            <span>{{review.text}}</span>              
+                                                            <span class="pull-right">
+                                                                 <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                                                      <meta itemprop="worstRating" content="1">
+                                                                      <span itemprop="ratingValue">5</span> / 
+                                                                      <span itemprop="bestRating"> stars </span>
+                                                                 </span>
+                                                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                            </span>
+                                                            <p>- {{review.first_name}}</p>
+                                                       </div>                                                  
+                                                  </div>
+                                             </div>
+                                        </div>             
+                                   </div>               
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+      </div>
+     </div>  
+       
+  </div>     
+

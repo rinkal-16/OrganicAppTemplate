@@ -11,15 +11,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProductInfoComponent implements OnInit {
 
-  product_data : any;
   productInfoForm: FormGroup;
+  product_data : any;  
   review_data: any;
   buyFromCart: boolean;
   valueReview: any;  
-  name: any;
+  qunty_model: any;
 
   @ViewChild('review', { static: false }) review:ElementRef;
-  @ViewChild('quann', {static:false}) quann:ElementRef;
+  @ViewChild('qty', { static:false }) qty:ElementRef;
   valueQuan: number;
 
   constructor(private _productService: ProductService, private _cartService: CartService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
@@ -38,7 +38,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   AddCart() {
-    this.valueQuan = this.quann.nativeElement.value;
+    this.valueQuan = this.qty.nativeElement.value;
     this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
     this._router.navigate(['/cart',this.valueQuan, this.productInfoForm.value.product_id]);        
   }
@@ -51,7 +51,7 @@ export class ProductInfoComponent implements OnInit {
   }
   
   Purchase() {
-    this.valueQuan = this.quann.nativeElement.value;    
+    this.valueQuan = this.qty.nativeElement.value;    
     if(!this.valueQuan) {
       this.productInfoForm.controls['quantity'].setValue(1);
     }     

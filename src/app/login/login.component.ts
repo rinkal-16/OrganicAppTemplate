@@ -9,18 +9,20 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  loginForm: FormGroup;
   [x: string]: any; 
   showVerify: Boolean = false;
   submitted: false;
 
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
-    password: new FormControl('', [Validators.required, Validators.minLength(7)])    
-  });
-
   constructor(private _loginService: LoginService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
+      password: new FormControl('', [Validators.required, Validators.minLength(7)])  
+    });
+
     let stringValue = this.route.snapshot.paramMap.get('value');
     this.showVerify = JSON.parse(stringValue);
     //this.returnUrl = this.route.snapshot.queryParamMap['returnUrl'] || '/';
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
         alert(data['error']);        
       }
       localStorage.setItem("token", JSON.stringify(data['meta']['token']));
-    })     
+    });     
   }  
 }
 

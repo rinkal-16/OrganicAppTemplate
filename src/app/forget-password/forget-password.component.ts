@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 })
 export class ForgetPasswordComponent implements OnInit {
 
+  forgetpswdForm: FormGroup;
   submitted: false;
-
-  forgetpswdForm = new FormGroup({
-    email: new FormControl('', Validators.required)    
-  });
-
+ 
   constructor(private _forgetpswdService: ForgetPswdService, private _router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.forgetpswdForm = this.formBuilder.group({
+      email: new FormControl('', Validators.required) 
+    });
   }
   
   get validate() {
@@ -36,7 +36,7 @@ export class ForgetPasswordComponent implements OnInit {
       else if(data['status_code'] === 400) {
         alert(data['error']);        
       }
-    })
+    });
   }
 
 }

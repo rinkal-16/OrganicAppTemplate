@@ -6,7 +6,7 @@
         <div class="card-title text-center text-uppercase rounded"><h5>Generate Verification</h5></div>
           <div class="card-body">
             
-            <form class="form-gnrt-verfctn" [formGroup]="gnrtvrfcntForm">
+            <form class="form-gnrt-verfctn" [formGroup]="generateverificationForm">
             <label>Email Address</label>
               <div class="form-label-group">
                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" required autofocus style="padding-left: 10px;" [ngClass]="{ 'is-invalid': submitted &amp;&amp; gnrtvrfcntForm.controls.email.touched }" />

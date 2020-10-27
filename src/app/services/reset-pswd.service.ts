@@ -10,7 +10,6 @@ import { environment } from '../../environments/environment';
 export class ResetPswdService {
 
   apiURL = environment.apiURL;
-
   resetpswdData: ResetPswd;
   
   constructor(private http: HttpClient) { }
@@ -22,8 +21,7 @@ export class ResetPswdService {
   public post_resetpswd(formData: any, token: string): Observable<any> {
     let form: FormData = new FormData();
     form.append('pswd1', formData.password);
-    form.append('pswd2', formData.confirmpassword); 
-    
+    form.append('pswd2', formData.confirmpassword);     
     return this.http.post<ResetPswd>(this.apiURL+"/reset_password/"+token,  form);  
   }
 
