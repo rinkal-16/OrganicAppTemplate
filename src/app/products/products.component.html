@@ -45,11 +45,9 @@
                          <input class="form-control mr-sm-2" type="search" formControlName="search" placeholder="Search" aria-label="Search">
 
                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form> 
-                                                            
+                    </form>                                                             
                </div>
-          </nav>
-          
+          </nav>         
           <div class="row">                    
                     <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;" *ngFor="let item of pageOfItems">
                          <div>
@@ -68,22 +66,16 @@
                                         </a>                                                                  
                                    </div>  
                                    <form>                                                           
-                                        <div class="row"> 
-                                                                                                                      
+                                        <div class="row">       
                                              <button class="btn btn-outline-info text-left" (click)="Direct_Cart(item.datas.id)"><i class="fa fa-shopping-cart" aria-hidden="true">cart</i></button>  
-                                                                                                                      
-                                             <input #qty [ngModel]="qunty_model" (ngModelChange)="valueChange($event)" class="text-right" id="input" name="quantity" type="number" min="1" value="1">    
-                                                                                    
+                                             <input #qty [ngModel]="qunty_model" (ngModelChange)="valueChange($event)" class="text-right" id="input" name="quantity" type="number" min="1" value="1">                                                      
                                         </div>    
                                    </form>                                     
                               </div>
                          </div>
-                    </div>
-                    
-          </div>
-          
-     </div>
-        
+                    </div>                    
+          </div>          
+     </div>        
 </div>
 
 <app-product-pagination class="d-flex justify-content-center" [category_name]="category_name" [price_name]="price_name" [search_string]="search_string" (changePage)="onChangePage($event)" > </app-product-pagination>

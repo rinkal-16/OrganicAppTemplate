@@ -1,0 +1,175 @@
+<div class="payment-details-container">
+     
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-login my-5">
+
+            <div class="card-title text-center text-uppercase rounded" *ngIf="addr_detail">
+              <h5>Shipping Address</h5>
+            </div>
+            <div class="card-body">
+              
+              <form class="form-login" [formGroup]="addressDetailForm">            
+                <label>Address line 1</label>               
+                <div class="form-label-group">                
+                      <input type="text" id="inputaddr" class="form-control" placeholder="Adddress line 1" formControlName="addr_line1" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.addr_line1.touched }" >               
+                      <div *ngIf="validate.addr_line1.invalid && validate.addr_line1.touched" class="alert alert-danger">
+                            <div *ngIf="validate.addr_line1.invalid">Address is required</div>
+                          </div>
+                    <label for="inputaddr" style="padding-left: 10px;">Address</label>                              
+                </div>
+
+                <label>Address line 2</label>               
+                <div class="form-label-group">                
+                    <input type="text" id="inputaddr" class="form-control" placeholder="Adddress line 2" formControlName="addr_line2" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.addr_line2.touched }" >               
+                    <div *ngIf="validate.addr_line2.invalid && validate.addr_line2.touched" class="alert alert-danger">
+                          <div *ngIf="validate.addr_line2.invalid">Address is required</div>
+                        </div>
+                  <label for="inputaddr" style="padding-left: 10px;">Address</label>                              
+                </div>
+
+                <label>City</label>               
+                <div class="form-label-group">                
+                    <input type="text" id="inputCity" class="form-control" placeholder="Password" formControlName="city" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.city.touched }" >               
+                    <div *ngIf="validate.city.invalid && validate.city.touched" class="alert alert-danger">
+                          <div *ngIf="validate.city.invalid">City is required</div>
+                        </div>
+                  <label for="inputPassword" style="padding-left: 10px;">City</label>                              
+                </div>
+
+                <label>State</label>               
+                <div class="form-label-group">                
+                    <input type="text" id="inputState" class="form-control" placeholder="State" formControlName="state" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.state.touched }" >               
+                    <div *ngIf="validate.state.invalid && validate.state.touched" class="alert alert-danger">
+                          <div *ngIf="validate.state.invalid">State is required</div>
+                        </div>
+                  <label for="inputState" style="padding-left: 10px;">State</label>                              
+                </div>
+
+                <label>Country</label>               
+                <div class="form-label-group">                
+                    <input type="text" id="inputCountry" class="form-control" placeholder="Country" formControlName="country" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.country.touched }" >               
+                    <div *ngIf="validate.country.invalid && validate.country.touched" class="alert alert-danger">
+                          <div *ngIf="validate.country.invalid">Country is required</div>
+                        </div>
+                  <label for="inputCountry" style="padding-left: 10px;">Country</label>                              
+                </div>
+
+                <label>Postal code</label>               
+                <div class="form-label-group">                
+                    <input type="text" id="inputPostalCode" class="form-control" placeholder="Password" formControlName="postal_code" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.postal_code.touched }" >               
+                    <div *ngIf="validate.postal_code.invalid && validate.postal_code.touched" class="alert alert-danger">
+                          <div *ngIf="validate.postal_code.invalid">Postal code is required</div>
+                        </div>
+                  <label for="inputPostalCode" style="padding-left: 10px;">Postal code</label>                              
+                </div>
+
+                <label>Phone number</label>               
+                <div class="form-label-group">                
+                    <input type="number" id="inputPhone" class="form-control" placeholder="Phone number" formControlName="phone" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.phone.touched }" >               
+                    <div *ngIf="validate.phone.invalid && validate.phone.touched" class="alert alert-danger">
+                          <div *ngIf="validate.phone.invalid">Phone number is required</div>
+                        </div>
+                  <label for="inputPhone" style="padding-left: 10px;">Phone number</label>                              
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="Submit_address($event)" type="submit" [disabled]="!addressDetailForm.valid">Submit Address</button>
+
+              </form>
+
+            </div>          
+         
+
+            <div class="card-title text-center text-uppercase rounded" *ngIf="card_detail">
+              <h5>Card Details</h5>
+            </div>
+              <div class="card-body">            
+                <form class="form-login" [formGroup]="cardDetailForm">  
+
+                  <label>Card holder</label>               
+                  <div class="form-label-group">                
+                      <input type="number" id="inputCard_holder" class="form-control" placeholder="Card holder" formControlName="card_holder" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cardDetailForm.controls.card_holder.touched }" >               
+                      <div *ngIf="validate.card_holder.invalid && validate.card_holder.touched" class="alert alert-danger">
+                            <div *ngIf="validate.card_holder.invalid">Card holder is required</div>
+                          </div>
+                    <label for="inputCard_holder" style="padding-left: 10px;">Card holder</label>                              
+                  </div>
+
+                  <label>Card number</label>               
+                  <div class="form-label-group">                
+                      <input type="text" id="inputCard_number" class="form-control" placeholder="Card number" formControlName="card_number" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cardDetailForm.controls.card_number.touched }" >               
+                      <div *ngIf="validate.card_number.invalid && validate.card_number.touched" class="alert alert-danger">
+                            <div *ngIf="validate.card_number.invalid">Card number is required</div>
+                          </div>
+                    <label for="inputCard_number" style="padding-left: 10px;">Card number</label>                              
+                  </div>
+
+                  <label>CVV</label>               
+                  <div class="form-label-group">                
+                      <input type="text" id="inputCvv" class="form-control" placeholder="CVV" formControlName="cvv" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cardDetailForm.controls.cvv.touched }" >               
+                      <div *ngIf="validate.cvv.invalid && validate.cvv.touched" class="alert alert-danger">
+                            <div *ngIf="validate.cvv.invalid">CVV is required</div>
+                          </div>
+                    <label for="inputCvv" style="padding-left: 10px;">CVV</label>                              
+                  </div>
+
+                  <label>Expiry date</label>               
+                  <div class="form-label-group">                
+                      <input type="date" id="inputExpiry_date" class="form-control" placeholder="Expiry date" formControlName="expiry_date" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cardDetailForm.controls.expiry_date.touched }" >               
+                      <div *ngIf="validate.expiry_date.invalid && validate.expiry_date.touched" class="alert alert-danger">
+                            <div *ngIf="validate.expiry_date.invalid">Expiry_date is required</div>
+                          </div>
+                    <label for="inputExpiry_date" style="padding-left: 10px;">Expiry date</label>                              
+                  </div>
+
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="Submit_Card($event)" type="submit" [disabled]="!cardDetailForm.valid">Submit Card detail</button>
+
+
+                </form>
+              </div>
+          
+        </div>              
+      </div>
+    </div>
+  
+</div>
+
+
+
+
+<!--<mdb-stepper #stepper [linear]="true">
+  <mdb-step name="Step 1" [stepForm]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <div class="md-form">
+        <input type="text" class="form-control" mdbInput mdbValidate formControlName="email">
+        <label for="">Email</label>
+        <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">Input invalid</mdb-error>
+        <mdb-success *ngIf="email.valid && (email.dirty || email.touched)">Input valid</mdb-success>
+      </div>
+    </form>
+    <button mdbBtn size="sm" color="primary" (click)="stepper.next()">CONTINUE</button>
+  </mdb-step>
+  <mdb-step name="Step 2" [stepForm]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <div class="md-form">
+        <input type="password" class="form-control" mdbInput mdbValidate formControlName="password">
+        <label for="">Password</label>
+        <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Input invalid</mdb-error>
+        <mdb-success *ngIf="password.valid && (password.dirty || password.touched)">Input valid</mdb-success>
+      </div>
+    </form>
+    <button mdbBtn size="sm" color="primary" (click)="stepper.next()">CONTINUE</button>
+    <button mdbBtn size="sm" color="secondary" (click)="stepper.previous()">BACK</button>
+  </mdb-step>
+  <mdb-step name="Step 3" label="Step 3 label">
+    <p class="pl-2">Finish!</p>
+    <div class="step-actions">
+      <button mdbBtn  size="sm" color="primary" (click)="onSubmit()">SUBMIT</button>
+    </div>
+  </mdb-step>
+</mdb-stepper>-->
+
+
+
+
+ 

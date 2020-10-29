@@ -60,10 +60,11 @@ export class AddToCartComponent implements OnInit {
     this._cartService.buy_from_cart().subscribe((data) => {
       this.buyFromCart = data['data']['buy_from_cart'];
     });
-    if(this.buyFromCart = true) {
-      this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: true } });
-    } else {
-      this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: false } });
-    }
+    this._router.navigate(['payment-details']);
+    // if(this.buyFromCart = true) {
+    //   this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: true } });
+    // } else {
+    //   this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: false } });
+    // }
   }
 }

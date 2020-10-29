@@ -1,9 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { CheckoutService } from '../services/checkout.service';
 import { ProductService } from '../services/product.service';
+import { StripeService, Elements, Element as StripeElement, ElementsOptions } from 'ngx-stripe';
+import { getMaxListeners } from 'process';
 
 @Component({
   selector: 'app-checkout',
@@ -13,18 +16,50 @@ import { ProductService } from '../services/product.service';
 export class CheckoutComponent implements OnInit {
 
   checkoutForm: FormGroup;
+  
   order_buy_product: any;
   orderId: number;  
   checkBoolean: string;
   total_pay: number;
+
+  elements: Elements;
+  card: StripeElement;
+  paymentStatus: any;
+  stripeData: any;
+  submitted: any;
+  loading: any;
+  elementsOptions: ElementsOptions = {
+    locale: 'en'
+  }
+
+  public stripeForm = this.formBuilder.group({
+    name: new FormControl('', [Validators.required]),
+    currency: new FormControl('', [Validators.required]),
+    addr_line1: new FormControl('', [Validators.required]),
+    addr_line2: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    state: new FormControl('', [Validators.required]),
+    postal_code: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
+    country: new FormControl('', [Validators.required]),
+    amount: new FormControl('', [Validators.required])
+  });
   
-  constructor(private formBuilder: FormBuilder, private _cartService: CartService, private route: ActivatedRoute, private _checkoutService: CheckoutService, private _productService: ProductService ) { }
+  
+  constructor(private formBuilder: FormBuilder, private _cartService: CartService, private route: ActivatedRoute, private _checkoutService: CheckoutService, private _productService: ProductService, private _stripeService: StripeService ) { }
 
   ngOnInit() {
     this.checkoutForm = this.formBuilder.group({
+      name: new FormControl('', [Validators.required]),
+      amount: new FormControl('', [Validators.required]),    
       shipping_address: new FormControl('', Validators.required),
       order_id: new FormControl('', Validators.required)
     }); 
+
+    // this.stripeForm = this.formBuilder.group({
+    //   name: new FormControl('', Validators.required),
+    //   amount: new FormControl('', Validators.required),
+    // })
 
     this.checkBoolean = this.route.snapshot.queryParams['buy_from_cart'];  	    
     if(this.checkBoolean == 'true') {
@@ -51,8 +86,30 @@ export class CheckoutComponent implements OnInit {
               this.total_pay = data['data']['total_pay'];
             } 	      	
       	});
-  	}
-  }
+    }
+    
+
+    this._stripeService.elements(this.elementsOptions)
+    .subscribe(elements => {
+      this.elements = elements;
+      if (!this.card) {
+        this.card = this.elements.create('card', {
+          iconStyle: 'solid',
+          style: {
+            base: {
+              iconColor: '#666EE8',
+              color: '#31325F',
+              lineHeight: '40px',
+              fontWeight: 300,
+              fontFamily: 'Helvetica',
+              fontSize: '18px',
+            }
+          }
+        });
+        this.card.mount('#card-element');
+      }
+  });
+}
 
   get validate() {
     return this.checkoutForm.controls;
@@ -70,4 +127,29 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  buy() {
+    this.submitted = true;
+    this.loading = true;
+    this.stripeData = this.stripeForm.value
+    this._stripeService.createToken(this.card,{})
+    .subscribe(result => {
+      if(result.token) {
+        this.stripeData['token']=result.token
+        console.log(this.stripeData);
+        this._checkoutService.payment_gateway(this.stripeForm.value)
+        .subscribe((res) => {
+          console.log(res);
+        });
+      }
+      else {
+        this.paymentStatus = result.error.message;
+        console.log(this.paymentStatus);
+      }
+    });
+  }
+
+
 }
+
+
+

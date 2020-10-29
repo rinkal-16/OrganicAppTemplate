@@ -14,13 +14,16 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AuthGuard } from './auth.guard';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeaderInterceptor } from './header.interceptor';
 import { GenerateVerificationComponent } from './generate-verification/generate-verification.component';
 import { CommonModule } from "@angular/common";
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductPaginationComponent } from './product-pagination/product-pagination.component'; 
+import { NgxStripeModule } from 'ngx-stripe';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+// MDB Angular Free
+//import { WavesModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { ProductPaginationComponent } from './product-pagination/product-paginat
     AddToCartComponent,
     CheckoutComponent,
     ProductPaginationComponent,
+    PaymentDetailsComponent,
+    
     
   ],
   imports: [
@@ -47,7 +52,10 @@ import { ProductPaginationComponent } from './product-pagination/product-paginat
     HttpClientModule, 
     FormsModule,
     ReactiveFormsModule,
-    CommonModule  
+    CommonModule,
+    //WavesModule,
+    NgxStripeModule.forRoot('pk_test_51HgUIAE6HZ2spzZbur7T9XS40mmCNzq1n7yqzzKEvhFmiS8FgKQJlYBC5Xlcfllkg1yCGvWeGXFnZ6EfzLX41qQx00gRzx7ZmM'),
+
     
   ],
   providers: [AuthGuard, 

@@ -2,9 +2,7 @@
     <div class="py-5 text-center">  
       <h2>Pay here</h2>  
     </div>
-
     <div class="row">
-
       <div class="col-md-4 order-md-2 mb-4" >
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Order Summary </span>
@@ -17,49 +15,104 @@
               <small class="text-muted">{{order.quantity}}</small>
             </div>
             <span class="text-muted">{{order.discount_price}}</span>
-          </li>
-            
+          </li>            
           <li class="list-group-item d-flex justify-content-between">           
               <span>Total (USD)</span>
               <strong>{{total_pay}}</strong>            
-          </li>
-          
+          </li>          
         </ul>        
       </div>
-
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation"  [formGroup]="checkoutForm" >
-          <div class="mb-3" >
+        <form class="needs-validation"  [formGroup]="stripeForm" >
+          <div class="mb-3" >  
+          <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" formControlName="name" required>
+              <span class="text-danger" *ngIf="stripeForm.get('name').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+              <label>Address 1</label>
+              <input type="text" class="form-control" formControlName="addr_line1" required>
+              <span class="text-danger" *ngIf="stripeForm.get('addr_line1').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+              <label>Address 2</label>
+              <input type="text" class="form-control" formControlName="addr_line2" required>
+              <span class="text-danger" *ngIf="stripeForm.get('addr_line2').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+              <label>City</label>
+              <input type="text" class="form-control" formControlName="city" required>
+              <span class="text-danger" *ngIf="stripeForm.get('city').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <input type="text" class="form-control" formControlName="state" required="">
+            <span class="text-danger" *ngIf="stripeForm.get('state').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" class="form-control" formControlName="country" required="">
+            <span class="text-danger" *ngIf="stripeForm.get('country').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+            <label>Postal code</label>
+            <input type="text" class="form-control" formControlName="postal_code" required="">
+            <span class="text-danger" *ngIf="stripeForm.get('postal_code').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+            <label>Phone number</label>
+            <input type="text" class="form-control" formControlName="phone" required="">
+            <span class="text-danger" *ngIf="stripeForm.get('phone').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+            <label>Currency</label>
+            <input type="text" class="form-control" formControlName="currency" required="">
+            <span class="text-danger" *ngIf="stripeForm.get('currency').hasError('required') && submitted">Required</span>
+          </div>
+          <div class="form-group">
+            <label>Amount</label>
+            <input type="text" class="form-control" formControlName="amount" required="">
+            <span class="text-danger" *ngIf="stripeForm.get('amount').hasError('required') && submitted">Required</span>
+          </div>
+         
             
-            <label>Shipping Address</label>
-            <input type="text" class="form-control" id="address" formControlName="shipping_address" placeholder="Address" required>
-            <!--<div *ngIf="validate.address.invalid && validate.address.touched" class="alert alert-danger">
-                <div *ngIf="validate.address.invalid">Address is required</div>
-              </div>-->
+          <div class="form-group">
+            <div id="card-element" class="field"></div>
+          </div>        
+            <!--<label>Shipping Address</label>
+            <input type="text" class="form-control" id="address" formControlName="shipping_address" placeholder="Address" [ngClass]="{ 'is-invalid': submitted &amp;&amp; checkoutForm.controls.shipping_address.touched }" required>
+              <div *ngIf="validate.shipping_address.invalid && validate.shipping_address.touched" class="alert alert-danger">
+                <div *ngIf="validate.shipping_address.invalid">Address is required</div>
+              </div>
             <div class="invalid-feedback">
               Please enter your shipping address.
-            </div>
+            </div>-->
           </div>          
           <hr class="mb-4">
           <h4 class="mb-3">Payment</h4>
-          <img class="mr-2" width="45px"
+          <img class="mr-2" width="45px" 
             src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
             alt="Visa">
-          <img class="mr-2" width="45px"
+          <img class="mr-2" width="45px" 
             src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
             alt="Mastercard">
-          <img class="mr-2" width="45px"
+          <img class="mr-2" width="45px" 
             src="https://mdbootstrap.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
-            alt="PayPal acceptance mark">          
+            alt="PayPal acceptance mark">  
+         
           <hr class="mb-4">
+          
           <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="Submit_Checkout()">Continue to checkout</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="buy()">Buy</button>
         </form>
       </div>
-
     </div>
-
 </div>
+
+
+
 
 
 

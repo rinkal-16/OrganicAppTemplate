@@ -78,22 +78,14 @@
 
 </div>-->
 
-
-
-
-
-
  <div class="product-info-container">
    <div class="container-fluid" style="margin: 2%;">
-     <div class="row align-content-center" *ngFor="let product of product_data">
-       <!-- Product picture -->
+     <div class="row align-content-center" *ngFor="let product of product_data">       
           <div class="col-sm-5">
                <div class="thumbnail">
                     <img src="{{product.image_url}}" class="img-responsive" alt="">           
                </div>         
           </div>
-       
-          <!-- Product Description -->
           <div class="col-sm-7 desc">        
                <div>
                     <div class="container col-xs-12">
@@ -102,8 +94,7 @@
                                    <div class="col-sm-12">
                                         <h3>{{product.p_name}}</h3>
                                         <p>{{product.description}}</p>                 
-                                        <br>          
-                                                                                      
+                                        <br>                                                  
                                         <div>
                                              <h5>Price: {{product.price}}</h5> 
                                         </div>
@@ -129,8 +120,7 @@
                                                             <textarea #review class="form-control" placeholder="write a comment..." rows="3"></textarea>
                                                             <button class="btn btn-outline-info" (click)="PostReview()">Submit</button>
                                                        </div>                    
-                                                       <div class="panel-body" itemprop="reviewBody"  *ngFor="let review of review_data">
-                                                            
+                                                       <div class="panel-body" itemprop="reviewBody"  *ngFor="let review of review_data">                                                           
                                                             <span>{{review.text}}</span>              
                                                             <span class="pull-right">
                                                                  <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
@@ -156,7 +146,6 @@
                </div>
           </div>
       </div>
-     </div>  
-       
-  </div>     
+     </div>         
+</div>     
 
