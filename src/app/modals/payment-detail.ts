@@ -5,12 +5,13 @@ export interface Addressdetail {
      state: string;
      country: string;
      postal_code: number; 
-     ph_num: number;    
+     phone: number;    
 }
 
 export interface Carddetail {     
     card_holder: string;
     card_number: string;
-    cvv: number;
-    expiry_date: Date;
+    cvc: number;
+    exp_month: Date;
+    
 }

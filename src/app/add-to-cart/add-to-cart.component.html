@@ -1,6 +1,7 @@
 <div class="cart-container">
   <section>
-    <div class="row d-flex" >
+    
+    <div class="row d-flex" *ngIf="bucketCart">
       <div class="col-sm-7" *ngFor="let cart of cart_data">        
             <div class="row">
               <div class="col-sm">
@@ -31,7 +32,7 @@
                 </div>
               </div>
             </div>         
-      </div>       
+      </div>              
       <div class="col-sm-5">
         <div class="mb-3">
           <div class="pt-4">
@@ -55,8 +56,16 @@
         </div>
       </div>  
     </div>
+
+    <div class="justify-content-center" *ngIf="emptyCart">
+      <h1>Cart is empty</h1>
+      <button class="btn btn-primary align-items-center" (click)="add_product()">Add product</button>
+    </div>
+    
   </section>
 </div>
+
+
 
 
 

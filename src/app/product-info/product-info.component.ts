@@ -22,7 +22,17 @@ export class ProductInfoComponent implements OnInit {
   @ViewChild('qty', { static:false }) qty:ElementRef;
   valueQuan: number;
 
-  constructor(private _productService: ProductService, private _cartService: CartService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  counter: number;
+  content: any[] = new Array();
+  httpdata = [];
+  displaydata(data) {
+    this.httpdata = data;
+  }
+
+  constructor(private _productService: ProductService, private _cartService: CartService, private _router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute) {
+    this.counter = 0;
+    this.getData();
+  }
 
   ngOnInit(): void {
     this.productInfoForm = this.formBuilder.group({
@@ -78,6 +88,16 @@ export class ProductInfoComponent implements OnInit {
       }
     });
     this.productInfoForm.reset();
+  }
+
+  getData() {
+    console.log(this.counter + this.httpdata.length);
+    for (let i=this.counter+1; i<this.httpdata.length; i++) {
+      this.content.push(this.httpdata[i]);
+      if(i%15 == 0) break;
+    }
+    this.counter+=5; 
+    
   }
 }
  

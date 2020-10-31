@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StripeService, Elements, Element as StripeElement, ElementsOptions } from 'ngx-stripe';
 import { CheckoutService } from '../services/checkout.service';
+import { PaymentDetailService } from '../services/payment-detail.service';
 
 @Component({
   selector: 'app-payment-details',
@@ -17,6 +19,7 @@ export class PaymentDetailsComponent implements OnInit {
   addr_detail: boolean = false;
   card_detail: boolean = false;
 
+  orderId: any;
  
   elements: Elements;
   card: StripeElement;
@@ -28,7 +31,7 @@ export class PaymentDetailsComponent implements OnInit {
     locale: 'en'
   }
 
-  constructor(private formBuilder: FormBuilder, private _stripeService: StripeService, private _checkoutService: CheckoutService) { }
+  constructor(private formBuilder: FormBuilder, private _stripeService: StripeService, private _checkoutService: CheckoutService, private _paymentService: PaymentDetailService, private route: ActivatedRoute, private _router: Router) { }
 
   ngOnInit(): void {
     this.addressDetailForm = this.formBuilder.group({
@@ -38,18 +41,21 @@ export class PaymentDetailsComponent implements OnInit {
       state: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
       postal_code: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required)
+      phone: new FormControl('', Validators.required) // Validators.pattern("^[0-9]*$")
     });
 
     this.cardDetailForm = this.formBuilder.group({
       card_holder: new FormControl('', Validators.required),
       card_number: new FormControl('', Validators.required),
-      cvv: new FormControl('', Validators.required),
-      expiry_date: new FormControl('', Validators.required)
+      cvc: new FormControl('', Validators.required),
+      exp_month: new FormControl('', Validators.required),
+      
     });
 
     this.addr_detail = true;
     this.card_detail = false;
+
+    this.orderId = this.route.snapshot.queryParams['order_id'];
 
   }
 
@@ -57,15 +63,39 @@ export class PaymentDetailsComponent implements OnInit {
     return this.addressDetailForm.controls;
   }
 
-  Submit_adress() {
+  Submit_address() {
     this.addr_detail = false;
-    this.card_detail = true;
-    console.log("submit");  
+    this.card_detail = true;  
+    this._paymentService.address_detail(this.addressDetailForm.value).subscribe((data) => {
+      console.log(data);
+      if(data['error']) {
+        alert(data['error']);
+      } else {
+        alert(data['meta']['success']);
+      }  
+    });   
   }
 
   Submit_Card() {
-    console.log("submit"); 
+    this._paymentService.card_detail(this.cardDetailForm.value, this.orderId).subscribe((data) => {
+      console.log(data);
+      if(data['error']) {
+        alert(data['error']);
+      } else {
+        alert(data['meta']['success']);
+        this._router.navigate( ['checkout'], { queryParams: { order_id : this.orderId } });
+      } 
+    });    
   }
+
+    // 378282246310005
+    // 371449635398431
+    // 5555555555554444
+    // 5105105105105100
+    // 4111111111111111	
+    // 5610591081018250
+    // 4012888888881881
+
 
   
 

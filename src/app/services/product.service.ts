@@ -13,7 +13,6 @@ import { AppService } from '../app.service';
 export class ProductService {
 
   apiURL = environment.apiURL;
-  rconcatString: string;
   pricebool: Boolean;
   token: any;
 
@@ -79,7 +78,7 @@ export class ProductService {
   }
 
   public postReview(product_id, review) {    
-    var form = new FormData();
+    let form = new FormData();
     form.append('review', review);
     this.token = this._appService.getToken();    
     return this.http.post(this.apiURL+`/review/${product_id}/`, form, {
