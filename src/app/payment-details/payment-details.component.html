@@ -8,7 +8,7 @@
             <h5>Shipping Address</h5>
           </div>
           <div class="card-body">              
-            <form class="form-login" [formGroup]="addressDetailForm"> 
+            <form class="form-login" [formGroup]="addressDetailForm" (ngSubmit)="Submit_address()"> 
 
               <label>Address line 1</label>               
               <div class="form-label-group">                
@@ -66,7 +66,7 @@
 
               <label>Phone number</label>               
               <div class="form-label-group">                
-                  <input type="text" id="inputPhone" minLength="7" maxLength="10" class="form-control" placeholder="Phone number" formControlName="phone" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.phone.touched }" >               
+                  <input type="phone" id="inputPhone" minLength="10" maxLength="10" class="form-control" placeholder="Phone number" formControlName="phone" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; addressDetailForm.controls.phone.touched }" >               
                   <div *ngIf="validate.phone.invalid && validate.phone.touched" class="alert alert-danger">
                         <div *ngIf="validate.phone.invalid">Phone number is required.</div>                                                                        
                   </div>   
@@ -74,7 +74,7 @@
                 <label for="inputPhone" style="padding-left: 10px;">Phone number</label>                              
               </div>
 
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="Submit_address()" type="submit" [disabled]="!addressDetailForm.valid">Submit Address</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [disabled]="!addressDetailForm.valid">Submit Address</button>
 
             </form>
           </div>   

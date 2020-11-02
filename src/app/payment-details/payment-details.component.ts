@@ -41,21 +41,31 @@ export class PaymentDetailsComponent implements OnInit {
       state: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
       postal_code: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required) // Validators.pattern("^[0-9]*$")
+      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
     });
 
     this.cardDetailForm = this.formBuilder.group({
       card_holder: new FormControl('', Validators.required),
       card_number: new FormControl('', Validators.required),
       cvc: new FormControl('', Validators.required),
-      exp_month: new FormControl('', Validators.required),
-      
+      exp_month: new FormControl('', Validators.required)
+            
     });
 
     this.addr_detail = true;
     this.card_detail = false;
 
     this.orderId = this.route.snapshot.queryParams['order_id'];
+
+    if(this.route.snapshot.queryParams['addressFlag'] && !this.route.snapshot.queryParams['cardFlag']) {
+      this.addr_detail = false;
+      this.card_detail = true;
+    } else if(!this.route.snapshot.queryParams['addressFlag'] && this.route.snapshot.queryParams['cardFlag']) {
+      this.addr_detail = true;
+      this.card_detail = false;
+    } else {
+      this.addr_detail = true;
+    }
 
   }
 
@@ -64,6 +74,7 @@ export class PaymentDetailsComponent implements OnInit {
   }
 
   Submit_address() {
+    console.log(this.addressDetailForm.value);
     this.addr_detail = false;
     this.card_detail = true;  
     this._paymentService.address_detail(this.addressDetailForm.value).subscribe((data) => {
@@ -72,6 +83,7 @@ export class PaymentDetailsComponent implements OnInit {
         alert(data['error']);
       } else {
         alert(data['meta']['success']);
+        console.log(data);
       }  
     });   
   }

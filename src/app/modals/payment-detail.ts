@@ -8,10 +8,3 @@ export interface Addressdetail {
      phone: number;    
 }
 
-export interface Carddetail {     
-    card_holder: string;
-    card_number: string;
-    cvc: number;
-    exp_month: Date;
-    
-}

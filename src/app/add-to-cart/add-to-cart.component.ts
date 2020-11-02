@@ -84,10 +84,6 @@ export class AddToCartComponent implements OnInit {
       console.log(data);
       if(data['error']) {
         alert(data['error']);
-         
-        if(data['status_code'] == 404) {
-          this._router.navigate( ['payment-details'], { queryParams: { order_id : this.orderId } });
-        }
       } else {
         this.buyFromCart = data['data']['buy_from_cart'];
         this.orderId = data['data']['order_id'];
@@ -95,12 +91,15 @@ export class AddToCartComponent implements OnInit {
         this.cardAvailability = data['data']['card_available'];   
         console.log(this.addrAvailability);
         console.log( this.cardAvailability);
-        if(this.addrAvailability == true && this.cardAvailability == true) {
-          this._router.navigate( ['checkout'], { queryParams: { order_id : this.orderId } });
-        } else if (this.addrAvailability == false) {
-          this._router.navigate( ['payment-details'], { queryParams: { order_id : this.orderId } });
-        } else if (this.addrAvailability == true && this.cardAvailability == false) {
-          this._router.navigate( ['payment-details'], { queryParams: { order_id : this.orderId } });
+        if(data['data']['address_available'] && data['data']['card_available']) {
+          //this._router.navigate(['checkout']);
+          if(this.buyFromCart) {
+            this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart' : true}})
+          } else {
+            this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart' : false}})
+          }
+        } else {
+          this._router.navigate( ['payment-details'], { queryParams: { order_id : this.orderId, 'addressFlag' : data['data']['address_available'], 'cardFlag' : data['data']['card_available'] } });
         }
         //this._router.navigate( ['payment-details'], { queryParams: { order_id : this.orderId } });
       }      

@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AppService } from '../app.service';
-import { Addressdetail, Carddetail } from '../modals/payment-detail';
+import { Addressdetail  } from '../modals/payment-detail';
+import { Carddetail } from '../modals/card-detail';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -39,9 +41,12 @@ export class PaymentDetailService {
     form.append('card_exp_month', date[1]);
     form.append('card_exp_year', date[0]);
     form.append('order_id', orderId);
+    console.log(formData);
+    console.log(orderId);
     this.token = this._appService.getToken();
     return this.http.post<Carddetail>(this.apiURL+`/card_detail/`,form,
     { headers: { Authorization: this.token } });
+   
   }
 
 

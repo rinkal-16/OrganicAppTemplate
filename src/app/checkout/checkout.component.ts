@@ -21,6 +21,8 @@ export class CheckoutComponent implements OnInit {
   orderId: number;  
   checkBoolean: string;
   total_pay: number;
+  stripeToken: string;
+  getProductFromCart: any;
 
   elements: Elements;
   card: StripeElement;
@@ -33,33 +35,29 @@ export class CheckoutComponent implements OnInit {
   }
 
   public stripeForm = this.formBuilder.group({
-    name: new FormControl('', [Validators.required]),
+    //name: new FormControl('', [Validators.required]),
     currency: new FormControl('', [Validators.required]),
-    addr_line1: new FormControl('', [Validators.required]),
-    addr_line2: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required]),
-    state: new FormControl('', [Validators.required]),
-    postal_code: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    amount: new FormControl('', [Validators.required])
+    // addr_line1: new FormControl('', [Validators.required]),
+    // addr_line2: new FormControl('', [Validators.required]),
+    // city: new FormControl('', [Validators.required]),
+    // state: new FormControl('', [Validators.required]),
+    // postal_code: new FormControl('', [Validators.required]),
+    // phone: new FormControl('', [Validators.required]),
+    // country: new FormControl('', [Validators.required]),
+    //amount: new FormControl('', [Validators.required])
   });
   
   
   constructor(private formBuilder: FormBuilder, private _cartService: CartService, private route: ActivatedRoute, private _checkoutService: CheckoutService, private _productService: ProductService, private _stripeService: StripeService ) { }
 
   ngOnInit() {
-    this.checkoutForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      amount: new FormControl('', [Validators.required]),    
-      shipping_address: new FormControl('', Validators.required),
-      order_id: new FormControl('', Validators.required)
+    this.checkoutForm = this.formBuilder.group({      
+      order_id: new FormControl('', Validators.required),
+      currency: new FormControl('', Validators.required),
+      token: new FormControl('', Validators.required)
     }); 
 
-    // this.stripeForm = this.formBuilder.group({
-    //   name: new FormControl('', Validators.required),
-    //   amount: new FormControl('', Validators.required),
-    // })
+    
 
     this.checkBoolean = this.route.snapshot.queryParams['buy_from_cart'];  	    
     if(this.checkBoolean == 'true') {
@@ -71,9 +69,16 @@ export class CheckoutComponent implements OnInit {
             this.orderId = data['data']['order_id'];
             this.order_buy_product = data['data']['buy_products'];
             this.total_pay = data['data']['total_pay']
+            this.stripeToken = data['data']['token'];
+            this._checkoutService.get_checkout(this.orderId).subscribe((data) => {
+              console.log(data); 
+              console.log(this.orderId);
+              this.getProductFromCart = data['data']['products'];      
+            }); 
           }  		    
   	    });
   	} else {
+      console.log('false');
       var form = new FormData();
       form.append('quantity', this.route.snapshot.queryParams['quantity']);
       form.append('product_id', this.route.snapshot.queryParams['id']);
@@ -84,31 +89,37 @@ export class CheckoutComponent implements OnInit {
               this.order_buy_product = data['data']['buy_product'];
               this.orderId = data['data']['order_id'];
               this.total_pay = data['data']['total_pay'];
+              this.stripeToken = data['data']['token'];
+              this._checkoutService.get_checkout(this.orderId).subscribe((data) => {
+                console.log(data);
+                console.log(this.orderId);  
+                this.getProductFromCart = data['data']['products'];     
+              }); 
             } 	      	
       	});
     }
     
 
-    this._stripeService.elements(this.elementsOptions)
-    .subscribe(elements => {
-      this.elements = elements;
-      if (!this.card) {
-        this.card = this.elements.create('card', {
-          iconStyle: 'solid',
-          style: {
-            base: {
-              iconColor: '#666EE8',
-              color: '#31325F',
-              lineHeight: '40px',
-              fontWeight: 300,
-              fontFamily: 'Helvetica',
-              fontSize: '18px',
-            }
-          }
-        });
-        this.card.mount('#card-element');
-      }
-  });
+  //   this._stripeService.elements(this.elementsOptions)
+  //   .subscribe(elements => {
+  //     this.elements = elements;
+  //     if (!this.card) {
+  //       this.card = this.elements.create('card', {
+  //         iconStyle: 'solid',
+  //         style: {
+  //           base: {
+  //             iconColor: '#666EE8',
+  //             color: '#31325F',
+  //             lineHeight: '40px',
+  //             fontWeight: 300,
+  //             fontFamily: 'Helvetica',
+  //             fontSize: '18px',
+  //           }
+  //         }
+  //       });
+  //       this.card.mount('#card-element');
+  //     }
+  // });
 }
 
   get validate() {
@@ -117,6 +128,8 @@ export class CheckoutComponent implements OnInit {
 
   Submit_Checkout() { 
     this.checkoutForm.controls['order_id'].setValue(this.orderId);
+    this.checkoutForm.controls['token'].setValue(this.stripeToken);
+    console.log(this.checkoutForm.value);
     this._checkoutService.post_checkout(this.checkoutForm.value).subscribe((data) => { 
       console.log(data);
       if(data['error']) {
@@ -127,26 +140,26 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  buy() {
-    this.submitted = true;
-    this.loading = true;
-    this.stripeData = this.stripeForm.value
-    this._stripeService.createToken(this.card,{})
-    .subscribe(result => {
-      if(result.token) {
-        this.stripeData['token']=result.token
-        console.log(this.stripeData);
-        this._checkoutService.payment_gateway(this.stripeForm.value)
-        .subscribe((res) => {
-          console.log(res);
-        });
-      }
-      else {
-        this.paymentStatus = result.error.message;
-        console.log(this.paymentStatus);
-      }
-    });
-  }
+  // buy() {
+  //   this.submitted = true;
+  //   this.loading = true;
+  //   this.stripeData = this.stripeForm.value
+  //   this._stripeService.createToken(this.card,{})
+  //   .subscribe(result => {
+  //     if(result.token) {
+  //       this.stripeData['token']=result.token
+  //       console.log(this.stripeData);
+  //       this._checkoutService.payment_gateway(this.stripeForm.value)
+  //       .subscribe((res) => {
+  //         console.log(res);
+  //       });
+  //     }
+  //     else {
+  //       this.paymentStatus = result.error.message;
+  //       console.log(this.paymentStatus);
+  //     }
+  //   });
+  // }
 
 
 }
