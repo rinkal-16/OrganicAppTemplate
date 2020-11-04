@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AddToCartComponent implements OnInit {
 
-  cart_data : any;
+  cart_data: any;
   addToCartForm: FormGroup;
   buyFromCart: boolean;
   total: any;
@@ -27,85 +27,90 @@ export class AddToCartComponent implements OnInit {
     this.addToCartForm = this.formBuilder.group({
       product_id: new FormControl('', Validators.required),
       quantity: new FormControl('', Validators.required)
-    }); 
+    });
 
     // this.bucketCart = true;
     // this.emptyCart = false;
-    
-    if(JSON.stringify(this.route.snapshot.params) == '{}') {
+
+    if (JSON.stringify(this.route.snapshot.params) == '{}') {
       this._cartService.get_cart().subscribe((data) => {
-        if(data['status_code'] == 404) {
-          this.emptyCart = true;        
+        console.log(data);
+        if (data['status_code'] == 404) {
+          this.emptyCart = true;
+          
         }
-        if(data['error']) {
+        if (data['error']) {
           alert(data['error']);
         } else {
           this.bucketCart = true;
+          
           this.cart_data = data['data']['cart_product'];
           this.total = data['data']['total_price'];
-        }       
+        }
       });
-    } else {      
+    } else {
       this.addToCartForm.controls['product_id'].setValue(this.route.snapshot.params['product_id']);
-      this.addToCartForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);     
+      this.addToCartForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);
       this._cartService.post_cart(this.addToCartForm.value).subscribe((data) => {
-        if(data['status_code'] == 404) {
-          this.emptyCart = true;        
+        if (data['status_code'] == 404) {
+          this.emptyCart = true;
+          
         }
-        if(data['error']) {
+        if (data['error']) {
           alert(data['error']);
         } else {
           this.bucketCart = true;
+         
           this.cart_data = data['data']['cart_product'];
           this.total = data['data']['total_price'];
-        }        
+        }
       });
-    }    
+    }
   }
 
   Remove(item) {
     this._cartService.delete_cart(item).subscribe((data) => {
-      if(data['status_code'] == 404) {
-        this.emptyCart = true;        
+      if (data['status_code'] == 404) {
+        this.emptyCart = true;
       }
-      if(data['error']) {
+      if (data['error']) {
         alert(data['error']);
         this.bucketCart = false;
         this.emptyCart = true;
       } else {
         this.bucketCart = true;
         this.cart_data = data['data']['cart_product'];
-      }      
-    });    
+      }
+    });
   }
 
   checkout() {
     this._cartService.buy_from_cart().subscribe((data) => {
       console.log(data);
-      if(data['error']) {
-        alert(data['error']);
-      } else {
+      if (data['error']) {
+        alert(data['error']);        
+      } 
+      else {
         this.buyFromCart = data['data']['buy_from_cart'];
         this.orderId = data['data']['order_id'];
         this.addrAvailability = data['data']['address_available'];
-        this.cardAvailability = data['data']['card_available'];   
+        this.cardAvailability = data['data']['card_available'];
         console.log(this.addrAvailability);
-        console.log( this.cardAvailability);
-        if(data['data']['address_available'] && data['data']['card_available']) {
+        console.log(this.cardAvailability);
+        if (data['data']['address_available'] && data['data']['card_available']) {
           //this._router.navigate(['checkout']);
-          if(this.buyFromCart) {
-            this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart' : true}})
+          if (this.buyFromCart) {
+            this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart': true } })
           } else {
-            this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart' : false}})
+            this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart': false } })
           }
         } else {
-          this._router.navigate( ['payment-details'], { queryParams: { order_id : this.orderId, 'addressFlag' : data['data']['address_available'], 'cardFlag' : data['data']['card_available'] } });
+          this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'] } });
         }
-        //this._router.navigate( ['payment-details'], { queryParams: { order_id : this.orderId } });
-      }      
+      }
     });
-    
-    
+
+
     // if(this.buyFromCart = true) {
     //   this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: true } });
     // } else {

@@ -1,50 +1,84 @@
-  <div class="container">
-
+<div class="container">
     <div class="py-5 text-center">  
-      <h2>Pay here</h2>  
+        <h2>Pay here</h2>  
     </div>
-
     <div class="row">
-
-      <div class="col-md-4 order-md-2 mb-4" >
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-muted">Order Summary </span>
-          <span class="badge badge-secondary badge-pill"> </span>
-        </h4>
-        <ul class="list-group mb-3" >
-          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let order of getProductFromCart">
-            <div>
-              <h6 class="my-0">{{order.p_name}}</h6>
-              <small class="text-muted">{{order.quantity}}</small>
-            </div>
-            <span class="text-muted">{{order.discount_price}}</span>
-          </li>            
-          <li class="list-group-item d-flex justify-content-between">           
-              <span>Total (USD)</span>
-              <strong>{{total_pay}}</strong>            
-          </li>          
-        </ul>        
-      </div>
-
-      <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation"  [formGroup]="checkoutForm" >
-          <div class="mb-3" >           
-            <div class="form-group">
-              <label>Currency</label>
-              <input type="text" class="form-control" formControlName="currency" required="">
-              <span class="text-danger" *ngIf="checkoutForm.get('currency').hasError('required') && submitted">Required</span>
-            </div>
-            <hr class="mb-4">               
-            <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="Submit_Checkout()">Continue to checkout</button>
-          </div>
-        </form>
-      </div>
-
+        <div class="col-md-6">
+            <h4 class="d-flex justify-content-between align-items-center mb-4">
+                <span class="text-muted">Address Summary </span>
+                <span class="badge badge-secondary badge-pill"> </span>
+            </h4>
+            <ul class="list-group mb-3" >
+                <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let addr of addrdetail">
+                    <div>
+                        <h6 class="my-0">{{addr.addr_line1}}</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted"></span>
+                </li>            
+                <li class="list-group-item d-flex justify-content-between">           
+                    <span>Total (USD)</span>
+                    <strong></strong>            
+                </li>          
+            </ul>
+            <button class="btn btn-success btn-lg float-right" (click)="change_Address()" type="submit">Change</button>
+        </div>
+        <div class="col-md-6">
+            <h4 class="d-flex justify-content-between align-items-center mb-4">
+                <span class="text-muted">Card detail Summary </span>
+                <span class="badge badge-secondary badge-pill"> </span>
+            </h4>
+            <ul class="list-group mb-3" >
+                <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let card of carddetail">
+                    <div>
+                        <h6 class="my-0">{{card.card_brand}}</h6>                       
+                    </div>
+                    <span class="text-muted">{{card.last4}}</span>
+                </li>            
+                <li class="list-group-item d-flex justify-content-between">           
+                    <span>Total (USD)</span>
+                    <strong></strong>            
+                </li>          
+            </ul>
+            <button class="btn btn-success btn-lg float-right" (click)="change_Card()" type="submit">Change</button>
+        </div>             
+    </div> 
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4" >
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Order Summary </span>
+                <span class="badge badge-secondary badge-pill"> </span>
+            </h4>
+            <ul class="list-group mb-3" >
+                <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let order of getProductFromCart">
+                    <div>
+                        <h6 class="my-0">{{order.p_name}}</h6>
+                        <small class="text-muted">{{order.quantity}}</small>
+                    </div>
+                    <span class="text-muted">{{order.discount_price}}</span>
+                </li>            
+                <li class="list-group-item d-flex justify-content-between">           
+                      <span>Total (USD)</span>
+                      <strong>{{total_pay}}</strong>            
+                </li>          
+            </ul>        
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Billing address</h4>
+            <form class="needs-validation"  [formGroup]="checkoutForm" >
+                <div class="mb-3" >           
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <input type="text" class="form-control" formControlName="currency" required="">
+                        <span class="text-danger" *ngIf="checkoutForm.get('currency').hasError('required') && submitted">Required</span>
+                    </div>
+                    <hr class="mb-4">               
+                    <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="Submit_Checkout()">Continue to checkout</button>
+                </div>
+            </form>
+        </div>
     </div>
-
 </div>
-
 
 
 

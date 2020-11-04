@@ -17,6 +17,12 @@ export class PaymentDetailService {
   apiURL = environment.apiURL;
   token: any;
 
+  get_address_detail(): Observable<Addressdetail> {
+    this.token = this._appService.getToken(); 
+    return this.http.get<Addressdetail>(this.apiURL+`/address/`,
+    { headers: { Authorization: this.token } }); 
+  }
+
   address_detail(formData: any): Observable<Addressdetail> {  
     console.log(formData);      
     let form = new FormData();
@@ -27,9 +33,16 @@ export class PaymentDetailService {
     form.append('country', formData.country);
     form.append('postal_code', formData.postal_code);
     form.append('phone', formData.phone);
+    form.append('default_addr', formData.defaultAddress);
     this.token = this._appService.getToken();
     return this.http.post<Addressdetail>(this.apiURL+`/address/`,form, 
     { headers: { Authorization: this.token } });  
+  }
+
+  get_card_detail(): Observable<Carddetail> {
+    this.token = this._appService.getToken(); 
+    return this.http.get<Carddetail>(this.apiURL+`/card_detail/?`,
+    { headers: { Authorization: this.token } }); 
   }
 
   card_detail(formData: any, orderId: string): Observable<Carddetail> {
@@ -40,6 +53,7 @@ export class PaymentDetailService {
     form.append('card_cvc', formData.cvc);
     form.append('card_exp_month', date[1]);
     form.append('card_exp_year', date[0]);
+    form.append('default_card', formData.defaultCard);
     form.append('order_id', orderId);
     console.log(formData);
     console.log(orderId);

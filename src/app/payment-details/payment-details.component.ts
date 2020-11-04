@@ -37,19 +37,20 @@ export class PaymentDetailsComponent implements OnInit {
     this.addressDetailForm = this.formBuilder.group({
       addr_line1: new FormControl('', Validators.required),
       addr_line2: new FormControl('', Validators.required),
-      city: new FormControl('', Validators.required),
+      city: new FormControl('', [Validators.required, Validators.minLength(3)]),
       state: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
       postal_code: new FormControl('', Validators.required),
-      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
+      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      defaultAddress: new FormControl('', Validators.required)
     });
 
     this.cardDetailForm = this.formBuilder.group({
       card_holder: new FormControl('', Validators.required),
       card_number: new FormControl('', Validators.required),
       cvc: new FormControl('', Validators.required),
-      exp_month: new FormControl('', Validators.required)
-            
+      exp_month: new FormControl('', Validators.required),
+      defaultCard: new FormControl('', Validators.required)      
     });
 
     this.addr_detail = true;
@@ -71,6 +72,12 @@ export class PaymentDetailsComponent implements OnInit {
 
   get validate() {
     return this.addressDetailForm.controls;
+  }
+
+  onItemChange(value: any) {
+    console.log(value);
+    this.addressDetailForm.controls['defaultAddress'].setValue(value);
+    this.cardDetailForm.controls['defaultCard'].setValue(value);
   }
 
   Submit_address() {

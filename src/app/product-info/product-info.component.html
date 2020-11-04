@@ -78,10 +78,10 @@
 
 </div>-->
 
- <div class="product-info-container">
-   <div class="container-fluid" style="margin: 2%;">
-     <div class="row align-content-center" *ngFor="let product of product_data">       
-          <div class="col-sm-5">
+<div class="product-info-container">
+    <div class="container-fluid" style="margin: 2%;">
+        <div class="row align-content-center" *ngFor="let product of product_data">       
+            <div class="col-sm-5">
                <div class="thumbnail">
                     <img src="{{product.image_url}}" class="img-responsive" alt="">           
                </div>         
@@ -120,8 +120,7 @@
                                                             <textarea #review class="form-control" placeholder="write a comment..." rows="3"></textarea>
                                                             <button class="btn btn-outline-info" (click)="PostReview()">Submit</button>
                                                        </div>                                                                         
-                                                       <div class="panel-body" itemprop="reviewBody"  *ngFor="let review of review_data">  
-
+                                                       <div class="panel-body" itemprop="reviewBody" ng-repeat="let review in review_data" ng-show="$index < loadIndex">  
                                                             <span>{{review.text}}</span>              
                                                             <span class="pull-right">
                                                                  <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
@@ -137,9 +136,8 @@
                                                             </span>
                                                             <p>- {{review.first_name}}</p>
                                                        </div>   
-
-                                                       <button (click)="getData()">Load more</button>   
-                                                                                                   
+                                                       
+                                                                                                                               
                                                   </div>
                                              </div>
                                         </div>             

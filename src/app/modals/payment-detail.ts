@@ -5,6 +5,7 @@ export interface Addressdetail {
      state: string;
      country: string;
      postal_code: number; 
-     phone: number;    
+     phone: number; 
+     defaultAddress: boolean;        
 }
 
