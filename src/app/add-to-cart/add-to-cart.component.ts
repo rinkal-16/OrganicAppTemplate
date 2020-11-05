@@ -45,6 +45,7 @@ export class AddToCartComponent implements OnInit {
           this.bucketCart = true;
           
           this.cart_data = data['data']['cart_product'];
+          console.log(this.cart_data);
           this.total = data['data']['total_price'];
         }
       });
@@ -92,21 +93,31 @@ export class AddToCartComponent implements OnInit {
       } 
       else {
         this.buyFromCart = data['data']['buy_from_cart'];
+        console.log(this.buyFromCart);
         this.orderId = data['data']['order_id'];
         this.addrAvailability = data['data']['address_available'];
         this.cardAvailability = data['data']['card_available'];
         console.log(this.addrAvailability);
         console.log(this.cardAvailability);
         if (data['data']['address_available'] && data['data']['card_available']) {
-          //this._router.navigate(['checkout']);
-          if (this.buyFromCart) {
-            this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart': true } })
+          // if (this.buyFromCart) {
+          //   this._router.navigate(['checkout'], { queryParams: {  } })
+          // } else {
+          //   this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart': false } })
+          // }
+          if(this.buyFromCart) {
+            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': true, xyz: this.cart_data } });
           } else {
-            this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart': false } })
+            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': false,  xyz: this.cart_data } });
           }
-        } else {
-          this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'] } });
+        } else if(data['data']['address_available'] && !data['data']['card_available']) {
+          if(this.buyFromCart) {
+            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': true,  xyz: this.cart_data } });
+          } else {
+            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': false,  xyz: this.cart_data } });
+          }
         }
+        
       }
     });
 

@@ -27,8 +27,8 @@ export class CheckoutService {
   }
 
   public get_checkout(id: number): Observable<Checkout> {
-    console.log(id);
-    this.token = this._appService.getToken(); 
+    console.log(id); 
+    this.token = this._appService.getToken();
     return this.http.get<Checkout>(this.apiURL+`/checkout/?order_id=${id}`,
     { headers: { Authorization: this.token } }); 
   }

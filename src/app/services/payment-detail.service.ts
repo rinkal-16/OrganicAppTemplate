@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { AppService } from '../app.service';
 import { Addressdetail  } from '../modals/payment-detail';
 import { Carddetail } from '../modals/card-detail';
-
+import { Cvv } from '../modals/cvv';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -41,7 +41,7 @@ export class PaymentDetailService {
 
   get_card_detail(): Observable<Carddetail> {
     this.token = this._appService.getToken(); 
-    return this.http.get<Carddetail>(this.apiURL+`/card_detail/?`,
+    return this.http.get<Carddetail>(this.apiURL+`/card_detail/`,
     { headers: { Authorization: this.token } }); 
   }
 
@@ -61,6 +61,18 @@ export class PaymentDetailService {
     return this.http.post<Carddetail>(this.apiURL+`/card_detail/`,form,
     { headers: { Authorization: this.token } });
    
+  }
+
+  verify_cvv(formData: any): Observable<Cvv> {
+    let form = new FormData();
+    form.append('cvc', formData.cvc);
+    form.append('last4', formData.last4digit);
+    form.append('card_id', formData.card_id);
+    form.append('order_id', formData.order_id);
+    this.token = this._appService.getToken();
+    
+    return this.http.post<Cvv>(this.apiURL+`/cvv_verification/`,form,
+    { headers: { Authorization: this.token } });
   }
 
 

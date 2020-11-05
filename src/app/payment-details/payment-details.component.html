@@ -1,5 +1,83 @@
-<div class="payment-details-container">     
+
+
+
+<div class="payment-details-container"> 
     <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div *ngIf="addr_detail">
+                <h4 class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-muted">Address Summary </span>
+                    <span class="badge badge-secondary badge-pill"> </span>
+                </h4>
+                <ul class="list-group mb-3" >
+                    <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let addr of addrdetail">
+                        <div>
+                            <span><b>Address line 1 :</b> {{addr.addr_line1}}</span><br>
+                            <span><b>Address line 2 :</b> {{addr.addr_line2}}</span><br>
+                            <span><b>City :</b> {{addr.city}}</span><br>
+                            <span><b>State :</b> {{addr.state}}</span><br>
+                            <span><b>Country :</b> {{addr.country}}</span><br>
+                            <span><b>Postal code :</b> {{addr.postal_code}}</span><br>
+                            <span><b>Phone :</b> {{addr.phone}}</span>
+                        </div>                    
+                    </li>                                      
+                </ul>  
+            </div> 
+            <div *ngIf="card_detail">
+                <h4 class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-muted">Card Summary </span>
+                    <span class="badge badge-secondary badge-pill"> </span>
+                </h4>
+                <ul class="list-group mb-3" >
+                    <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let card of carddetail">
+                        <div>
+                            <h6><span class="badge badge-secondary">Default</span></h6>
+                            <span><b>Card brand :</b> {{card.card_brand}}</span><br>
+                            <span><b>Card number :</b> XXXXXXXXXXXX{{card.last4}}</span><br><br>  
+                            
+                            <button type="button" (click)="openForm()" class="btn btn-info btn-lg" >Verify cvv</button><br><br>
+
+                            <div *ngIf="verify_form">
+                <div class="card card-login my-5">          
+                    <div class="card-title text-center text-uppercase rounded">
+                      <h5>Verify CVV</h5>
+                    </div>
+                    <div class="card-body">            
+                        <form class="form-login" [formGroup]="cvvVerifyForm">  
+                            
+
+                          <label>Last 4 digit</label>               
+                          <div class="form-label-group">                
+                              <input type="text" id="inputlast4digit" class="form-control" placeholder="Card number" formControlName="last4digit" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cvvVerifyForm.controls.last4digit.touched }" >               
+                              <!--<div *ngIf="validate.card_number.invalid && validate.card_number.touched" class="alert alert-danger">
+                                    <div *ngIf="validate.card_number.invalid">Card number is required</div>
+                                  </div>-->
+                            <label for="inputlast4digit" style="padding-left: 10px;">Card number</label>                              
+                          </div>
+
+                          <label>CVC</label>               
+                          <div class="form-label-group">                
+                              <input type="text" id="inputCvc" class="form-control" placeholder="CVC" formControlName="cvc" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cvvVerifyForm.controls.cvc.touched }" >               
+                              <!--<div *ngIf="validate.cvv.invalid && validate.cvv.touched" class="alert alert-danger">
+                                    <div *ngIf="validate.cvv.invalid">CVV is required</div>
+                                  </div>-->
+                            <label for="inputCvc" style="padding-left: 10px;">CVC</label>                              
+                          </div>
+
+                          <br>
+
+                          <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="verified(card.id)" type="submit">Verify</button>
+
+                        </form>
+                    </div>          
+                </div>
+            </div> 
+
+                        </div>                    
+                    </li>                                      
+                </ul>  
+            </div>         
+        </div>
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div *ngIf="addr_detail">
               <div class="card card-login my-5">          
@@ -88,8 +166,7 @@
                     </form>
                   </div>   
               </div>
-            </div>         
-                  
+            </div>                           
             <div *ngIf="card_detail">
                 <div class="card card-login my-5">          
                     <div class="card-title text-center text-uppercase rounded">
@@ -149,9 +226,9 @@
                 </div>
             </div>                   
         </div>
+        
     </div>  
 </div>
-
 
 
 

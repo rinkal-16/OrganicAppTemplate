@@ -15,10 +15,12 @@ export class PaymentDetailsComponent implements OnInit {
 
   addressDetailForm: FormGroup;
   cardDetailForm: FormGroup;
+  cvvVerifyForm: FormGroup;
 
   addr_detail: boolean = false;
   card_detail: boolean = false;
-
+  verify_form: boolean = false;
+ 
   orderId: any;
  
   elements: Elements;
@@ -30,6 +32,9 @@ export class PaymentDetailsComponent implements OnInit {
   elementsOptions: ElementsOptions = {
     locale: 'en'
   }
+
+  addrdetail: any;
+  carddetail: any;
 
   constructor(private formBuilder: FormBuilder, private _stripeService: StripeService, private _checkoutService: CheckoutService, private _paymentService: PaymentDetailService, private route: ActivatedRoute, private _router: Router) { }
 
@@ -53,21 +58,52 @@ export class PaymentDetailsComponent implements OnInit {
       defaultCard: new FormControl('', Validators.required)      
     });
 
+    this.cvvVerifyForm = this.formBuilder.group({
+      cvc: new FormControl('', Validators.required),
+      last4digit: new FormControl('', Validators.required),
+      card_id: new FormControl('', Validators.required),
+      order_id: new FormControl('', Validators.required)
+    })
+
     this.addr_detail = true;
     this.card_detail = false;
 
     this.orderId = this.route.snapshot.queryParams['order_id'];
 
-    if(this.route.snapshot.queryParams['addressFlag'] && !this.route.snapshot.queryParams['cardFlag']) {
-      this.addr_detail = false;
-      this.card_detail = true;
-    } else if(!this.route.snapshot.queryParams['addressFlag'] && this.route.snapshot.queryParams['cardFlag']) {
-      this.addr_detail = true;
-      this.card_detail = false;
-    } else {
-      this.addr_detail = true;
+    console.log(this.route.snapshot.queryParams);
+    // if(JSON.stringify(this.route.snapshot.queryParams['addressFlag'])) {
+    //   this._paymentService.get_address_detail().subscribe((data) => {
+    //     console.log(data);
+    //     this.addrdetail = data['data']['address'];                 
+    //   })
+    // } else if(JSON.stringify(this.route.snapshot.queryParams['cardFlag'])) {
+    //   this.addr_detail = false;
+    //   this.card_detail = true;
+    //   this._paymentService.get_card_detail().subscribe((data) => {
+    //     console.log(data);
+    //     this.carddetail = data['data']['card'];
+    //   }) 
+
+      
+    // } 
+    if(this.route.snapshot.queryParams) {
+      console.log(this.route.snapshot.queryParams);
+      if(this.route.snapshot.queryParams['addressFlag'] && !this.route.snapshot.queryParams['cardFlag']) {
+        this.addr_detail = false;
+        this.card_detail = true;
+      } else if(!this.route.snapshot.queryParams['addressFlag'] && this.route.snapshot.queryParams['cardFlag']) {
+        this.addr_detail = true;
+        this.card_detail = false;
+      } else if(this.route.snapshot.queryParams['addressFlag'] && this.route.snapshot.queryParams['cardFlag']) {
+        this.addr_detail = false;
+        this.card_detail = true;
+      }
     }
 
+    this._paymentService.get_card_detail().subscribe((data) => {
+          console.log(data);
+          this.carddetail = data['data']['card'];
+        })
   }
 
   get validate() {
@@ -105,6 +141,27 @@ export class PaymentDetailsComponent implements OnInit {
         this._router.navigate( ['checkout'], { queryParams: { order_id : this.orderId } });
       } 
     });    
+  }
+
+  openForm() {
+    this.verify_form = true;
+    console.log('opening....')
+  }
+
+  verified(id) { 
+    console.log(this.cvvVerifyForm.value); 
+    this.cvvVerifyForm.controls['card_id'].setValue(id);
+    //console.log(this.cvvVerifyForm.controls['card_id'].setValue(id));
+    this.cvvVerifyForm.controls['order_id'].setValue(this.route.snapshot.queryParams['order_id']);      
+    this._paymentService.verify_cvv(this.cvvVerifyForm.value).subscribe((data) => {
+      console.log(data);
+      if(data['error']) {
+        alert(data['error']);
+      } else {
+        alert(data['meta']['success']);
+        this._router.navigate( ['checkout'], { queryParams: { order_id : this.orderId } });
+      }
+    })
   }
 
     // 378282246310005

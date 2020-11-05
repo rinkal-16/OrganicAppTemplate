@@ -50,13 +50,18 @@ export class CheckoutComponent implements OnInit {
       token: new FormControl('', Validators.required)
     }); 
 
-    this.checkBoolean = this.route.snapshot.queryParams['buy_from_cart'];  	    
-    if(this.checkBoolean == 'true') {
+    this.orderId = this.route.snapshot.queryParams['order_id'];
+
+
+    this.checkBoolean = this.route.snapshot.queryParams['buy_from_cart'];  
+    console.log(this.checkBoolean);	    
+    if(this.checkBoolean === 'true') {
   		this._cartService.buy_from_cart().subscribe((data) => {
           if(data['error']) {
             alert(data['error']);
           }
           else {
+           
             this.orderId = data['data']['order_id'];
             this.order_buy_product = data['data']['buy_products'];
             this.total_pay = data['data']['total_pay']
@@ -73,10 +78,11 @@ export class CheckoutComponent implements OnInit {
             }); 
           }  		    
   	    });
-  	} else {
+    } else {
       var form = new FormData();
       form.append('quantity', this.route.snapshot.queryParams['quantity']);
       form.append('product_id', this.route.snapshot.queryParams['id']);
+      
   		this._productService.post_buy_product(form).subscribe((data) => {  
         console.log(data);	      
             if(data['error']) {
@@ -88,16 +94,26 @@ export class CheckoutComponent implements OnInit {
               this.stripeToken = data['data']['token'];
               this._checkoutService.get_checkout(this.orderId).subscribe((data) => {
                 console.log(data);
-                console.log(this.orderId);  
-                this.getProductFromCart = data['data']['products'];
-                this.addrdetail = data['data']['address'];  
-                this.carddetail = data['data']['card']; 
-                console.log(this.addrdetail);
-                console.log(this.carddetail);  
+                console.log(this.orderId); 
+                if(data['error']) {
+                  alert(data['error'])
+                } else {
+                  this.getProductFromCart = data['data']['products'];
+                  this.addrdetail = data['data']['address'];  
+                  this.carddetail = data['data']['card']; 
+                  console.log(this.addrdetail);
+                  console.log(this.carddetail);
+                }                  
               }); 
             } 	      	
       	});
     }
+
+    this.checkoutForm.controls['order_id'].setValue(this.orderId);
+    console.log(this.orderId);
+    this._checkoutService.get_checkout(this.orderId).subscribe((data) => {
+      console.log(data);
+    })
 
   }
 
@@ -120,19 +136,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   change_Address() {    
-    this._router.navigate(['payment-details']);
-    this.addr_form = true;
-    this._paymentService.get_address_detail().subscribe((data) => {
-      console.log(data);
-    });
+    this._router.navigate(['payment-details'], { queryParams: { address : true } });  
   }
 
   change_Card() {
-    this._router.navigate(['payment-details']);
-    this.addr_form = false;
-    this._paymentService.get_card_detail().subscribe((data) => {
-      console.log(data);
-    });
+    this._router.navigate(['payment-details'], { queryParams: { card : true } });   
   }
 
 
