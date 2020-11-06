@@ -106,27 +106,16 @@ export class AddToCartComponent implements OnInit {
           //   this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart': false } })
           // }
           if(this.buyFromCart) {
-            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': true, xyz: this.cart_data } });
+            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': 'true' } });
           } else {
-            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': false,  xyz: this.cart_data } });
+            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': false } });
           }
-        } else if(data['data']['address_available'] && !data['data']['card_available']) {
-          if(this.buyFromCart) {
-            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': true,  xyz: this.cart_data } });
-          } else {
-            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': false,  xyz: this.cart_data } });
-          }
+        } else {
+            this._router.navigate(['payment-details'], { queryParams: { 'order_id': this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'] } })
         }
         
       }
     });
-
-
-    // if(this.buyFromCart = true) {
-    //   this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: true } });
-    // } else {
-    //   this._router.navigate( ['checkout'], { queryParams: { buy_from_cart: false } });
-    // }
   }
 
   add_product() {

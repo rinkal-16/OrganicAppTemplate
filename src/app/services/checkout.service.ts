@@ -20,7 +20,9 @@ export class CheckoutService {
     let form = new FormData();
     form.append('order_id', formData.order_id);
     form.append('currency', formData.currency);
-    form.append('token', formData.token);    
+    form.append('token', formData.token);
+    console.log(formData.order_id);
+    
     this.token = this._appService.getToken();   
     return this.http.post<Checkout>(this.apiURL+`/checkout/`,form,
     { headers: { Authorization: this.token } });      

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Products } from '../modals/products';
+import { ProductInfo } from '../modals/productInfo';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -87,10 +88,14 @@ export class ProductService {
     
   } 
 
-  public post_buy_product(formData: any): Observable<Products> {    
-    console.log(formData);        
+  public post_buy_product(formData: any): Observable<ProductInfo> {    
+    
+    let form = new FormData();
+    form.append('product_id', formData.product_id);
+    form.append('quantity', formData.quantity);   
+    
     this.token = this._appService.getToken();
-    return this.http.post<Products>(this.apiURL+`/buy_product/`, formData,
+    return this.http.post<ProductInfo>(this.apiURL+`/buy_product/`, formData,
     { headers: { Authorization: this.token }});
   }
 

@@ -45,7 +45,7 @@ export class PaymentDetailService {
     { headers: { Authorization: this.token } }); 
   }
 
-  card_detail(formData: any, orderId: string): Observable<Carddetail> {
+  card_detail(formData: any): Observable<Carddetail> {
     let date = formData.exp_month.split("-");
     let form = new FormData();
     form.append('card_name', formData.card_holder);
@@ -54,9 +54,9 @@ export class PaymentDetailService {
     form.append('card_exp_month', date[1]);
     form.append('card_exp_year', date[0]);
     form.append('default_card', formData.defaultCard);
-    form.append('order_id', orderId);
+    form.append('order_id', formData.order_id);
     console.log(formData);
-    console.log(orderId);
+    
     this.token = this._appService.getToken();
     return this.http.post<Carddetail>(this.apiURL+`/card_detail/`,form,
     { headers: { Authorization: this.token } });
@@ -73,6 +73,16 @@ export class PaymentDetailService {
     
     return this.http.post<Cvv>(this.apiURL+`/cvv_verification/`,form,
     { headers: { Authorization: this.token } });
+  }
+
+  change_default_addr(id) {
+    console.log(id);
+    var form = new FormData();
+    form.append('address_id', id);
+    this.token = this._appService.getToken();
+    return this.http.post(this.apiURL+`/change_address/`,form,
+    { headers: { Authorization: this.token } });
+   
   }
 
 

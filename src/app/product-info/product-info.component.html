@@ -102,7 +102,7 @@
                                         <form>
                                              <div class="caption">
                                                    <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                                  <input #qty ([ngModel])="qunty_model" (ngModelChange)="valueChange($event)" id="input" type="number" min="1" max="5" value=1>    
+                                                  <input #qty [ngModel]="qunty_model" (ngModelChange)="valueChange($event)" class="text-right" id="input" name="quantity" type="number" min="1" value="1">   
                                                   <br><br>
                                                   <div class="row buttons">                              
                                                        <button class="btn  col-sm-3 col-sm-offset-2 btn-md justify-content-md-start" style="background-color:#ff9f00; color:#fff;font-size:0.7em; margin-right:20px;" (click)="AddCart($event)"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;ADD TO CART</button>                                             

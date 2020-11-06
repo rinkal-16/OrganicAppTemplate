@@ -30,37 +30,73 @@ export class ProductInfoComponent implements OnInit {
             quantity: new FormControl('', Validators.required)
         });        
         const id = this.route.snapshot.params['id'];
+        
         this._productService.get_product_info(id).subscribe((data) => {
-            this.product_data = data['data']['product'];
-            this.review_data = data['data']['review'];
+            console.log(data);
+            if(data['error']) {
+                alert(data['error'])
+            } else {
+                console.log(data);
+                this.product_data = data['data']['product'];
+                this.review_data = data['data']['review'];
+            }
+            
         });      
     }
 
     AddCart() {
-        this.valueQuan = this.qty.nativeElement.value;
+        if(!this.valueQuan) {
+            this.productInfoForm.controls['quantity'].setValue(1);
+        }
         this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
         this._router.navigate(['/cart',this.valueQuan, this.productInfoForm.value.product_id]);        
     }
 
+    
+
     valueChange(value) {
         this.valueQuan = value;
+        console.log(value);
+        this.productInfoForm.controls['quantity'].setValue(value);
         if(value === undefined) {
-            this.valueQuan = 1;      
-        }
-    }
-    
+          this.valueQuan = 1;      
+        }    
+      }
+
+   
     Purchase() {
+       
         this.valueQuan = this.qty.nativeElement.value;    
         if(!this.valueQuan) {
             this.productInfoForm.controls['quantity'].setValue(1);
         }     
-        this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);
-        
-        if(this.buyFromCart === true) {
-            this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : true } });
-        } else {
-            this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : false, id: this.productInfoForm.value.product_id, quantity: this.valueQuan } });
-        }   
+        this.productInfoForm.controls['product_id'].setValue(this.route.snapshot.params['id']);        
+        var form = new FormData();
+        form.append('quantity', this.productInfoForm.value.quantity);
+        form.append('product_id', this.productInfoForm.value.product_id);
+        console.log(this.productInfoForm.value);
+        this._productService.post_buy_product(form).subscribe((data) => {
+            console.log(data);
+            if(data['error']) {
+                alert(data['error']);
+            } else {
+                this.buyFromCart = data['data']['buy_from_cart'];
+                this._router.navigate(['payment-details'], { queryParams: {
+                    buy_from_cart: data['data']['buy_from_cart'], 'order_id': data['data']['order_id'], 'addressFlag':data['data']['address_available'], 'cardFlag':data['data']['card_available']
+                }})
+                if(data['data']['address_available'] && data['data']['card_available']) {
+                    if(this.buyFromCart) {
+                        this._router.navigate(['/payment-details'], { queryParams: { buy_from_cart: data['data']['buy_from_cart'], 'order_id': data['data']['order_id'], 'addressFlag': data['data']['address_available'], 
+                        'cardFlag': data['data']['card_available'] } });
+                    } else {
+                        this._router.navigate(['/payment-details'], { queryParams: { buy_from_cart: data['data']['buy_from_cart'],  'order_id': data['data']['order_id'], 'addressFlag': data['data']['address_available'], 
+                        'cardFlag': data['data']['card_available'], 'quantity': this.productInfoForm.value.quantity, 
+                        'product_id': this.productInfoForm.value.id } });
+                    } 
+                }
+            }
+        })
+          
     }
     
     PostReview() {
