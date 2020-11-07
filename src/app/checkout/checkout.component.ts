@@ -145,12 +145,15 @@ export class CheckoutComponent implements OnInit {
   }
 
   change_Address() {    
-    this._router.navigate(['payment-details'], { queryParams: { address : true, 'buy_from_cart': this.route.snapshot.queryParams['buy_from_cart'], product_id: this.route.snapshot.queryParams['product_id'], quantity: this.route.snapshot.queryParams['quantity'] } });  
+    if(this.route.snapshot.queryParams['buy_from_cart'] == 'true') {
+      this._router.navigate(['payment-details'], { queryParams: { address : true, 'buy_from_cart': this.route.snapshot.queryParams['buy_from_cart'], 'token': this.route.snapshot.queryParams['token'], 'order_id': this.route.snapshot.queryParams['order_id'] } });
+    } else {
+      this._router.navigate(['payment-details'], { queryParams: { address : true, 'buy_from_cart': this.route.snapshot.queryParams['buy_from_cart'], 'token': this.route.snapshot.queryParams['token'], 'order_id': this.route.snapshot.queryParams['order_id'] } });
+    }
+      
   }
 
-  change_Card() {
-    this._router.navigate(['payment-details'], { queryParams: { card : true } });   
-  }
+  
 
 
 }

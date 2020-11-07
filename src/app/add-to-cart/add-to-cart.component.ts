@@ -99,20 +99,7 @@ export class AddToCartComponent implements OnInit {
         this.cardAvailability = data['data']['card_available'];
         console.log(this.addrAvailability);
         console.log(this.cardAvailability);
-        if (data['data']['address_available'] && data['data']['card_available']) {
-          // if (this.buyFromCart) {
-          //   this._router.navigate(['checkout'], { queryParams: {  } })
-          // } else {
-          //   this._router.navigate(['checkout'], { queryParams: { 'buy_from_cart': false } })
-          // }
-          if(this.buyFromCart) {
-            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': 'true' } });
-          } else {
-            this._router.navigate(['payment-details'], { queryParams: { order_id: this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'], 'buy_from_cart': false } });
-          }
-        } else {
-            this._router.navigate(['payment-details'], { queryParams: { 'order_id': this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'] } })
-        }
+        this._router.navigate(['payment-details'], { queryParams: { 'buy_from_cart': data['data']['buy_from_cart'], 'order_id': this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'] }})
         
       }
     });
@@ -121,4 +108,8 @@ export class AddToCartComponent implements OnInit {
   add_product() {
     this._router.navigate(['products']);
   }
+  
 }
+
+
+

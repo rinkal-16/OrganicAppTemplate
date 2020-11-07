@@ -81,8 +81,30 @@ export class PaymentDetailService {
     form.append('address_id', id);
     this.token = this._appService.getToken();
     return this.http.post(this.apiURL+`/change_address/`,form,
+    { headers: { Authorization: this.token } });   
+  }
+
+  change_default_card(id) {
+    console.log(id);
+    var form = new FormData();
+    form.append('card_id', id);
+    this.token = this._appService.getToken();
+    return this.http.post(this.apiURL+`/change_address/`,form,
+    { headers: { Authorization: this.token } });   
+  }
+
+  delete_address(id) {
+    console.log(id);
+    this.token = this._appService.getToken();
+    return this.http.delete(this.apiURL+`/delete_address/${id}/`,
+    { headers: { Authorization: this.token } }); 
+  }
+
+  delete_card(id) {
+    console.log(id);
+    this.token = this._appService.getToken();
+    return this.http.delete(this.apiURL+`/delete_card/${id}/`,
     { headers: { Authorization: this.token } });
-   
   }
 
 

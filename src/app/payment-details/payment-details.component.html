@@ -4,7 +4,7 @@
 <div class="payment-details-container"> 
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div *ngIf="addr_detail">
+            <div *ngIf="addressFlag">
                 <h4 class="d-flex justify-content-between align-items-center mb-4">
                     <span class="text-muted">Address Summary </span>
                     <span class="badge badge-secondary badge-pill"> </span>
@@ -19,12 +19,13 @@
                             <span><b>Country :</b> {{addr.country}}</span><br>
                             <span><b>Postal code :</b> {{addr.postal_code}}</span><br>
                             <span><b>Phone :</b> {{addr.phone}}</span><br><br>
-                            <button class="btn btn-primary" (click)="change_default(addr.id)">Keep Default</button>
+                            <button class="btn btn-primary" (click)="change_default_Address(addr.id)">Keep Default</button>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="delete_addr(addr.id)" type="submit">Delete</button>
                         </div>                    
                     </li>                                      
                 </ul>  
             </div> 
-            <div *ngIf="card_detail">
+            <div *ngIf="cardFlag">
                 <h4 class="d-flex justify-content-between align-items-center mb-4">
                     <span class="text-muted">Card Summary </span>
                     <span class="badge badge-secondary badge-pill"> </span>
@@ -37,6 +38,8 @@
                             <span><b>Card number :</b> XXXXXXXXXXXX{{card.last4}}</span><br><br>  
                             
                             <button type="button" (click)="openForm()" class="btn btn-info btn-lg" >Verify cvv</button><br><br>
+                            
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="delete_card(card.id)" type="submit">Delete</button>
 
                             <div *ngIf="verify_form">
                 <div class="card card-login my-5">          
@@ -68,6 +71,7 @@
                           <br>
 
                           <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="verified(card.id)" type="submit">Verify</button>
+                          
 
                         </form>
                     </div>          
@@ -80,7 +84,7 @@
             </div>         
         </div>
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div *ngIf="addr_detail">
+            <div *ngIf="addressFlag">
               <div class="card card-login my-5">          
                   <div class="card-title text-center text-uppercase rounded" >
                     <h5>Shipping Address</h5>
@@ -168,13 +172,13 @@
                   </div>   
               </div>
             </div>                           
-            <div *ngIf="card_detail">
+            <div *ngIf="cardFlag">
                 <div class="card card-login my-5">          
                     <div class="card-title text-center text-uppercase rounded">
                       <h5>Card Details</h5>
                     </div>
                     <div class="card-body">            
-                        <form class="form-login" [formGroup]="cardDetailForm">  
+                        <form class="form-login" [formGroup]="cardDetailForm" (ngSubmit)="Submit_Card()">  
                             <label>Card holder</label>               
                                 <div class="form-label-group">                
                                     <input type="text" id="inputCard_holder" class="form-control" placeholder="Card holder" formControlName="card_holder" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cardDetailForm.controls.card_holder.touched }" >               
@@ -220,7 +224,7 @@
 
                           <br>
 
-                          <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="Submit_Card()" type="submit" [disabled]="!cardDetailForm.valid">Submit Card detail</button>
+                          <button class="btn btn-lg btn-primary btn-block text-uppercase"  type="submit" [disabled]="!cardDetailForm.valid">Submit Card detail</button>
 
                         </form>
                     </div>          
@@ -228,8 +232,7 @@
             </div>                   
         </div>
         
-    </div>  
-    
+    </div>     
 </div>
 
 

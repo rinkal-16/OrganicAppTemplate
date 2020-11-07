@@ -17,8 +17,12 @@ export class PaymentDetailsComponent implements OnInit {
   cardDetailForm: FormGroup;
   cvvVerifyForm: FormGroup;
 
-  addr_detail: boolean = false;
-  card_detail: boolean = false;
+  addr_detail_available: string;
+  card_detail_available: string;
+
+  addressFlag: boolean;
+  cardFlag: boolean;
+
   verify_form: boolean = false;
  
   orderId: any;
@@ -26,7 +30,7 @@ export class PaymentDetailsComponent implements OnInit {
   elements: Elements;
   card: StripeElement;
   paymentStatus: any;
-  stripeData: any;
+  stripeData: string;
   submitted: any;
   loading: any;
   elementsOptions: ElementsOptions = {
@@ -59,7 +63,9 @@ export class PaymentDetailsComponent implements OnInit {
       card_number: new FormControl('', Validators.required),
       cvc: new FormControl('', Validators.required),
       exp_month: new FormControl('', Validators.required),
-      defaultCard: new FormControl('', Validators.required)      
+      defaultCard: new FormControl('', Validators.required),
+      order_id: new FormControl('' 
+      )      
     });
 
     this.cvvVerifyForm = this.formBuilder.group({
@@ -69,78 +75,65 @@ export class PaymentDetailsComponent implements OnInit {
       order_id: new FormControl('', Validators.required)
     })
 
-    this.addr_detail = true;
-    this.card_detail = false;
+    this.addr_detail_available = this.route.snapshot.queryParams['addressFlag'];
+    this.card_detail_available = this.route.snapshot.queryParams['cardFlag'];
 
     this.orderId = this.route.snapshot.queryParams['order_id'];
+    console.log(this.orderId);
     this.token = this.route.snapshot.queryParams['token'];
-    
 
     console.log(this.route.snapshot.queryParams);
-
-    // if(JSON.stringify(this.route.snapshot.queryParams['addressFlag'])) {
-    //   this._paymentService.get_address_detail().subscribe((data) => {
-    //     console.log(data);
-    //     this.addrdetail = data['data']['address'];                 
-    //   })
-    // } else if(JSON.stringify(this.route.snapshot.queryParams['cardFlag'])) {
-    //   this.addr_detail = false;
-    //   this.card_detail = true;
-    //   this._paymentService.get_card_detail().subscribe((data) => {
-    //     console.log(data);
-    //     this.carddetail = data['data']['card'];
-    //   }) 
-
-      
-    // } 
-
-    //if(this.route.snapshot.queryParams) {
-      console.log(this.route.snapshot.queryParams);
-      if(this.route.snapshot.queryParams['addressFlag'] && !this.route.snapshot.queryParams['cardFlag']) {
-        this.addr_detail = false;
-        this.card_detail = true;
+    
+    if(this.addr_detail_available && this.card_detail_available) {
+      console.log(this.addr_detail_available, this.card_detail_available)
+      if(this.addr_detail_available == 'true' && this.card_detail_available == 'false') {
+        this.addressFlag = false;
+        this.cardFlag = true;
         this.fetch_addr();
       } 
-      else if(this.route.snapshot.queryParams['addressFlag'] && this.route.snapshot.queryParams['cardFlag']) {
-        this.addr_detail = false;
-        this.card_detail = true;
+      else if(this.addr_detail_available == 'true' && this.card_detail_available == 'true') {
+        this.addressFlag = false;
+        this.cardFlag = true;
         this.fetch_card();
       } 
-      else if(!this.route.snapshot.queryParams['addressFlag'] && this.route.snapshot.queryParams['cardFlag']) {
-        this.addr_detail = true;
-        this.card_detail = false;
+      else if(this.addr_detail_available == 'false' && this.card_detail_available == 'true') {
+        this.addressFlag = true;
+        this.cardFlag = false;
         this.fetch_card();
-      } else if(this.route.snapshot.queryParams['addressFlag']) {
-          this.addr_detail = true;
-          this.fetch_addr();
+      } else if(this.addr_detail_available == 'false' && this.card_detail_available == 'false')  {
+          this.addressFlag = true;        
       } 
-      else {
-        this.addr_detail = true;
-      }
       this.orderId = this.route.snapshot.queryParams['order_id'];
-  //}
+    } else {
+      if(this.route.snapshot.queryParams['address'] == 'true') {
+        this.addressFlag = true;
+        this.fetch_addr();
+      }
+    } 
+      
+  
 
-    // this._paymentService.get_card_detail().subscribe((data) => {
-    //       console.log(data);
-    //       this.carddetail = data['data']['card'];
-    // });
+    this._paymentService.get_card_detail().subscribe((data) => {
+          console.log(data);
+          this.carddetail = data['data']['card'];
+    });
 
-    // this._paymentService.get_address_detail().subscribe((data) => {
-    //   console.log(data);
-    //   this.addrdetail = data['data']['address'];
-    //   console.log(this.addrdetail);
-    // })
+    this._paymentService.get_address_detail().subscribe((data) => {
+      console.log(data);
+      this.addrdetail = data['data']['address'];
+      console.log(this.addrdetail);
+    })
   }
 
   get validate() {
     return this.addressDetailForm.controls;
   }
 
-  // onItemChange(value: any) {
-  //   console.log(value);
-  //   //this.addressDetailForm.controls['defaultAddress'].setValue(value);
-  //   this.cardDetailForm.controls['defaultCard'].setValue(value);
-  // }
+  onItemChange(value: any) {
+    console.log(value);
+    this.addressDetailForm.controls['defaultAddress'].setValue(value);
+    this.cardDetailForm.controls['defaultCard'].setValue(value);
+  }
 
   fetch_addr() {
     this._paymentService.get_address_detail().subscribe((data) => {
@@ -168,8 +161,8 @@ export class PaymentDetailsComponent implements OnInit {
 
   Submit_address() {
     console.log(this.addressDetailForm.value);
-    this.addr_detail = false;
-    this.card_detail = true;  
+    this.addressFlag = false;
+    this.cardFlag = true;  
     this._paymentService.address_detail(this.addressDetailForm.value).subscribe((data) => {
       console.log(data);
       if(data['error']) {
@@ -186,23 +179,75 @@ export class PaymentDetailsComponent implements OnInit {
   }
 
   Submit_Card() {
+  	this.cardDetailForm.controls['order_id'].setValue(this.route.snapshot.queryParams['order_id']);
+    console.log(this.orderId);
+    if(!this.cardDetailForm.controls['defaultCard']) {
+      this.cardDetailForm.controls['defaultCard'].setValue("false");
+    }
     
-      if(this.cardDetailForm.controls['defaultCard']) {
-        this.cardDetailForm.controls['defaultCard'].setValue('false');
+    this._paymentService.card_detail(this.cardDetailForm.value).subscribe((data) => {
+      console.log(data);     
+      if(data['error']) {
+        alert(data['error']);
       }
-      this.cardDetailForm.controls['order_id'].setValue(this.route.snapshot.queryParams['order_id']);
+      else {
+        alert(data['meta']['success']);
+        this.fetch_card();
+        this.stripeData = data['data']['token'];
+        this.goAhead();
+        
+      }
+    });
+         
+  }
 
-      this._paymentService.card_detail(this.cardDetailForm.value).subscribe((data) => {
-        console.log(data);
-        if(data['error']) {
-          alert(data['error']);
-        } else {
-          alert(data['meta']['success']);
-          
-        } 
-      })
+  delete_addr(id) {
+    this._paymentService.delete_address(id).subscribe((data) => {
+      console.log();
+      if(data['error']) {
+        alert(data['error']);
+      } else {
+        alert(data['meta']['success']);
+      }
+    })
+  }
+
+  delete_card(id) {
+    this._paymentService.delete_card(id).subscribe((data) => {
+      console.log();
+      if(data['error']) {
+        alert(data['error']);
+      } else {
+        alert(data['meta']['success']);
+      }
+    });
+    this.cardDetailForm.reset();
+  }
+
+  goAhead() {
+    let buy = this.route.snapshot.queryParams['buy_from_cart'];
+      let order_id = this.route.snapshot.queryParams['order_id'];
+      let quantity = this.route.snapshot.queryParams['quantity'];
       
-     
+        if(buy == 'true') {
+          this._router.navigate(['checkout'], { queryParams: { buy_from_cart : true, 
+          'order_id': order_id, 'token': this.stripeData  } });
+        }
+        else {
+          this._router.navigate(['checkout'], { queryParams: { buy_from_cart : false,
+          'order_id': order_id, 'token': this.stripeData  } });
+        }
+      
+      
+        // if(buy == 'true') {
+        //   this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : true, 
+        //   'order_id': order_id, 'token': this.route.snapshot.queryParams['token']  } });
+        // }
+        // else {
+        //   this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : false,
+        //   'order_id': order_id, 'token': this.route.snapshot.queryParams['token']  } });
+        // }
+        
   }
 
   openForm() {
@@ -213,21 +258,22 @@ export class PaymentDetailsComponent implements OnInit {
   onAddrChange(value: any) {
     console.log(value);
     this.addressDetailForm.controls['defaultAddress'].setValue(value);
-      let buy = this.route.snapshot.queryParams['buy_from_cart'];
-      let order_id = this.route.snapshot.queryParams['order_id'];
-      let id = this.route.snapshot.queryParams['product_id'];
-      let quantity = this.route.snapshot.queryParams['quantity'];
-      let product_id = this.route.snapshot.queryParams['product_id'];
-      if(buy == 'true') {
-        this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : true, 
-        'order_id': order_id, 'token': this.route.snapshot.queryParams['token']  } });
-      }
-      else {
+    
+      // let buy = this.route.snapshot.queryParams['buy_from_cart'];
+      // let order_id = this.route.snapshot.queryParams['order_id'];
+      // let id = this.route.snapshot.queryParams['product_id'];
+      // let quantity = this.route.snapshot.queryParams['quantity'];
+      // let product_id = this.route.snapshot.queryParams['product_id'];
+      // if(buy == 'true') {
+      //   this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : true, 
+      //   'order_id': order_id, 'token': this.route.snapshot.queryParams['token']  } });
+      // }
+      // else {
         
-        this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : false,
-        'order_id': order_id, 'id' : id, 'quantity': quantity, 'product_id': product_id,
-        'token': this.route.snapshot.queryParams['token']  } });
-      }
+      //   this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : false,
+      //   'order_id': order_id, 'id' : id, 'quantity': quantity, 'product_id': product_id,
+      //   'token': this.route.snapshot.queryParams['token']  } });
+      // }
   }
 
   onCardChange(value: any) {
@@ -235,8 +281,8 @@ export class PaymentDetailsComponent implements OnInit {
     this.cardDetailForm.controls['defaultCard'].setValue(value);
   }
 
-  change_default(id: any) {
-    console.log(typeof id);
+  change_default_Address(id: any) {
+    
     this._paymentService.change_default_addr(id).subscribe((data) => {
       console.log(data);
       if(data['error']) {
@@ -244,9 +290,15 @@ export class PaymentDetailsComponent implements OnInit {
       }
       else {
        alert(data['meta']['success']);
-       
+       this._router.navigate(['/checkout'], { queryParams: {  
+      'order_id': this.orderId, 'token': this.route.snapshot.queryParams['token']  } });
       }
     });
+  }
+
+  sendCardId(id) {
+    console.log(id);
+    this.cvvVerifyForm.controls['card_id'].setValue(id);
   }
 
   verified(id) {     
@@ -278,22 +330,7 @@ export class PaymentDetailsComponent implements OnInit {
     })
   }
 
-  // continue() {  
-  //     let buy = this.route.snapshot.queryParams['buy_from_cart'];
-  //     let order_id = this.route.snapshot.queryParams['order_id'];
-  //     let id = this.route.snapshot.queryParams['product_id'];
-  //     let quantity = this.route.snapshot.queryParams['quantity'];
-  //     let pro_id = this.route.snapshot.queryParams['product_id'];
-  //     if(buy == 'true') {
-  //       this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : true, 
-  //       'order_id': order_id, 'token': this.route.snapshot.queryParams['token']  } });
-  //     }
-  //     else {
-  //       this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : false,
-  //       'order_id': order_id, 'id' : id, 'quantity': quantity, 'product_id': pro_id,
-  //       'token': this.route.snapshot.queryParams['token']  } });
-  //     }
-  // }
+  
 
     // 378282246310005
     // 371449635398431
