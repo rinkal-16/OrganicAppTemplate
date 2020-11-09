@@ -9,77 +9,9 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<!--<div class="product-info-container d-flex justify-content-center">
-     <div class="row" *ngFor="let product of product_data">   
-          <div class="col-sm">
-               <img src="{{product.image_url}}" > 
-          </div>
-          <div class="col-sm">
-               <div class="info">
-                    <div class="card border-secondary mb-3" style="max-width: 300px; height: fit-content; margin-left: -40px; border: none;">
-                         <div class="card-header">{{product.p_name}}</div>
-                              <div class="card-body text-secondary">
-                              <h5 class="card-title">Price: {{product.price}}</h5>
-                              <p class="card-text">{{product.description}}</p>
-                              <p>{{product.product_id}}</p>
-                              <form> 
-                                   <div>                          
-                                        <label class="label" for="quantity" value="Quantity">Quantity: </label>
-                                        <input #qty ([ngModel])="qunty_model" (ngModelChange)="valueChange($event)" id="input" type="number" min="1" max="5" value=1>    
-                                             
-                                        <br>  
-                                        <br>             
-                                        <button class="btn btn-outline-info" (click)="AddCart($event)"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>  
-
-                                        <button class="btn btn-outline-info" (click)="Purchase()"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Purchase</button> 
-                                   </div>                           
-                              </form>
-                         </div>
-                    </div>
-               </div>     
-          </div>  
-                 
-     </div>
-
-     <div class="container" >
-          <h1>Customer Reviews</h1>          
-          <div class="row-fluid"> 
-               <div class="col-sm">
-                    <div class="panel panel-default">
-                         <div class="panel-heading">                              
-                              <h3 class="panel-title" itemprop="name">Review Title</h3>
-                              <br>
-                              <textarea #review class="form-control" placeholder="write a comment..." rows="3"></textarea>
-                              <button class="btn btn-outline-info" (click)="PostReview()">Submit</button>
-                         </div>                    
-                         <div class="panel-body" itemprop="reviewBody"  *ngFor="let review of review_data">
-                              
-                              <span>{{review.text}}</span>              
-                              <span class="pull-right">
-                                   <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                                        <meta itemprop="worstRating" content="1">
-                                        <span itemprop="ratingValue">5</span> / 
-                                        <span itemprop="bestRating"> stars </span>
-                                   </span>
-                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                              </span>
-                              <p>- {{review.first_name}}</p>
-                         </div>
-
-                        
-                    </div>
-               </div>
-          </div>
-     </div> 
-
-</div>-->
 
 <div class="product-info-container">
-    <div class="container-fluid" style="margin: 2%;">
+    <div class="container-fluid">
         <div class="row align-content-center" *ngFor="let product of product_data">       
             <div class="col-sm-5">
                <div class="thumbnail">

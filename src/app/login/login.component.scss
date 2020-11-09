@@ -29,6 +29,11 @@
           margin-left: 5px;
           margin-right: 5px;
      }
+
+     .form-login a {
+      float: right;
+      font-size: 12px;
+      }
      
      .form-login .btn {
        font-size: 80%;
@@ -48,9 +53,11 @@
      
      .form-label-group input {
        height: 30px;
-       border-radius: 2rem;
-       
+       border-radius: 2rem;  
+          
      }
+
+     
      .alert, .alert-danger {
        display: contents;
        padding-left: 10px;
@@ -61,6 +68,7 @@
      .form-label-group>input,
      .form-label-group>label {
        padding: var(--input-padding-y) var(--input-padding-x);
+       padding-left: 10px;
      }
      
      .form-label-group>label {
@@ -76,6 +84,7 @@
        border: 1px solid transparent;
        border-radius: .25rem;
        transition: all .1s ease-in-out;
+       padding-left: 10px;
      }
      
      .form-label-group input::-webkit-input-placeholder {

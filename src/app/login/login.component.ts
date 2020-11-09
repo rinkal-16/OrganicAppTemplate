@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  [x: string]: any; 
+  // [x: string]: any; 
   showVerify: Boolean = false;
   submitted: false;
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(10), Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
       password: new FormControl('', [Validators.required, Validators.minLength(7)])  
     });
 
@@ -37,10 +37,10 @@ export class LoginComponent implements OnInit {
       if(data['meta']['status_code'] == '200' ) {
         alert("Sucessfully loggedIn!!");
       } 
-      else if(data['status_code'] == '401') {
-        alert(data['error']);
-        this._router.navigate(['/login']);
-      }
+      // else if(data['status_code'] == '401') {
+      //   alert(data['error']);
+      //   this._router.navigate(['/login']);
+      // }
       else {
         alert(data['error']);        
       }

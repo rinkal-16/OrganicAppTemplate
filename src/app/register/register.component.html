@@ -9,49 +9,49 @@
             <form class="form-register" [formGroup]="signupForm">
             <label>First Name</label>
               <div class="form-label-group">
-                <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" formControlName="firstname" required autofocus style="padding-left: 10px;" [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.firstname.touched }" />
+                <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" formControlName="firstname" required autofocus [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.firstname.touched }" />
                   <div *ngIf="validate.firstname.invalid && validate.firstname.touched" class="alert alert-danger">
                         <div *ngIf="validate.firstname.invalid">Firstname is required</div>
                       </div>
-                <label for="inputFirstName" style="padding-left: 10px;">First Name</label>
+                <label for="inputFirstName">First Name</label>
               </div>
 
             <label>Last Name</label>
               <div class="form-label-group">
-                <input type="text" id="inputLastName" class="form-control" placeholder="Last Name" formControlName="lastname" required autofocus style="padding-left: 10px;" [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.lastname.touched }" />
+                <input type="text" id="inputLastName" class="form-control" placeholder="Last Name" formControlName="lastname" required autofocus [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.lastname.touched }" />
                   <div *ngIf="validate.lastname.invalid && validate.lastname.touched" class="alert alert-danger">
                         <div *ngIf="validate.lastname.invalid">Lastname is required</div>
                       </div>
-                <label for="inputLastName" style="padding-left: 10px;">Last Name</label>
+                <label for="inputLastName">Last Name</label>
               </div>
 
             <label>Email Address</label>
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" required autofocus style="padding-left: 10px;" [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.email.touched }" />
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" required autofocus [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.email.touched }" />
                   <div *ngIf="validate.email.invalid && validate.email.touched" class="alert alert-danger">
                         <div *ngIf="validate.email.invalid">Email is required</div>
                       </div>
-                <label for="inputEmail" style="padding-left: 10px;">Email address</label>
+                <label for="inputEmail">Email address</label>
               </div>
               
                <label>Password</label>
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" required style="padding-left: 10px;" [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.password.touched }" />
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.password.touched }" />
                   <div *ngIf="validate.password.invalid && validate.password.touched" class="alert alert-danger">
                         <div *ngIf="validate.password.errors.required">Password is required</div>
                         <div *ngIf="validate.password.errors.minlength">Must be at least 6 characters</div>
                       </div>
-                <label for="inputPassword" style="padding-left: 10px;">Password</label>                
+                <label for="inputPassword" >Password</label>                
               </div>
 
               <label>Confirm Password</label>
               <div class="form-label-group">
-                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" formControlName="confirmpassword" required style="padding-left: 10px;" [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.confirmpassword.touched }" />
+                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" formControlName="confirmpassword" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; signupForm.controls.confirmpassword.touched }" />
                   <div *ngIf="validate.confirmpassword.invalid && validate.confirmpassword.touched" class="alert alert-danger">
                         <div *ngIf="validate.confirmpassword.errors.required">Confirmpassword is required</div>
                       <div *ngIf="validate.confirmpassword.errors.mustMatch">Password and Confirmpassword must be match.</div>
                   </div>
-                <label for="inputConfirmPassword" style="padding-left: 10px;">Confirm password</label>
+                <label for="inputConfirmPassword">Confirm password</label>
                 
               </div>
 

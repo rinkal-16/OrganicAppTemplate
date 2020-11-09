@@ -54,6 +54,7 @@
         .form-label-group>input,
         .form-label-group>label {
           padding: var(--input-padding-y) var(--input-padding-x);
+          padding-left: 10px;
         }
 
         .alert, .alert-danger {
@@ -76,6 +77,7 @@
           border: 1px solid transparent;
           border-radius: .25rem;
           transition: all .1s ease-in-out;
+          padding-left: 10px;
         }
         
         .form-label-group input::-webkit-input-placeholder {

@@ -41,46 +41,82 @@
                             
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="delete_card(card.id)" type="submit">Delete</button>
 
-                            <div *ngIf="verify_form">
-                <div class="card card-login my-5">          
-                    <div class="card-title text-center text-uppercase rounded">
-                      <h5>Verify CVV</h5>
-                    </div>
-                    <div class="card-body">            
-                        <form class="form-login" [formGroup]="cvvVerifyForm">  
-                            
+                            <!--<div *ngIf="verify_form">
+                              <div class="card card-login my-5">          
+                                  <div class="card-title text-center text-uppercase rounded">
+                                    <h5>Verify CVV</h5>
+                                  </div>
+                                  <div class="card-body">            
+                                      <form class="form-login" [formGroup]="cvvVerifyForm">  
+                                          
 
-                          <label>Last 4 digit</label>               
-                          <div class="form-label-group">                
-                              <input type="text" id="inputlast4digit" class="form-control" placeholder="Card number" formControlName="last4digit" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cvvVerifyForm.controls.last4digit.touched }" >               
-                              <!--<div *ngIf="validate.card_number.invalid && validate.card_number.touched" class="alert alert-danger">
-                                    <div *ngIf="validate.card_number.invalid">Card number is required</div>
-                                  </div>-->
-                            <label for="inputlast4digit" style="padding-left: 10px;">Card number</label>                              
-                          </div>
+                                        <label>Last 4 digit</label>               
+                                        <div class="form-label-group">                
+                                            <input type="text" id="inputlast4digit" class="form-control" placeholder="Card number" formControlName="last4digit" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cvvVerifyForm.controls.last4digit.touched }" >               
+                                            <div *ngIf="validate.card_number.invalid && validate.card_number.touched" class="alert alert-danger">
+                                                  <div *ngIf="validate.card_number.invalid">Card number is required</div>
+                                                </div>
+                                          <label for="inputlast4digit" style="padding-left: 10px;">Card number</label>                              
+                                        </div>
 
-                          <label>CVC</label>               
-                          <div class="form-label-group">                
-                              <input type="text" id="inputCvc" class="form-control" placeholder="CVC" formControlName="cvc" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cvvVerifyForm.controls.cvc.touched }" >               
-                              <!--<div *ngIf="validate.cvv.invalid && validate.cvv.touched" class="alert alert-danger">
-                                    <div *ngIf="validate.cvv.invalid">CVV is required</div>
-                                  </div>-->
-                            <label for="inputCvc" style="padding-left: 10px;">CVC</label>                              
-                          </div>
+                                        <label>CVC</label>               
+                                        <div class="form-label-group">                
+                                            <input type="text" id="inputCvc" class="form-control" placeholder="CVC" formControlName="cvc" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cvvVerifyForm.controls.cvc.touched }" >               
+                                            <div *ngIf="validate.cvv.invalid && validate.cvv.touched" class="alert alert-danger">
+                                                  <div *ngIf="validate.cvv.invalid">CVV is required</div>
+                                                </div>
+                                          <label for="inputCvc" style="padding-left: 10px;">CVC</label>                              
+                                        </div>
 
-                          <br>
+                                        <br>
 
-                          <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="verified(card.id)" type="submit">Verify</button>
-                          
+                                        <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="verified(card.id)" type="submit">Verify</button>
+                                        
 
-                        </form>
-                    </div>          
-                </div>
-            </div> 
+                                      </form>
+                                  </div>          
+                              </div>
+                            </div> -->
 
                         </div>                    
                     </li>                                      
-                </ul>  
+                </ul> 
+                <div *ngIf="verify_form">
+                              <div class="card card-login my-5">          
+                                  <div class="card-title text-center text-uppercase rounded">
+                                    <h5>Verify CVV</h5>
+                                  </div>
+                                  <div class="card-body">            
+                                      <form class="form-login" [formGroup]="cvvVerifyForm">  
+                                          
+
+                                        <label>Last 4 digit</label>               
+                                        <div class="form-label-group">                
+                                            <input type="text" id="inputlast4digit" class="form-control" placeholder="Card number" formControlName="last4digit" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cvvVerifyForm.controls.last4digit.touched }" >               
+                                            <!--<div *ngIf="validate.card_number.invalid && validate.card_number.touched" class="alert alert-danger">
+                                                  <div *ngIf="validate.card_number.invalid">Card number is required</div>
+                                                </div>-->
+                                          <label for="inputlast4digit" style="padding-left: 10px;">Card number</label>                              
+                                        </div>
+
+                                        <label>CVC</label>               
+                                        <div class="form-label-group">                
+                                            <input type="text" id="inputCvc" class="form-control" placeholder="CVC" formControlName="cvc" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; cvvVerifyForm.controls.cvc.touched }" >               
+                                            <!--<div *ngIf="validate.cvv.invalid && validate.cvv.touched" class="alert alert-danger">
+                                                  <div *ngIf="validate.cvv.invalid">CVV is required</div>
+                                                </div>-->
+                                          <label for="inputCvc" style="padding-left: 10px;">CVC</label>                              
+                                        </div>
+
+                                        <br>
+                                        <div *ngFor="let card of carddetail">
+                                        <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="verified(card.id)" type="submit">Verify</button>
+                                        </div>
+
+                                      </form>
+                                  </div>          
+                              </div>
+                            </div>  
             </div>         
         </div>
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

@@ -9,7 +9,10 @@ $mobile: 480px;
      justify-content: center;
      justify-items: center;
      align-content: center;
-     align-items: center;  
+     align-items: center; 
+     .container-fluid {
+          margin: 2%;
+     } 
      .row {          
           background-position: center;
           margin: auto;
@@ -34,27 +37,37 @@ $mobile: 480px;
                          font-size: 16px;
                     }
                     form {
-                         button, .btn {
-                              border-radius: 10px;
-                              border-color: #00DBD0;
-                              font: normal normal normal 16px/20px Libre Baskerville;
-                              letter-spacing: 0px;
-                              color: #00DBD0;
-                              opacity: 1;
-                              text-align: left;                              
-                         } 
-                         input {
-                              width: 50px;
-                              border-color: #00DBD0;
-                              border-radius: 10px;
-                              height: 33px;
-                              text-align: center;
-                              
+                         .caption {
+                              .row {
+                                   button, .btn {
+                                        border-radius: 10px;
+                                        border-color: #00DBD0;
+                                        font: normal normal normal 16px/20px Libre Baskerville;
+                                        letter-spacing: 0px;
+                                        color: #00DBD0;
+                                        opacity: 1;
+                                        text-align: left;  
+                                        background-color:#ff9f00; 
+                                        color:#fff;
+                                        font-size:0.7em; 
+                                        margin-right:20px;  
+                                        font-size:1.2em;                          
+                                   } 
+                              }                              
+                              input {
+                                   width: 50px;
+                                   border-color: #00DBD0;
+                                   border-radius: 10px;
+                                   height: 33px;
+                                   text-align: center;
+                                   
+                              }
+                              label {
+                                   font-size: 16px;     
+                                   color: black;                         
+                              }
                          }
-                         label {
-                              font-size: 16px;     
-                              color: black;                         
-                         }
+                         
                     }  
                }                                     
           }

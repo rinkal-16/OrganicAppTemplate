@@ -14,6 +14,7 @@ export class AppComponent {
 
   logout() {
     localStorage.clear();
+    alert("You are successfully logged out!!")
     this.router.navigate(['/login']);
   }
 

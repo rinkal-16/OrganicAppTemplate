@@ -48,7 +48,7 @@
                </div>
           </nav>         
           <div class="row">                    
-                    <div class="col-sm"  style="align-item: center; display: flex; flex-direction: row; flex-wrap: wrap;" *ngFor="let item of pageOfItems">
+                    <div class="col-sm" *ngFor="let item of pageOfItems">
                          <div>
                               <div class="card-content">
                                    <div class="card-body">
@@ -59,7 +59,7 @@
                                              </div>
                                              <h4>{{item.datas.p_name}}</h4> 
                                              <br>                                
-                                             <p style="padding-bottom: 10px;">{{item.datas.description}}</p> 
+                                             <p>{{item.datas.description}}</p> 
                                              <p class="pr">Price: {{item.datas.price}} </p>
                                              <p>Discount price: {{item.datas.disscount_price}}</p>
                                         </a>                                                                  

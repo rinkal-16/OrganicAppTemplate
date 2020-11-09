@@ -72,7 +72,10 @@ $mobile: 480px;
                     height: fit-content;
                     padding-left: 0;
                     padding-right: 0;
-                    justify-content: center;
+                    justify-content: center;                     
+                    display: flex; 
+                    flex-direction: row; 
+                    flex-wrap: wrap;
                     .card-content {
                          width: 300px;
                          .card-body {  
@@ -98,6 +101,7 @@ $mobile: 480px;
                                    line-height: normal;
                                    font-size: 14px;
                                    font: normal normal normal Roboto;
+                                   padding-bottom: 10px;
                               }
                               hr {
                                    border:none;

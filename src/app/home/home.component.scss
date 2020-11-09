@@ -462,7 +462,11 @@ $mobile: 480px;
                font-size: 14px;
                text-align: center;
           }
-     }           
+     }  
+      
+     ol {
+          margin-bottom: -70px; 
+     }            
      .carousel-indicators li {
           width: 10px;
           height: 10px;
@@ -475,6 +479,7 @@ $mobile: 480px;
      }
      .carousel {
           .carousel-inner {
+               display: flex;
                .carousel-item { 
                     .img-class {
                          .col-sm {
@@ -675,6 +680,9 @@ $mobile: 480px;
           object-fit: cover;
           object-position: -150% 0%;
      }    
+     ol {
+          margin-bottom: -40px;
+     }
      .carousel-indicators li {
           width: 10px;
           height: 10px;
@@ -1055,6 +1063,9 @@ $mobile: 480px;
      .row {
           // display:flex;
           // flex-wrap: wrap;
+          display: flex; 
+          flex-wrap: wrap; 
+          //wrap-direction: row;
           background-position: center; 
           margin: auto;
           justify-content: center;
@@ -1071,6 +1082,10 @@ $mobile: 480px;
                     padding-left: 0;
                     padding-right: 0;
                     justify-content: center;
+                    //align-item: center; 
+                    display: flex; 
+                    flex-direction: row; 
+                    flex-wrap: wrap; 
                     .card-content {
                          width: 300px;
                          .card-body {  
@@ -1096,6 +1111,7 @@ $mobile: 480px;
                                    line-height: normal;
                                    font-size: 14px;
                                    font: normal normal normal Roboto;
+                                   padding-bottom: 10px;
                               }
                               hr {
                                    border:none;

@@ -1,30 +1,27 @@
-<div class="login-container">
-     
+<div class="login-container">     
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-login my-5">
         <div class="card-title text-center text-uppercase rounded"><h5>Login</h5></div>
-          <div class="card-body">
-            
+          <div class="card-body">            
             <form class="form-login" [formGroup]="loginForm">
             <label>Email Address</label>
               <div class="form-label-group" >
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" autofocus style="padding-left: 10px;" [ngClass]="{ 'is-invalid': submitted &amp;&amp; loginForm.controls.email.touched }" />
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" autofocus [ngClass]="{ 'is-invalid': submitted &amp;&amp; loginForm.controls.email.touched }" />
                       <div *ngIf="validate.email.invalid && validate.email.touched" class="alert alert-danger">
                         <div *ngIf="validate.email.invalid">Email is required</div>
                       </div>
-                <label for="inputEmail" style="padding-left: 10px;">Email Address</label>
-                   
+                <label for="inputEmail">Email Address</label>                   
               </div>
               
              <label>Password</label>
-               <a routerLink="/forget-pwd" routerLinkActive="" style="float:right;font-size:12px;">Forgot password?</a>
+               <a routerLink="/forget-pwd" routerLinkActive="">Forgot password?</a>
               <div class="form-label-group">                
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" style="padding-left: 10px;" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; loginForm.controls.password.touched }" >               
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" required [ngClass]="{ 'is-invalid': submitted &amp;&amp; loginForm.controls.password.touched }" >               
                   <div *ngIf="validate.password.invalid && validate.password.touched" class="alert alert-danger">
                         <div *ngIf="validate.password.invalid">Password is required</div>
                       </div>
-                <label for="inputPassword" style="padding-left: 10px;">Password</label>  
+                <label for="inputPassword">Password</label>  
                             
               </div>
 

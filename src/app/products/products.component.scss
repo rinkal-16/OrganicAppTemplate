@@ -57,6 +57,11 @@ $mobile: 480px;
           align-content: center;
           padding-bottom: 10px;
           width: 70%;
+          align-items: center;
+          // align-item: center; 
+          display: flex; 
+          flex-direction: row; 
+          flex-wrap: wrap;
                .col-sm {
                     width: 300px;
                     height: fit-content;
@@ -72,6 +77,9 @@ $mobile: 480px;
                               align-content: center;
                               text-align: center;
                               margin: 0 0;
+                              p {
+                                   padding-bottom: 10px;
+                              }
                               a {
                                    .btn-circle {
                                         width: 40px;
