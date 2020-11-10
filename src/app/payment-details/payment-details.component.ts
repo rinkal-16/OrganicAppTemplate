@@ -77,10 +77,9 @@ export class PaymentDetailsComponent implements OnInit {
 
     this.addr_detail_available = this.route.snapshot.queryParams['addressFlag'];
     this.card_detail_available = this.route.snapshot.queryParams['cardFlag'];
-
-    this.orderId = this.route.snapshot.queryParams['order_id'];
-    console.log(this.orderId);
+    this.orderId = this.route.snapshot.queryParams['order_id'];    
     this.token = this.route.snapshot.queryParams['token'];
+    
 
     console.log(this.route.snapshot.queryParams);
     
@@ -111,8 +110,6 @@ export class PaymentDetailsComponent implements OnInit {
       }
     } 
       
-  
-
     this._paymentService.get_card_detail().subscribe((data) => {
           console.log(data);
           this.carddetail = data['data']['card'];
@@ -121,7 +118,6 @@ export class PaymentDetailsComponent implements OnInit {
     this._paymentService.get_address_detail().subscribe((data) => {
       console.log(data);
       this.addrdetail = data['data']['address'];
-      console.log(this.addrdetail);
     })
   }
 
@@ -141,7 +137,6 @@ export class PaymentDetailsComponent implements OnInit {
       if(data['error']) {
         alert(data['error'])
       } else {
-        console.log(data);
         this.addresses = data['data']['address'];
       }
     })
@@ -153,7 +148,6 @@ export class PaymentDetailsComponent implements OnInit {
       if(data['error']) {
         alert(data['error'])
       } else {
-        console.log(data);
         this.cards = data['data']['card'];
       }
     })
@@ -169,7 +163,6 @@ export class PaymentDetailsComponent implements OnInit {
         alert(data['error']);
       } else {
         alert(data['meta']['success']);
-        console.log(data);
       }  
     });   
     this._paymentService.get_address_detail().subscribe((data) => {
@@ -183,8 +176,7 @@ export class PaymentDetailsComponent implements OnInit {
     console.log(this.orderId);
     if(!this.cardDetailForm.controls['defaultCard']) {
       this.cardDetailForm.controls['defaultCard'].setValue("false");
-    }
-    
+    }   
     this._paymentService.card_detail(this.cardDetailForm.value).subscribe((data) => {
       console.log(data);     
       if(data['error']) {
@@ -194,7 +186,7 @@ export class PaymentDetailsComponent implements OnInit {
         alert(data['meta']['success']);
         this.fetch_card();
         this.stripeData = data['data']['token'];
-        this.goAhead();
+        this.continue();
         
       }
     });
@@ -224,7 +216,7 @@ export class PaymentDetailsComponent implements OnInit {
     this.cardDetailForm.reset();
   }
 
-  goAhead() {
+  continue() {
     let buy = this.route.snapshot.queryParams['buy_from_cart'];
       let order_id = this.route.snapshot.queryParams['order_id'];
       let quantity = this.route.snapshot.queryParams['quantity'];
@@ -252,13 +244,11 @@ export class PaymentDetailsComponent implements OnInit {
 
   openForm() {
     this.verify_form = true;
-    console.log('opening....')
   }
 
   onAddrChange(value: any) {
     console.log(value);
-    this.addressDetailForm.controls['defaultAddress'].setValue(value);
-    
+    this.addressDetailForm.controls['defaultAddress'].setValue(value);    
       // let buy = this.route.snapshot.queryParams['buy_from_cart'];
       // let order_id = this.route.snapshot.queryParams['order_id'];
       // let id = this.route.snapshot.queryParams['product_id'];
@@ -281,8 +271,7 @@ export class PaymentDetailsComponent implements OnInit {
     this.cardDetailForm.controls['defaultCard'].setValue(value);
   }
 
-  change_default_Address(id: any) {
-    
+  change_default_Address(id: any) {   
     this._paymentService.change_default_addr(id).subscribe((data) => {
       console.log(data);
       if(data['error']) {
@@ -301,6 +290,7 @@ export class PaymentDetailsComponent implements OnInit {
     this.cvvVerifyForm.controls['card_id'].setValue(id);
   }
 
+  
   verified(id) {     
     this.cvvVerifyForm.controls['card_id'].setValue(id);    
     this.cvvVerifyForm.controls['order_id'].setValue(this.route.snapshot.queryParams['order_id']);             
@@ -324,23 +314,21 @@ export class PaymentDetailsComponent implements OnInit {
           this._router.navigate( ['checkout'], { queryParams: { 'order_id' : orderId, buy_from_cart: true, token : this.token } });
         } else {
           this._router.navigate( ['checkout'], { queryParams: { 'order_id' : orderId, buy_from_cart: false, 'id': id, 'quantity': quantity, 'product_id': product_id, token : this.token } });
-        }
-       
+        }      
       }
     })
   }
-
-  
-
-    // 378282246310005
-    // 371449635398431
-    // 5555555555554444
-    // 5105105105105100
-    // 4111111111111111	
-    // 5610591081018250
-    // 4012888888881881
-
-
-  
-
 }
+ 
+
+  // 378282246310005
+  // 371449635398431
+  // 5555555555554444
+  // 5105105105105100
+  // 4111111111111111	
+  // 5610591081018250
+  // 4012888888881881
+
+
+  
+

@@ -102,7 +102,7 @@ export class AddToCartComponent implements OnInit {
         this._router.navigate(['payment-details'], { queryParams: { 'buy_from_cart': data['data']['buy_from_cart'], 'order_id': this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'] }})
         
       }
-    });
+    });     
   }
 
   add_product() {
