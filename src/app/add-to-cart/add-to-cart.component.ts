@@ -36,14 +36,12 @@ export class AddToCartComponent implements OnInit {
       this._cartService.get_cart().subscribe((data) => {
         console.log(data);
         if (data['status_code'] == 404) {
-          this.emptyCart = true;
-          
+          this.emptyCart = true;          
         }
         if (data['error']) {
           alert(data['error']);
         } else {
-          this.bucketCart = true;
-          
+          this.bucketCart = true;          
           this.cart_data = data['data']['cart_product'];
           console.log(this.cart_data);
           this.total = data['data']['total_price'];
@@ -54,14 +52,12 @@ export class AddToCartComponent implements OnInit {
       this.addToCartForm.controls['quantity'].setValue(this.route.snapshot.params['quantity']);
       this._cartService.post_cart(this.addToCartForm.value).subscribe((data) => {
         if (data['status_code'] == 404) {
-          this.emptyCart = true;
-          
+          this.emptyCart = true;          
         }
         if (data['error']) {
           alert(data['error']);
         } else {
-          this.bucketCart = true;
-         
+          this.bucketCart = true;         
           this.cart_data = data['data']['cart_product'];
           this.total = data['data']['total_price'];
         }
@@ -87,7 +83,6 @@ export class AddToCartComponent implements OnInit {
 
   checkout() {
     this._cartService.buy_from_cart().subscribe((data) => {
-      console.log(data);
       if (data['error']) {
         alert(data['error']);        
       } 
@@ -99,8 +94,7 @@ export class AddToCartComponent implements OnInit {
         this.cardAvailability = data['data']['card_available'];
         console.log(this.addrAvailability);
         console.log(this.cardAvailability);
-        this._router.navigate(['payment-details'], { queryParams: { 'buy_from_cart': data['data']['buy_from_cart'], 'order_id': this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'] }})
-        
+        this._router.navigate(['payment-details'], { queryParams: { 'buy_from_cart': data['data']['buy_from_cart'], 'order_id': this.orderId, 'addressFlag': data['data']['address_available'], 'cardFlag': data['data']['card_available'] }})        
       }
     });     
   }

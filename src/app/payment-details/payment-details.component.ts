@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StripeService, Elements, Element as StripeElement, ElementsOptions } from 'ngx-stripe';
 import { CheckoutService } from '../services/checkout.service';
 import { PaymentDetailService } from '../services/payment-detail.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CvvVerifyFormComponent } from '../cvv-verify-form/cvv-verify-form.component';
 
 @Component({
   selector: 'app-payment-details',
@@ -43,7 +45,7 @@ export class PaymentDetailsComponent implements OnInit {
   addresses: any;
   token: any;
 
-  constructor(private formBuilder: FormBuilder, private _stripeService: StripeService, private _checkoutService: CheckoutService, private _paymentService: PaymentDetailService, private route: ActivatedRoute, private _router: Router) { }
+  constructor(private formBuilder: FormBuilder, private _stripeService: StripeService, private _checkoutService: CheckoutService, private _paymentService: PaymentDetailService, private route: ActivatedRoute, private _router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -229,17 +231,11 @@ export class PaymentDetailsComponent implements OnInit {
           this._router.navigate(['checkout'], { queryParams: { buy_from_cart : false,
           'order_id': order_id, 'token': this.stripeData  } });
         }
-      
-      
-        // if(buy == 'true') {
-        //   this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : true, 
-        //   'order_id': order_id, 'token': this.route.snapshot.queryParams['token']  } });
-        // }
-        // else {
-        //   this._router.navigate(['/checkout'], { queryParams: { buy_from_cart : false,
-        //   'order_id': order_id, 'token': this.route.snapshot.queryParams['token']  } });
-        // }
-        
+    
+  }
+
+  openCvvForm() {
+    this.dialog.open(CvvVerifyFormComponent, {width: '500px', height: '450px'});
   }
 
   openForm() {

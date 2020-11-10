@@ -35,22 +35,6 @@ export class CheckoutService {
     { headers: { Authorization: this.token } }); 
   }
 
-  // public payment_gateway(formData: any): Observable<Checkout> {
-  //   let form = new FormData();
-  //   form.append('token', formData.token['id']);
-  //   // form.append('name', formData.name);
-  //   // form.append('addr_line1', formData.addr_line1);
-  //   // form.append('addr_line2', formData.addr_line2);
-  //   // form.append('amount', formData.amount);
-  //   // form.append('city', formData.city);
-  //   // form.append('state', formData.state);
-  //    form.append('currency', formData.currency);
-  //   // form.append('country', formData.country);
-  //   // form.append('postal_code', formData.postal_code);  
-  //   // form.append('phone', formData.phone);
-  //   this.token = this._appService.getToken();
-  //   return this.http.post<Checkout>(this.apiURL+`/stripe/`, form, 
-  //   { headers: { Authorization: this.token } }); 
-  // }
+  
 
 }

@@ -22,8 +22,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductPaginationComponent } from './product-pagination/product-pagination.component'; 
 import { NgxStripeModule } from 'ngx-stripe';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
-// MDB Angular Free
-//import { WavesModule } from 'angular-bootstrap-md';
+import { CvvVerifyFormComponent } from './cvv-verify-form/cvv-verify-form.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +42,7 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
     CheckoutComponent,
     ProductPaginationComponent,
     PaymentDetailsComponent,
+    CvvVerifyFormComponent,
     
     
   ],
@@ -53,7 +53,6 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    //WavesModule,
     NgxStripeModule.forRoot('pk_test_51HgUIAE6HZ2spzZbur7T9XS40mmCNzq1n7yqzzKEvhFmiS8FgKQJlYBC5Xlcfllkg1yCGvWeGXFnZ6EfzLX41qQx00gRzx7ZmM'),
 
     
