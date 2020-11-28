@@ -3,7 +3,6 @@ import { Products } from '../modals/products';
 import { ProductInfo } from '../modals/productInfo';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { AppService } from '../app.service';
 
